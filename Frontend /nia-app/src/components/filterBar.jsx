@@ -38,4 +38,8 @@ export default function Signup() {
         .catch((error) => alert(error))
     }
 
+    function handleOnChange(e) {
+        setSignUpForm({...signupForm, [e.target.name] : e.target.value})
+    }
+
 }
