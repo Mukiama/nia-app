@@ -11,7 +11,7 @@ export default function Signup() {
     function handleSubmit (event) {
         event.preventDefault()
 
-        fetch('',
+        fetch('',       // signup endpint
             {
                 method : 'POST',
                 headers : {
@@ -41,5 +41,37 @@ export default function Signup() {
     function handleOnChange(e) {
         setSignUpForm({...signupForm, [e.target.name] : e.target.value})
     }
+
+
+    return (
+        <>
+        <form onSubmit={handleSubmit}>
+            <input 
+            type="text" 
+            name = 'name'
+            value = {signupForm.name}
+            placeholder='Enter name'
+            onChange={(e) => handleOnChange(e)}
+            />
+            <input 
+            type="email" 
+            name = 'email'
+            value = {signupForm.email}
+            placeholder='Enter email'
+            onChange={(e) => handleOnChange(e)}
+            />
+            <input 
+            type="text" 
+            name = 'password'
+            value = {signupForm.password}
+            placeholder='Enter password'
+            onChange={(e) => handleOnChange(e)}
+            />
+            <button type='submit'>
+                Submit
+            </button>
+        </form>
+        </>
+    )
 
 }
