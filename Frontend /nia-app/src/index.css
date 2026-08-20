@@ -52,6 +52,7 @@
   transform: rotate(1.0rem);
 }
 
+
 /* NAVIGATION */
 
 .navbar-links {
@@ -220,41 +221,135 @@
   display: flex;
   align-items: center;
 
-  gap: 4px;
+  gap: 8px;
 }
 
-.navbar-text-link {
-  text-decoration: none;
-  white-space: nowrap;
-}
 
-.nav-link {
+/* Both actions share the same typography */
+
+.navbar-action {
   display: flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
 
-  padding: 11px 15px;
+  min-height: 40px;
 
-  border: none;
-  border-radius: 7px;
+  padding: 9px 15px;
 
-  background: transparent;
-
-  color: #222222;
+  border-radius: 12px;
 
   font-family: inherit;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
 
-  cursor: pointer;
+  text-decoration: none;
 
   transition:
     background 0.2s ease,
     color 0.2s ease;
 }
 
-.nav-link:hover {
+
+/* LIST YOUR BUSINESS */
+
+.business-link {
+  color: #1b1b1b;
+
+  background: #f4f3f3;
+}
+
+.business-link:hover {
+  background: #dbd8d8;
+}
+
+
+/* =========================================
+   ACCOUNT
+========================================= */
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+
+  background: white;
+  color: #222222;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-button:hover {
+  background: #f4f3f3;
+  border-color: #dbd8d8;
+}
+.profile-icon {
+  width: 22px;
+  height: 22px;
+
+  display: block;
+}
+
+
+/* ACCOUNT DROPDOWN */
+
+.profile-dropdown {
+  position: absolute;
+
+  top: calc(100% + 6px);
+  right: 0;
+
+  min-width: 150px;
+
+  padding: 6px 0;
+
+  background: #f4f3f3;
+
+  border: 1px solid #dddddd;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  z-index: 1000;
+
+  display: none;
+}
+
+.profile-dropdown a {
+  display: block;
+
+  padding: 10px 16px;
+
+  color: #222222;
+
+  text-decoration: none;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.profile-dropdown a:hover {
   background: #f5f5f5;
+}
+
+
+/* SHOW ACCOUNT MENU */
+
+.profile-menu:hover .profile-dropdown {
+  display: block;
 }
 
 /* MOBILE */
@@ -275,10 +370,25 @@
 
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 43ce4eb (feat: add interests section)
+/* SMALL MOBILE */
+
+@media (max-width: 500px) {
+
+  .navbar-logo {
+    font-size: 1.7rem;
+  }
+
+  .navbar-actions {
+    gap: 10px;
+  }
+
+  .login-link {
+    padding: 9px 14px;
+  }
+
+}
+
 /* HERO */
 
 .hero {
@@ -390,6 +500,7 @@
   border: 1px solid white;
 
 }
+
 
 /* SECTIONS */
 
@@ -555,8 +666,276 @@
 
   }
 
-<<<<<<< HEAD
 }
-=======
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  background: #111;
+  color: #fff;
+  padding: 80px 0 25px;
 }
->>>>>>> 43ce4eb (feat: add interests section)
+
+.footer-container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+
+  gap: 60px;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.footer-brand {
+  max-width: 320px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 2rem;
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
+}
+
+.footer-brand .nia-mark {
+  color: #fff;
+}
+
+.footer-brand p {
+  margin-top: 18px;
+
+  color: #aaa;
+
+  line-height: 1.6;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+}
+
+
+/* =========================================
+   FOOTER COLUMNS
+========================================= */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.footer-column h3,
+.footer-social h3 {
+  margin: 0 0 10px;
+
+  color: #fff;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.footer-column a {
+  color: #aaa;
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #fff;
+
+  transform: translateX(4px);
+}
+
+
+/* BUSINESS TEXT */
+
+.footer-business-text {
+  margin-top: 10px;
+
+  color: #777;
+
+  font-size: 0.82rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   SOCIAL MEDIA
+========================================= */
+
+.footer-social {
+  width: min(1200px, 90%);
+
+  margin: 65px auto 0;
+
+  padding: 30px 0;
+
+  border-top: 1px solid #333;
+
+  border-bottom: 1px solid #333;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.footer-social p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 0.9rem;
+}
+
+.social-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+}
+
+.social-links a {
+  color: #aaa;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.social-links a:hover {
+  color: #fff;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   FOOTER BOTTOM
+========================================= */
+
+.footer-bottom {
+  width: min(1200px, 90%);
+
+  margin: 25px auto 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+
+  color: #666;
+
+  font-size: 0.82rem;
+}
+
+.footer-legal {
+  display: flex;
+
+  gap: 20px;
+}
+
+.footer-legal a {
+  color: #666;
+
+  text-decoration: none;
+
+  font-size: 0.82rem;
+
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover {
+  color: #fff;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 45px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-social {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 25px;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+
+    gap: 18px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+}
