@@ -71,7 +71,7 @@ function Home() {
 
         <section className="offmap-section">
           <div className="section-container">
-            <p className="section-eyebrow">GO OFFMAP</p>
+            <p className="section-eyebrow">OFFMAP</p>
 
             <h2>Discover somewhere unexpected.</h2>
 
