@@ -5,6 +5,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -55,7 +56,17 @@ export default function Login() {
         >
         {showPassword ? "Hide" : "Show"}
         </button>
+          
         </div>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+          />
+              Remember me
+        </label>
 
         <button type="submit">
           Login
