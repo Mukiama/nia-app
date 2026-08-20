@@ -3,23 +3,33 @@ import { useState } from "react";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("");
+  
   function handleSubmit(e) {
     e.preventDefault();
 
-    console.log({
-      email,
-      password,
-    });
+  if (!email || !password) {
+    setError("Please enter your email and password.");
+    return;
   }
+
+  setError("");
+
+  console.log("Login:", {
+    email,
+    password,
+  });
+}
 
   return (
     <div>
       <h1>Login to Nia</h1>
 
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email</label>
+
           <input
             type="email"
             value={email}
@@ -30,6 +40,7 @@ export default function Login() {
 
         <div>
           <label>Password</label>
+
           <input
             type="password"
             value={password}
@@ -44,8 +55,8 @@ export default function Login() {
       </form>
 
       <p>
-        Don't have an account?
-        <a href="/signup"> Sign up</a>
+        Don't have an account?{" "}
+        <a href="/signup">Sign up</a>
       </p>
     </div>
   );
