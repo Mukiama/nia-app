@@ -4,6 +4,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,11 +43,18 @@ export default function Login() {
           <label>Password</label>
 
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
+
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+        {showPassword ? "Hide" : "Show"}
+        </button>
         </div>
 
         <button type="submit">
