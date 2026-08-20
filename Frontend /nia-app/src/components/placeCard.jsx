@@ -187,7 +187,7 @@ function PlaceCard() {
 
           {submitted && (
             <div className="success-message">
-              
+              Business details submitted successfully!
             </div>
           )}
 
