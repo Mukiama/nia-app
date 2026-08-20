@@ -38,7 +38,7 @@ function PlaceCard() {
         <div className="form-header">
           <h2>Add a Business / Place</h2>
           <p>
-            
+            Provide details about the business, property or destination.
           </p>
         </div>
 
