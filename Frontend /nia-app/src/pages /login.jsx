@@ -73,6 +73,10 @@ export default function Login() {
         </button>
       </form>
 
+      <a href="/forgot-password">
+        Forgot password?
+      </a>
+
       <p>
         Don't have an account?{" "}
         <a href="/signup">Sign up</a>
