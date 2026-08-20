@@ -71,6 +71,10 @@ export default function Signup() {
                 Submit
             </button>
         </form>
+        <p>
+            Already have an account?
+        </p>
+        <Link to='/login'>Login</Link>    {/* Need to create a signup and login route */}
         </>
     )
 
