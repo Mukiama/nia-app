@@ -120,7 +120,7 @@ function Hero() {
           />
 
           <span className="nia-pick-tag">
-            NIA PICK
+            NIA PICK OF THE DAY
           </span>
 
         </div>
