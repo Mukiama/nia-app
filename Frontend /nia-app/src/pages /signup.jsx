@@ -8,6 +8,8 @@ export default function Signup() {
         password : ''
     })
 
+    const {showPassword, setShowPassword} = useState(false)
+
     function handleSubmit (event) {
         event.preventDefault()
 
@@ -34,6 +36,7 @@ export default function Signup() {
                 email : '',
                 password : ''
             })
+            alert('Signup successful')
         })
         .catch((error) => alert(error))
     }
@@ -64,12 +67,19 @@ export default function Signup() {
             onChange={(e) => handleOnChange(e)}
             />
             <input 
-            type="text" 
+            type={showPassword ? 'text' : 'password'} 
             name = 'password'
             value = {signupForm.password}
             placeholder='Enter password'
             onChange={(e) => handleOnChange(e)}
             />
+            <button
+                type='button'
+                onClick={() => setShowPassword((prev) => !prev)}
+            >
+                {showPassword ? 'Hide' : 'Show'}
+            </button>
+
             <button type='submit'>
                 Submit
             </button>
