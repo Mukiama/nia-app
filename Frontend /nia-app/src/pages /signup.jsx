@@ -2,16 +2,34 @@ import {useState} from 'react'
 
 
 export default function Signup() {
-    const {signupForm, setSignUpForm} = useState({
+    const [signupForm, setSignUpForm] = useState({
         name : '',
         email : '',
         password : ''
     })
 
+    const [showPassword, setShowPassword] = useState(false)
+
+    const [error, setError] = useState('')
+
+    function validateForm() {
+        if (!signupForm.name.trim()) return 'Name is required'
+        if (!signupForm.email.include('@')) return 'Enter a valid email'
+        if (!signupForm.password.length > 6) return 'Password should be 6 or more characters'
+        return ''
+    }
+
     function handleSubmit (event) {
         event.preventDefault()
 
-        fetch('',        // signup endpint
+        const validate = validateForm()
+
+        if (validate) {
+            setError(validate)
+            return
+        }
+
+        fetch('',        // signup endpoint
             {
                 method : 'POST',
                 headers : {
@@ -34,8 +52,9 @@ export default function Signup() {
                 email : '',
                 password : ''
             })
+            alert('Signup successful')
         })
-        .catch((error) => alert(error))
+        .catch((error) => setError(error.message))
     }
 
     function handleOnChange(e) {
@@ -43,8 +62,13 @@ export default function Signup() {
     }
 
 
+
     return (
         <>
+        <h1>
+            Sign in
+        </h1>
+        
         <form onSubmit={handleSubmit}>
             <input 
             type="text" 
@@ -61,16 +85,29 @@ export default function Signup() {
             onChange={(e) => handleOnChange(e)}
             />
             <input 
-            type="text" 
+            type={showPassword ? 'text' : 'password'} 
             name = 'password'
             value = {signupForm.password}
             placeholder='Enter password'
             onChange={(e) => handleOnChange(e)}
             />
+            <button
+                type='button'
+                onClick={() => setShowPassword((prev) => !prev)}
+            >
+                {showPassword ? 'Hide' : 'Show'}
+            </button>
+
             <button type='submit'>
                 Submit
             </button>
         </form>
+
+        <p>
+            Already have an account?
+        </p>
+        <a href="/login">Login</a>
+
         </>
     )
 
