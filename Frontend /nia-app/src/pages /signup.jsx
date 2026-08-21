@@ -1,3 +1,4 @@
+
 import {useState} from 'react'
 
 
@@ -97,12 +98,13 @@ export default function Signup() {
                         <button
                             type='button'
                             onClick={() => setShowPassword((prev) => !prev)}
+                            className='toggle-password'
                         >
                             {showPassword ? 'Hide' : 'Show'}
                         </button>
                     </div>
 
-                    <button type='submit'>
+                    <button type='submit' className='submit-btn'>
                         Submit
                     </button>
                 </form>
