@@ -9,6 +9,15 @@ import PlaceCard from "../components/placeCard";
 function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const categories = [
+  "All",
+  "Nature",
+  "Food",
+  "Art",
+  "Culture",
+  "Adventure",
+  "Nightlife",
+];
 
   const places = [
     {
@@ -72,9 +81,6 @@ function Home() {
 
       <main>
         <Hero />
-        <SearchBar
-         search={search}
-         setSearch={setSearch}/>
 
         {/* INTERESTS */}
         <section className="interests-section">
@@ -136,17 +142,19 @@ function Home() {
               Interesting places we think you'll love.
             </p>
 
-            {/* SEARCH */}
-            <SearchBar
-              search={search}
-              setSearch={setSearch}
-            />
 
             {/* FILTER */}
-            <FilterBar
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-            />
+            <div className="filter-bar">
+              {categories.map((category) => (
+                 <button
+                   key={category}
+                   className={selectedCategory === category ? "active" : ""}
+                   onClick={() => setSelectedCategory(category)}
+                 >
+                   {category}
+             </button>
+             ))}
+            </div>
 
             {/* PLACE CARDS */}
             <div className="places-grid">
