@@ -1,5 +1,5 @@
-import {Link} from 'react-router'
-import './Landing.css'
+// import {Link} from 'react-router'
+
 
 export default function LandingPage() {
 
@@ -8,7 +8,8 @@ export default function LandingPage() {
         <div className='landing-page'>
             <header className='landing-nav'>
                 <span className='landing-logo'>Nia</span>
-                <Link to='/signup' className='nav-signup-btn'>Sign Up</Link>
+                {/* <Link to='/signup' className='nav-signup-btn'>Sign Up</Link> */}
+                <a href="/signup" className='nav-signup-btn'>Sign Up</a>
             </header>
 
             <main className="landing-hero">
@@ -27,13 +28,18 @@ export default function LandingPage() {
                     Uber/Maps to get there.
                 </p>
 
-                <Link to='/signup' className='main-signup-btn'>Get Started</Link>
+                {/* <Link to='/signup' className='main-signup-btn'>Get Started</Link> */}
+                <a href="/signup" className="main-signup-btn">Get Started</a>
             </main>
 
             <section className="landing-features">
                 <div className="feature-card">
                     <h3>Personalized Matches</h3>
                     <p>Every recommendation comes with a Nia Match score and a reason it fits you.</p>
+                </div>
+                <div className="feature-card">
+                    <h3>See It On The Map</h3>
+                    <p>Every place is pinned so you know exactly where to go next.</p>
                 </div>
                 <div className="feature-card">
                     <h3>Get There Instantly</h3>

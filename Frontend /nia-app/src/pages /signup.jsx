@@ -1,5 +1,6 @@
 
 import {useState} from 'react'
+import {Link} from 'react-router'
 
 
 export default function Signup() {
@@ -111,8 +112,9 @@ export default function Signup() {
 
                 <p className='login-link'>
                     Already have an account?
+                    <a href="/login">Login</a>
                 </p>
-                <a href="/login">Login</a>
+                
             </div>
         </div>
 
