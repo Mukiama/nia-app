@@ -97,6 +97,18 @@ function Navbar() {
           </div>
 
         </nav>
+        
+        {/* SEARCH */}
+        <div className="navbar-search">
+          <span className="search-icon">⌕</span>
+
+          <input
+            type="text"
+            placeholder="Search places..."
+            aria-label="Search places"
+          />
+        </div>
+
 
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
