@@ -10,6 +10,8 @@ export default function Signup() {
 
     const {showPassword, setShowPassword} = useState(false)
 
+    const {error, setError} = useState('')
+
     function validateForm() {
         if (!signupForm.name.trim()) return 'Name is required'
         if (!signupForm.email.include('@')) return 'Enter a valid email'
@@ -20,6 +22,12 @@ export default function Signup() {
     function handleSubmit (event) {
         event.preventDefault()
 
+        const validate = validateForm()
+
+        if (validate) {
+            setError(validate)
+            return
+        }
 
         fetch('',        // signup endpoint
             {
@@ -46,7 +54,7 @@ export default function Signup() {
             })
             alert('Signup successful')
         })
-        .catch((error) => alert(error))
+        .catch((error) => setError(error.message))
     }
 
     function handleOnChange(e) {
