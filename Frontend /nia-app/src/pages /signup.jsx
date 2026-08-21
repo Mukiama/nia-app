@@ -2,20 +2,20 @@ import {useState} from 'react'
 
 
 export default function Signup() {
-    const {signupForm, setSignUpForm} = useState({
+    const [signupForm, setSignUpForm] = useState({
         name : '',
         email : '',
         password : ''
     })
 
-    const {showPassword, setShowPassword} = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
-    const {error, setError} = useState('')
+    const [error, setError] = useState('')
 
     function validateForm() {
         if (!signupForm.name.trim()) return 'Name is required'
         if (!signupForm.email.include('@')) return 'Enter a valid email'
-        if (signupForm.password.length > 6) return 'Password should be 6 or more characters'
+        if (!signupForm.password.length > 6) return 'Password should be 6 or more characters'
         return ''
     }
 
@@ -65,9 +65,10 @@ export default function Signup() {
 
     return (
         <>
-        <h2>
-            Sign Up
-        </h2>
+        <h1>
+            Sign in
+        </h1>
+        
         <form onSubmit={handleSubmit}>
             <input 
             type="text" 
@@ -101,10 +102,12 @@ export default function Signup() {
                 Submit
             </button>
         </form>
+
         <p>
             Already have an account?
         </p>
         <a href="/login">Login</a>
+
         </>
     )
 

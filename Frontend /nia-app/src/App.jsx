@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchBar from "./components/searchBar.jsx";
 import FilterBar from "./components/filterBar.jsx";
+import Signup from "./pages /signup.jsx";
 
 // A small temporary list of places, just so we can test Search and Filter.
 // Once Mukiama merges the real places.js data, we'll swap this out.
@@ -32,8 +33,11 @@ function App() {
 
   return (
     <div>
+      
       <h1>Nia — Find your next thing</h1>
 
+      <Signup/>
+      
       <SearchBar onSearch={setSearchText} />
       <FilterBar categories={categories} counties={counties} onFilterChange={setFilters} />
 
