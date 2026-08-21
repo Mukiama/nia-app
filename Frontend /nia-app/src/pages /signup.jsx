@@ -1,3 +1,4 @@
+
 import {useState} from 'react'
 
 
@@ -65,48 +66,56 @@ export default function Signup() {
 
     return (
         <>
-        <h1>
-            Sign in
-        </h1>
-        
-        <form onSubmit={handleSubmit}>
-            <input 
-            type="text" 
-            name = 'name'
-            value = {signupForm.name}
-            placeholder='Enter name'
-            onChange={(e) => handleOnChange(e)}
-            />
-            <input 
-            type="email" 
-            name = 'email'
-            value = {signupForm.email}
-            placeholder='Enter email'
-            onChange={(e) => handleOnChange(e)}
-            />
-            <input 
-            type={showPassword ? 'text' : 'password'} 
-            name = 'password'
-            value = {signupForm.password}
-            placeholder='Enter password'
-            onChange={(e) => handleOnChange(e)}
-            />
-            <button
-                type='button'
-                onClick={() => setShowPassword((prev) => !prev)}
-            >
-                {showPassword ? 'Hide' : 'Show'}
-            </button>
+        <div className='signup-page'>
+            <div className='signup-card'>
+                <h1 className='signup-title'>
+                    Sign up
+                </h1>
+                
+                <form onSubmit={handleSubmit} className='signup-form'> 
+                    <input 
+                    type="text" 
+                    name = 'name'
+                    value = {signupForm.name}
+                    placeholder='Enter name'
+                    onChange={(e) => handleOnChange(e)}
+                    />
+                    <input 
+                    type="email" 
+                    name = 'email'
+                    value = {signupForm.email}
+                    placeholder='Enter email'
+                    onChange={(e) => handleOnChange(e)}
+                    />
+                    <div className='password-field'>
+                        <input 
+                        type={showPassword ? 'text' : 'password'} 
+                        name = 'password'
+                        value = {signupForm.password}
+                        placeholder='Enter password'
+                        onChange={(e) => handleOnChange(e)}
+                        />
+                        <button
+                            type='button'
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            className='toggle-password'
+                        >
+                            {showPassword ? 'Hide' : 'Show'}
+                        </button>
+                    </div>
 
-            <button type='submit'>
-                Submit
-            </button>
-        </form>
+                    <button type='submit' className='submit-btn'>
+                        Submit
+                    </button>
+                </form>
 
-        <p>
-            Already have an account?
-        </p>
-        <a href="/login">Login</a>
+                <p className='login-link'>
+                    Already have an account?
+                </p>
+                <a href="/login">Login</a>
+            </div>
+        </div>
+
 
         </>
     )

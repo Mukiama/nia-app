@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "./components/searchBar.jsx";
 import FilterBar from "./components/filterBar.jsx";
 import Signup from "./pages /signup.jsx";
+import './Landing.css'
 
 // A small temporary list of places, just so we can test Search and Filter.
 // Once Mukiama merges the real places.js data, we'll swap this out.
