@@ -10,10 +10,18 @@ export default function Signup() {
 
     const {showPassword, setShowPassword} = useState(false)
 
+    function validateForm() {
+        if (!signupForm.name.trim()) return 'Name is required'
+        if (!signupForm.email.include('@')) return 'Enter a valid email'
+        if (signupForm.password.length > 6) return 'Password should be 6 or more characters'
+        return ''
+    }
+
     function handleSubmit (event) {
         event.preventDefault()
 
-        fetch('',        // signup endpint
+
+        fetch('',        // signup endpoint
             {
                 method : 'POST',
                 headers : {
@@ -44,6 +52,7 @@ export default function Signup() {
     function handleOnChange(e) {
         setSignUpForm({...signupForm, [e.target.name] : e.target.value})
     }
+
 
 
     return (
