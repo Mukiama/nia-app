@@ -1,20 +1,22 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-container">
 
         {/* LOGO */}
-        <a href="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           <span className="nia-mark">✦</span>
           <span>Nia</span>
-        </a>
+        </Link>
 
         {/* MAIN NAVIGATION */}
         <nav className="navbar-links">
 
           {/* DISCOVER */}
           <div className="nav-dropdown">
-            <button className="nav-link">
+            <button className="nav-link" type="button">
               Discover
               <span className="nav-arrow">⌄</span>
             </button>
@@ -22,50 +24,75 @@ function Navbar() {
             <div className="dropdown-menu discover-menu">
               <div>
                 <p className="dropdown-title">DISCOVER</p>
-                <a href="/">Hidden Gems</a>
-                <a href="/">Nia Picks</a>
-                <a href="/">New Places</a>
+
+                <Link to="/hidden-gems">Hidden Gems</Link>
+                <Link to="/nia-picks">Nia Picks</Link>
+                <Link to="/new-places">New Places</Link>
               </div>
 
               <div>
                 <p className="dropdown-title">EXPLORE</p>
-                <a href="/">Popular Places</a>
-                <a href="/">Surprise Me</a>
+
+                <Link to="/popular-places">Popular Places</Link>
+                <Link to="/surprise-me">Surprise Me</Link>
               </div>
             </div>
           </div>
 
           {/* EXPLORE */}
           <div className="nav-dropdown">
-            <button className="nav-link">
+            <button className="nav-link" type="button">
               Explore
               <span className="nav-arrow">⌄</span>
             </button>
 
             <div className="dropdown-menu">
-              <a href="/">Near Me</a>
-              <a href="/">Interactive Map</a>
-              <a href="/">OffMap</a>
-              <a href="/">Recently Added</a>
+              <Link to="/near-me">Near Me</Link>
+              <Link to="/map">Interactive Map</Link>
+              <Link to="/offmap">OffMap</Link>
+              <Link to="/recently-added">Recently Added</Link>
             </div>
           </div>
 
           {/* CATEGORIES */}
           <div className="nav-dropdown">
-            <button className="nav-link">
+            <button className="nav-link" type="button">
               Categories
               <span className="nav-arrow">⌄</span>
             </button>
 
             <div className="dropdown-menu categories-menu">
-              <a href="/">📸 Photography</a>
-              <a href="/">🌿 Nature</a>
-              <a href="/">☕ Food</a>
-              <a href="/">🎨 Art</a>
-              <a href="/">🏛️ History</a>
-              <a href="/">👨‍👩‍👧 Family</a>
-              <a href="/">🥾 Adventure</a>
-              <a href="/">🌙 Nightlife</a>
+              <Link to="/categories/photography">
+                📸 Photography
+              </Link>
+
+              <Link to="/categories/nature">
+                🌿 Nature
+              </Link>
+
+              <Link to="/categories/food">
+                ☕ Food
+              </Link>
+
+              <Link to="/categories/art">
+                🎨 Art
+              </Link>
+
+              <Link to="/categories/culture">
+                🏛️ Culture
+              </Link>
+
+              <Link to="/categories/family">
+                👨‍👩‍👧 Family
+              </Link>
+
+              <Link to="/categories/adventure">
+                🥾 Adventure
+              </Link>
+
+              <Link to="/categories/nightlife">
+                🌙 Nightlife
+              </Link>
             </div>
           </div>
 
@@ -74,9 +101,12 @@ function Navbar() {
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
 
-          <a href="/business" className="navbar-action business-link">
+          <Link
+            to="/business"
+            className="navbar-action business-link"
+          >
             List Your Business
-          </a>
+          </Link>
 
           {/* ACCOUNT */}
           <div className="profile-menu">
@@ -99,8 +129,8 @@ function Navbar() {
             </button>
 
             <div className="profile-dropdown">
-              <a href="/login">Log in</a>
-              <a href="/signup">Sign up</a>
+              <Link to="/login">Log in</Link>
+              <Link to="/signup">Sign up</Link>
             </div>
 
           </div>
