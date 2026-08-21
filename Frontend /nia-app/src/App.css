@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.place-card {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.place-card-image {
+  width: 100%;
+  height: clamp(180px, 22vw, 220px);
+  object-fit: cover;
+  display: block;
+}
+.place-card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.place-card-content h2 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: #222;
+}
+
+.place-location {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: #666;
+}
+.place-category {
+  display: inline-block;
+  width: fit-content;
+  margin: 0 0 12px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f0e6d2;
+  color: #6b4f2a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.place-description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.place-card-link {
+  margin-top: auto;
+  color: #b35c1e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.place-card-link:hover {
+  text-decoration: underline;
+}
+
+.place-details {
+  width: min(100%, 1100px);
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.place-details-image {
+  width: 100%;
+  max-width: 1000px;
+  height: clamp(260px, 40vw, 500px);
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 0 auto;
+}
+.place-details-content {
+  max-width: 850px;
+  margin: 28px auto 60px;
+}
+
+.place-details-content h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 10px 0;
+  line-height: 1.15;
+  color: #222;
+}
+
+.place-details-content .place-category {
+  margin-bottom: 10px;
+}
+
+.place-details-content .place-location {
+  font-size: 1.05rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.place-details-content .place-description {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: #444;
+}
+.place-details-content .place-description h2 {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 24px;
+  color: #b35c1e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
