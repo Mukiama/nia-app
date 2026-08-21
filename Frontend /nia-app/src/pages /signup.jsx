@@ -45,6 +45,9 @@ export default function Signup() {
 
     return (
         <>
+        <h2>
+            Sign Up
+        </h2>
         <form onSubmit={handleSubmit}>
             <input 
             type="text" 
@@ -71,6 +74,10 @@ export default function Signup() {
                 Submit
             </button>
         </form>
+        <p>
+            Already have an account?
+        </p>
+        <a href="/login">Login</a>
         </>
     )
 
