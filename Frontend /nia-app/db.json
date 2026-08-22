@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "name": "example user",
+      "email": "user@example.com",
+      "password": "string",
+      "id": "DsO9sJ8XUgk"
+    }
+  ],
+  "places": [
+    {
+      "id": "1",
+      "name": "Karura Forest",
+      "location": "Nairobi",
+      "county": "Nairobi",
+      "category": "Nature",
+      "description": "A large urban forest with walking trails, waterfalls, caves and scenic green spaces.",
+      "openingHours": "6:00 AM - 6:00 PM",
+      "entryFee": "KES 100"
+    },
+    {
+      "id": "2",
+      "name": "Nairobi National Museum",
+      "location": "Nairobi",
+      "county": "Nairobi",
+      "category": "Culture",
+      "description": "A museum featuring Kenyan history, art, culture and natural heritage.",
+      "openingHours": "8:30 AM - 5:30 PM",
+      "entryFee": "KES 200"
+    }
+  ]
+}

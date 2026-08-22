@@ -1,52 +1,29 @@
-import { useState } from "react";
-import SearchBar from "./components/searchBar.jsx";
-import FilterBar from "./components/filterBar.jsx";
-import Signup from "./pages /signup.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// A small temporary list of places, just so we can test Search and Filter.
-// Once Mukiama merges the real places.js data, we'll swap this out.
-const places = [
-  { id: 1, name: "Gedi Ruins", county: "Kilifi", category: "Historical" },
-  { id: 2, name: "Kit-Mikayi", county: "Kisumu", category: "Cultural" },
-  { id: 3, name: "Kakamega Forest", county: "Kakamega", category: "Nature" },
-  { id: 4, name: "Fort Jesus", county: "Mombasa", category: "Historical" },
-  { id: 5, name: "Lamu Old Town", county: "Lamu", category: "Cultural" },
-  { id: 6, name: "Hell's Gate National Park", county: "Nakuru", category: "Adventure" },
-];
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Logout from "./pages/logout";
+import PlaceDetails from "./pages/placeDetails";
+import Hero from "./pages/hero";
+import "./App.css";
 
-function App() {
-
-  const [searchText, setSearchText] = useState("");
-  const [filters, setFilters] = useState({ category: "All", county: "All" });
-
-  const categories = [...new Set(places.map((place) => place.category))];
-  const counties = [...new Set(places.map((place) => place.county))];
-
-  const filteredPlaces = places.filter((place) => {
-    const matchesSearch = place.name.toLowerCase().includes(searchText.toLowerCase());
-    const matchesCategory = filters.category === "All" || place.category === filters.category;
-    const matchesCounty = filters.county === "All" || place.county === filters.county;
-    return matchesSearch && matchesCategory && matchesCounty;
-  });
-
+export default function App() {
   return (
-    <div>
-      <h1>Nia — Find your next thing</h1>
+    
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      <Signup />
+        <Route path="/login" element={<Login />} />
 
-      <SearchBar onSearch={setSearchText} />
-      <FilterBar categories={categories} counties={counties} onFilterChange={setFilters} />
+        <Route path="/signup" element={<Signup />} />
 
-      <ul>
-        {filteredPlaces.map((place) => (
-          <li key={place.id}>
-            {place.name} — {place.county} ({place.category})
-          </li>
-        ))}
-      </ul>
-    </div>
+        <Route path="/logout" element={<Logout />} />
+
+        <Route path="/places" element={<PlaceDetails />} />
+
+        <Route path="/hero" element={<Hero />} />
+      </Routes>
+    
   );
 }
-
-export default App;
