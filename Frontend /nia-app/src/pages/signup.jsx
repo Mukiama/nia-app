@@ -27,45 +27,57 @@ export default function Signup() {
     return "";
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(event) {
+  event.preventDefault();
 
-    const validationError = validateForm();
+  const validationError = validateForm();
 
-    if (validationError) {
-      setError(validationError);
+  if (validationError) {
+    setError(validationError);
+    return;
+  }
+
+  try {
+    const existingUsers = await fetch(
+      `http://localhost:3001/users?email=${encodeURIComponent(
+        signupForm.email
+      )}`
+    );
+
+    const users = await existingUsers.json();
+
+    if (users.length > 0) {
+      setError("An account with this email already exists.");
       return;
     }
 
-    setError("");
-
-    fetch("", {
+    const response = await fetch("http://localhost:3001/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(signupForm),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error occurred");
-        }
+    });
 
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
+    if (!response.ok) {
+      throw new Error("Signup failed.");
+    }
 
-        setSignUpForm({
-          name: "",
-          email: "",
-          password: "",
-        });
+    const data = await response.json();
 
-        alert("Signup successful");
-      })
-      .catch((error) => setError(error.message));
+    console.log("Created user:", data);
+
+    setSignUpForm({
+      name: "",
+      email: "",
+      password: "",
+    });
+
+    alert("Signup successful");
+  } catch (error) {
+    setError(error.message);
   }
+}
 
   function handleOnChange(e) {
     setSignUpForm({

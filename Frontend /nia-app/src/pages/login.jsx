@@ -8,22 +8,42 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(e) {
+  e.preventDefault();
 
-    if (!email || !password) {
-      setError("Please enter your email and password.");
+  if (!email || !password) {
+    setError("Please enter your email and password.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:3001/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+    );
+
+    const users = await response.json();
+
+    if (users.length === 0) {
+      setError("Invalid email or password.");
       return;
     }
 
+    const user = users[0];
+
+    console.log("Logged in:", user);
+
+    localStorage.setItem(
+      "niaUser",
+      JSON.stringify(user)
+    );
+
     setError("");
 
-    console.log("Login:", {
-      email,
-      password,
-      rememberMe,
-    });
+    window.location.href = "/";
+  } catch (error) {
+    setError("Unable to connect to the server.");
   }
+}
 
   return (
     <div className="auth-page">

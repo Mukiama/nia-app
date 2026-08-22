@@ -5,12 +5,12 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Logout from "./pages/logout";
 import PlaceDetails from "./pages/placeDetails";
-
+import Hero from "./pages/hero";
 import "./App.css";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -21,7 +21,9 @@ export default function App() {
         <Route path="/logout" element={<Logout />} />
 
         <Route path="/places/:id" element={<PlaceDetails />} />
+
+        <Route path="/hero" element={<Hero />} />
       </Routes>
-    </BrowserRouter>
+    
   );
 }
