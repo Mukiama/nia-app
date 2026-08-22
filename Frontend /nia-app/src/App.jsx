@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+=======
+import { useState } from "react";
+import SearchBar from "./components/searchBar.jsx";
+import FilterBar from "./components/filterBar.jsx";
+import Signup from "./pages /signup.jsx";
+import './Landing.css'
+>>>>>>> ea77a42 (Sign up page styling)
 
 import Home from "./pages/home";
 import Login from "./pages/login";
