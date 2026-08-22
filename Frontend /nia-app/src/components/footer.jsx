@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="footer">
@@ -7,10 +9,10 @@ function Footer() {
         {/* BRAND */}
         <div className="footer-brand">
 
-          <a href="/" className="footer-logo">
+          <Link to="/" className="footer-logo">
             <span className="nia-mark">✦</span>
-            nia
-          </a>
+            Nia
+          </Link>
 
           <p>
             Discover Nairobi differently.
@@ -23,29 +25,27 @@ function Footer() {
 
         </div>
 
-
         {/* EXPLORE */}
         <div className="footer-column">
 
           <h3>Explore</h3>
 
-          <a href="/discover">Discover</a>
-          <a href="/nearby">Explore Nearby</a>
-          <a href="/map">Interactive Map</a>
-          <a href="/categories">Categories</a>
-          <a href="/surprise">Surprise Me</a>
+          <Link to="/discover">Discover</Link>
+          <Link to="/nearby">NearMe</Link>
+          <Link to="/map">Interactive Map</Link>
+          <Link to="/categories">Categories</Link>
+          <Link to="/surprise">Surprise Me</Link>
 
         </div>
-
 
         {/* BUSINESS */}
         <div className="footer-column">
 
           <h3>For Businesses</h3>
 
-          <a href="/business">List Your Business</a>
-          <a href="/business">Add a Place</a>
-          <a href="/business">Claim Your Listing</a>
+          <Link to="/business">List Your Business</Link>
+          <Link to="/business">Add a Place</Link>
+          <Link to="/business">Claim Your Listing</Link>
 
           <p className="footer-business-text">
             Have a place worth discovering?
@@ -53,21 +53,19 @@ function Footer() {
 
         </div>
 
-
         {/* NIA */}
         <div className="footer-column">
 
           <h3>Nia</h3>
 
-          <a href="/about">About Nia</a>
-          <a href="/login">Log in</a>
-          <a href="/signup">Create an Account</a>
-          <a href="/contact">Contact Us</a>
+          <Link to="/about">About Nia</Link>
+          <Link to="/login">Log in</Link>
+          <Link to="/signup">Create an Account</Link>
+          <Link to="/contact">Contact Us</Link>
 
         </div>
 
       </div>
-
 
       {/* SOCIAL MEDIA */}
       <div className="footer-social">
@@ -122,7 +120,6 @@ function Footer() {
 
       </div>
 
-
       {/* BOTTOM */}
       <div className="footer-bottom">
 
@@ -131,8 +128,8 @@ function Footer() {
         </p>
 
         <div className="footer-legal">
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
+          <Link to="/privacy">Privacy</Link>
+          <Link to="/terms">Terms</Link>
         </div>
 
       </div>
