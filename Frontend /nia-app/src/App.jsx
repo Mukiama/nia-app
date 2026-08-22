@@ -21,10 +21,8 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [filters, setFilters] = useState({ category: "All", county: "All" });
 
-  
   const categories = [...new Set(places.map((place) => place.category))];
   const counties = [...new Set(places.map((place) => place.county))];
-
 
   const filteredPlaces = places.filter((place) => {
     const matchesSearch = place.name.toLowerCase().includes(searchText.toLowerCase());
@@ -35,8 +33,9 @@ function App() {
 
   return (
     <div>
-      
       <h1>Nia — Find your next thing</h1>
+
+      <Signup />
 
       <SearchBar onSearch={setSearchText} />
       <FilterBar categories={categories} counties={counties} onFilterChange={setFilters} />
