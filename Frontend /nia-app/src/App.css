@@ -17,34 +17,50 @@ img {
 }
 
 
-.places-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
+
 .place-card {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 14px;
+  flex: 0 0 250px;
+  background: white;
+  border: 1px solid #30bc6f;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .place-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(48, 188, 111, 0.12);
 }
 
-.place-card-image {
+.place-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CARD CONTENT */
+
+.place-card-content {
+  padding: 14px 16px;
+}
+
+.place-card h3 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.place-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* .place-card-image {
   width: 100%;
   height: clamp(180px, 22vw, 220px);
   object-fit: cover;
@@ -155,4 +171,35 @@ img {
 
 .back-link:hover {
   text-decoration: underline;
+} */
+
+
+/* .place-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(48, 188, 111, 0.12);
 }
+
+.place-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CARD CONTENT */
+
+/* .place-card-content {
+  padding: 14px 16px;
+}
+
+.place-card h3 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.place-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+} */ */
