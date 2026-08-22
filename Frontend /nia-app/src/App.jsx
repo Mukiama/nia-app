@@ -20,7 +20,7 @@ export default function App() {
 
         <Route path="/logout" element={<Logout />} />
 
-        <Route path="/places/:id" element={<PlaceDetails />} />
+        <Route path="/places" element={<PlaceDetails />} />
 
         <Route path="/hero" element={<Hero />} />
       </Routes>
