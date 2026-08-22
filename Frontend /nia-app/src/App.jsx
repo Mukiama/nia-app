@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import Home from "./pages/home.jsx";
-
-function App() {
-  return <Home />;
-}
-
-=======
 import { useState } from "react";
 import SearchBar from "./components/searchBar.jsx";
 import FilterBar from "./components/filterBar.jsx";
@@ -27,10 +19,8 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [filters, setFilters] = useState({ category: "All", county: "All" });
 
-  
   const categories = [...new Set(places.map((place) => place.category))];
   const counties = [...new Set(places.map((place) => place.county))];
-
 
   const filteredPlaces = places.filter((place) => {
     const matchesSearch = place.name.toLowerCase().includes(searchText.toLowerCase());
@@ -41,11 +31,10 @@ function App() {
 
   return (
     <div>
-      
       <h1>Nia — Find your next thing</h1>
 
-      <Signup/>
-      
+      <Signup />
+
       <SearchBar onSearch={setSearchText} />
       <FilterBar categories={categories} counties={counties} onFilterChange={setFilters} />
 
@@ -60,5 +49,4 @@ function App() {
   );
 }
 
->>>>>>> upstream/dev
 export default App;
