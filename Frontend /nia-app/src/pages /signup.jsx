@@ -1,5 +1,6 @@
 
 import {useState} from 'react'
+import {Link, useNavigate} from 'react-router'
 
 
 export default function Signup() {
@@ -19,6 +20,8 @@ export default function Signup() {
         if (!signupForm.password.length > 6) return 'Password should be 6 or more characters'
         return ''
     }
+
+    const navigate = useNavigate()
 
     function handleSubmit (event) {
         event.preventDefault()
@@ -54,6 +57,7 @@ export default function Signup() {
                 password : ''
             })
             alert('Signup successful')
+            // navigate('/homepage')
         })
         .catch((error) => setError(error.message))
     }
@@ -111,8 +115,10 @@ export default function Signup() {
 
                 <p className='login-link'>
                     Already have an account?
+                    {/* <Link to='/login'>Login</Link> */}
+                    <a href="/login">Login</a>
                 </p>
-                <a href="/login">Login</a>
+                
             </div>
         </div>
 
