@@ -12,6 +12,7 @@ import Profile from "./pages/profile";
 import History from "./pages/history";
 // import FilterPage from "./pages/filterPage";
 import Filter from "./pages/filter";
+import PlaceCard from "./components/placeCard";
 import "./App.css";
 
 export default function App() {
@@ -25,6 +26,8 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/logout" element={<Logout />} />
+
+        <Route path="/place" element={<PlaceCard />} />
 
         <Route path="/places" element={<PlaceDetails />} />
 

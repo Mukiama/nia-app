@@ -1,0 +1,151 @@
+/* =================================
+   NIA PLACE CARD
+================================= */
+
+.place-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #e4e9e0;
+  border-radius: 22px;
+  box-shadow: 0 5px 20px rgba(25, 45, 25, 0.04);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.place-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(25, 45, 25, 0.1);
+}
+
+/* =================================
+   IMAGE
+================================= */
+
+.place-card-image {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  background: #dfe8da;
+  transition: transform 0.4s ease;
+}
+
+.place-card:hover .place-card-image {
+  transform: scale(1.03);
+}
+
+/* =================================
+   CONTENT
+================================= */
+
+.place-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px;
+}
+
+.place-card-content h2 {
+  margin: 0 0 6px;
+  color: #171a17;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+/* =================================
+   LOCATION
+================================= */
+
+.place-location {
+  margin: 0;
+  color: #687064;
+  font-size: 0.82rem;
+}
+
+/* =================================
+   CATEGORY
+================================= */
+
+.place-category {
+  display: inline-flex;
+  align-self: flex-start;
+  margin: 15px 0 12px;
+  padding: 6px 11px;
+  border-radius: 20px;
+  background: #e8f0e4;
+  color: #52794d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* =================================
+   DESCRIPTION
+================================= */
+
+.place-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: #6d746b;
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* =================================
+   EXPLORE LINK
+================================= */
+
+.place-card-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+
+  margin-top: auto;
+  padding: 10px 16px;
+
+  border-radius: 25px;
+  background: #171a17;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.place-card-link:hover {
+  background: #5d8c55;
+  transform: translateX(2px);
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+  .place-card-image {
+    height: 210px;
+  }
+
+  .place-card-content {
+    padding: 18px;
+  }
+
+  .place-card-content h2 {
+    font-size: 1.25rem;
+  }
+}
