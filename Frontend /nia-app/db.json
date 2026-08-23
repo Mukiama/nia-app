@@ -109,6 +109,29 @@
       "image": "https://images.unsplash.com/photo-1500534623283-312aade485b7"
     }
   ],
-  "history": [],
-  "$schema": "./node_modules/json-server/schema.json"
+  "history": [
+    {
+      "placeId": "3",
+      "name": "Gedi Ruins",
+      "location": "Kilifi",
+      "county": "Kilifi",
+      "category": "Culture",
+      "description": "Ancient Swahili ruins surrounded by lush coastal forest near Watamu.",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada",
+      "viewedAt": "2026-08-23T22:35:24.160Z",
+      "id": "MKez3G0n_-U"
+    }
+  ],
+  "favourites": [
+    {
+      "placeId": "2",
+      "name": "Nairobi National Museum",
+      "location": "Nairobi",
+      "county": "Nairobi",
+      "category": "Culture",
+      "description": "A museum featuring Kenyan history, art, culture and natural heritage.",
+      "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08",
+      "id": "ZsYz7lPvBJY"
+    }
+  ]
 }
