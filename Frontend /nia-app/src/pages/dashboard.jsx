@@ -22,11 +22,11 @@ export default function Dashboard({user}) {
 
                 <Link to='/' className='homepage-link'>Discover with Nia</Link>
 
-                <Link to='/feeling-lucky' className='lucky-btn'>Feeling Lucky</Link>
+                <Link to='/feeling-lucky' className='lucky-link'>Feeling Lucky</Link>
 
                 <div className='dashboard-shortcuts'>
-                    <Link className='shortcut-btn'>History</Link>
-                    <Link className='shortcut-btn'>Favourites</Link>
+                    <Link className='shortcut-link'>History</Link>
+                    <Link className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
         </div>
