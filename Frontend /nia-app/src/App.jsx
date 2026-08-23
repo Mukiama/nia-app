@@ -7,6 +7,7 @@ import Logout from "./pages/logout";
 import PlaceDetails from "./pages/placeDetails";
 import Hero from "./pages/hero";
 import Profile from "./pages/profile";
+import History from "./pages/history";
 import "./App.css";
 
 export default function App() {
@@ -26,6 +27,8 @@ export default function App() {
         <Route path="/hero" element={<Hero />} />
 
         <Route path="/profile" element={<Profile />} />
+
+        <Route path="/history" element={<History />} />
       </Routes>
     
   );
