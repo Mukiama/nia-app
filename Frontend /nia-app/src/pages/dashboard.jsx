@@ -1,4 +1,5 @@
 import './Dashboard.css'
+import {Link} from 'react-router'
 
 export default function Dashboard({user}) {
 
@@ -18,7 +19,15 @@ export default function Dashboard({user}) {
                         {user?.name ? user.name.charAt(0).toUpperCase() : '?'}
                     </div>
                 </div>
-                
+
+                <Link to='/' className='homepage-link'>Discover with Nia</Link>
+
+                <Link to='/feeling-lucky' className='lucky-btn'>Feeling Lucky</Link>
+
+                <div className='dashboard-shortcuts'>
+                    <Link className='shortcut-btn'>History</Link>
+                    <Link className='shortcut-btn'>Favourites</Link>
+                </div>
             </div>
         </div>
         </>
