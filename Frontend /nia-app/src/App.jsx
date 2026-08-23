@@ -1,18 +1,4 @@
-<<<<<<< HEAD
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-=======
-import { useState } from "react";
-import SearchBar from "./components/searchBar.jsx";
-import FilterBar from "./components/filterBar.jsx";
-<<<<<<< HEAD
-import Signup from "./pages /signup.jsx";
-import './Landing.css'
->>>>>>> ea77a42 (Sign up page styling)
-=======
-import LandingPage from "./pages /LandingPage.jsx";
-import './Landing.css'
-
->>>>>>> landing
 
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -28,12 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-<<<<<<< HEAD
         <Route path="/login" element={<Login />} />
-=======
-      <SearchBar onSearch={setSearchText} />
-      <FilterBar categories={categories} counties={counties} onFilterChange={setFilters} />
->>>>>>> landing
 
         <Route path="/signup" element={<Signup />} />
 
