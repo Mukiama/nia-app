@@ -1,0 +1,271 @@
+/* ================================
+   PROFILE PAGE
+   Matches the app's existing green/pill design system
+================================ */
+
+.profile-page {
+  width: min(1000px, 92%);
+  margin: 60px auto 100px;
+}
+
+/* HEADER: avatar + name + edit button */
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #30bc6f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.profile-header-info h1 {
+  margin: 0 0 6px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.profile-header-info p {
+  margin: 0;
+  color: #666666;
+}
+
+/* SECTION LAYOUT */
+
+.profile-section {
+  margin-bottom: 48px;
+}
+
+.profile-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #111111;
+}
+
+.profile-section-subtitle {
+  color: #888888;
+  font-size: 0.9rem;
+  margin: 0 0 20px;
+}
+
+/* PILL BUTTON GROUPS — reused for interests, budget, company */
+
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pill-group button {
+  padding: 10px 18px;
+  border: 1px solid #30bc6f;
+  border-radius: 30px;
+  background: white;
+  color: #222222;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.pill-group button:hover {
+  transform: translateY(-2px);
+  background: #f0fff6;
+}
+
+.pill-group button.active {
+  background: #30bc6f;
+  color: white;
+}
+
+/* SAVED PLACES / RECENT VISITS — grid of clickable cards */
+
+.profile-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.profile-place-card {
+  position: relative;
+  background: white;
+  border: 1px solid #30bc6f;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-place-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(48, 188, 111, 0.12);
+}
+
+.profile-place-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-place-content {
+  padding: 12px 14px;
+}
+
+.profile-place-content h3 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.profile-place-content p {
+  margin: 0;
+  color: #666666;
+  font-size: 0.82rem;
+}
+
+/* Remove (X) button on saved place cards */
+
+.remove-saved-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(17, 17, 17, 0.7);
+  color: white;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.remove-saved-btn:hover {
+  background: #111111;
+}
+
+/* "Demo" badge for recent visits placeholder */
+
+.demo-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: white;
+  color: #111111;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.empty-state {
+  color: #888888;
+  font-size: 0.9rem;
+  padding: 20px;
+  background: #f4f5f4;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* CHANGE PASSWORD FORM */
+
+.profile-form-field {
+  margin-bottom: 16px;
+  max-width: 380px;
+}
+
+.profile-form-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+.profile-form-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.profile-form-field input:focus {
+  outline: none;
+  border-color: #30bc6f;
+  box-shadow: 0 0 0 3px rgba(48, 188, 111, 0.1);
+}
+
+.profile-save-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #111111;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.profile-save-btn:hover {
+  background: #333333;
+  transform: translateY(-2px);
+}
+
+.profile-save-note {
+  margin-top: 10px;
+  color: #999999;
+  font-size: 0.8rem;
+}
+
+/* LOGOUT BUTTON */
+
+.profile-logout-btn {
+  padding: 12px 24px;
+  border: 1px solid #e04b4b;
+  border-radius: 30px;
+  background: white;
+  color: #e04b4b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.profile-logout-btn:hover {
+  background: #e04b4b;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -141,6 +141,7 @@ function Navbar() {
             </button>
 
             <div className="profile-dropdown">
+              <Link to="/profile">My Profile</Link>
               <Link to="/login">Log in</Link>
               <Link to="/signup">Sign up</Link>
             </div>
