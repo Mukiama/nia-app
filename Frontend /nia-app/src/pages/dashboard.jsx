@@ -1,5 +1,6 @@
 import './Dashboard.css'
 import {Link} from 'react-router'
+import Footer from '../components/footer'
 
 export default function Dashboard({user}) {
 
@@ -25,10 +26,11 @@ export default function Dashboard({user}) {
                 <Link to='/feeling-lucky' className='lucky-link'>Feeling Lucky</Link>
 
                 <div className='dashboard-shortcuts'>
-                    <Link className='shortcut-link'>History</Link>
-                    <Link className='shortcut-link'>Favourites</Link>
+                    <Link to='/history' className='shortcut-link'>History</Link>
+                    <Link to='/Favourites' className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
+            <Footer/>
         </div>
         </>
     )
