@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 import { Routes, Route } from "react-router-dom";
 
 import AppLayout from "./components/AppLayout";
+=======
+import { useState } from "react";
+import SearchBar from "./components/searchBar.jsx";
+import FilterBar from "./components/filterBar.jsx";
+import LandingPage from "./pages /LandingPage.jsx";
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+>>>>>>> 8e99171 (Minor correction)
 
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -8,6 +18,7 @@ import Signup from "./pages/signup";
 import Logout from "./pages/logout";
 import PlaceDetails from "./pages/placeDetails";
 import Hero from "./pages/hero";
+<<<<<<< HEAD
 import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
 import Profile from "./pages/profile";
@@ -18,10 +29,14 @@ import OffMap from "./pages/offmap";
 import AddPlace from "./pages/addPlace";
 import NiaPicks from "./pages/niaPicks";
 
+=======
+import Profile from "./pages/profile";
+>>>>>>> 8e99171 (Minor correction)
 import "./App.css";
 
 export default function App() {
   return (
+<<<<<<< HEAD
     <Routes>
       <Route path="" element={<Home />} />
       <Route path="/" element={<Home />} />
@@ -46,5 +61,24 @@ export default function App() {
     </Route>
       
     </Routes>
+=======
+    
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/signup" element={<Signup />} />
+
+        <Route path="/logout" element={<Logout />} />
+
+        <Route path="/places" element={<PlaceDetails />} />
+
+        <Route path="/hero" element={<Hero />} />
+
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    
+>>>>>>> 8e99171 (Minor correction)
   );
 }
