@@ -1230,3 +1230,121 @@
   line-height: 1.6;
   color: #555;
 }
+
+/* OFFMAP QUESTION FLOW */
+
+.offmap-container {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.offmap-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.offmap-header h1 {
+  margin: 0;
+}
+
+.offmap-progress {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #777;
+}
+
+.offmap-question {
+  text-align: center;
+}
+
+.offmap-question h2 {
+  margin-bottom: 30px;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.03em;
+}
+
+.offmap-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.offmap-option {
+  min-height: 120px;
+  padding: 24px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.offmap-option:hover {
+  transform: translateY(-3px);
+  border-color: #222;
+}
+
+.offmap-option.selected {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.offmap-option-icon {
+  font-size: 28px;
+}
+
+.offmap-option-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.offmap-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.offmap-back,
+.offmap-next,
+.offmap-lucky-button {
+  border: none;
+  cursor: pointer;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.offmap-back {
+  background: transparent;
+}
+
+.offmap-back:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.offmap-next,
+.offmap-lucky-button {
+  background: #111;
+  color: #fff;
+}
+
+.offmap-lucky-button {
+  padding: 16px 28px;
+}
