@@ -9,6 +9,7 @@ export default function Dashboard({user}) {
         <div className='dashboard-page'>
             <div className='dashboard-card'>
 
+                <h2 className='dashboard-title'><span className='app-name'>Nia</span> Dashboard</h2>
                 <div className='dashboard-header'>
                     <div className='greeting-box'>
                         <p className='greeting-text'>
@@ -16,7 +17,7 @@ export default function Dashboard({user}) {
                         </p>
                     </div>
                     <div className='profile-avatar'>
-                        <Link to='/profilepage'>{user?.name ? user.name.charAt(0).toUpperCase() : '?'}</Link>
+                        <Link to='/profilepage' className='profile-avatar-link'>{user?.name ? user.name.charAt(0).toUpperCase() : '?'}</Link>
                     </div>
                 </div>
 

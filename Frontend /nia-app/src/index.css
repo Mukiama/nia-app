@@ -1243,10 +1243,11 @@
 
 .greeting-box {
     flex: 1;
-    background: #ece3bb;
+    background: #e8e6dd;
     border: 1px solid rgba(120, 140, 110, 0.3);
     border-radius: 10px;
     padding: 14px 16px;
+    text-align: center;
 }
 
 .greeting-text {
@@ -1269,6 +1270,11 @@
     flex-shrink: 0;
 }
 
+.profile-avatar-link {
+  text-decoration: none;
+  text-align: center;
+}
+
 .lucky-link {
     padding: 14px;
     border: none;
@@ -1280,11 +1286,26 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.15s ease, transform 0.15s ease;
+    text-decoration: none;
 }
 
 .lucky-link:hover {
     background: #6b8360;
     transform: translateY(-1px);
+}
+
+.dashboard-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #4a5c46;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.app-name {
+  font-weight: 800;
+  color: #7c9473;
+  letter-spacing: 0.3px;
 }
 
 .dashboard-shortcuts {
@@ -1304,6 +1325,7 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: background 0.15s ease;
+  text-decoration: none;
 }
 
 .shortcut-link:hover {
