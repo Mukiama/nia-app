@@ -1,0 +1,52 @@
+.favourites-page {
+  min-height: 100vh;
+  padding: 60px 0 90px;
+}
+
+.favourites-hero {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.favourites-eyebrow {
+  margin: 0 0 10px;
+  color: #3b3a3a;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.favourites-description {
+  color: #666;
+  margin-top: 10px;
+}
+
+.favourites-section {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+.remove-favourite {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+  color: #b00020;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.remove-favourite:hover {
+  background: #ffeaea;
+}
+
+.remove-favourite:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

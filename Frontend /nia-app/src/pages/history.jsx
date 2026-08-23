@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import "../styles/history.css";
 
 const API_URL = "http://localhost:3001";
@@ -13,10 +15,14 @@ export default function History() {
       setLoading(true);
       setError("");
 
-      const response = await fetch(`${API_URL}/history`);
+      const response = await fetch(
+        `${API_URL}/history`
+      );
 
       if (!response.ok) {
-        throw new Error("Failed to load history.");
+        throw new Error(
+          "Failed to load history."
+        );
       }
 
       const data = await response.json();
@@ -37,15 +43,20 @@ export default function History() {
     try {
       await Promise.all(
         history.map((item) =>
-          fetch(`${API_URL}/history/${item.id}`, {
-            method: "DELETE",
-          })
+          fetch(
+            `${API_URL}/history/${item.id}`,
+            {
+              method: "DELETE",
+            }
+          )
         )
       );
 
       setHistory([]);
     } catch {
-      setError("Failed to clear history.");
+      setError(
+        "Failed to clear history."
+      );
     }
   }
 
@@ -63,12 +74,18 @@ export default function History() {
   return (
     <div className="history-page">
       <div className="history-container">
+
         <div className="history-header">
+
           <div>
-            <p className="history-label">NIA</p>
+            <p className="history-label">
+              NIA
+            </p>
+
             <h1>Your History</h1>
+
             <p>
-              Places you've recently explored.
+              Places you've marked as visited.
             </p>
           </div>
 
@@ -80,7 +97,9 @@ export default function History() {
               Clear history
             </button>
           )}
+
         </div>
+
 
         {error && (
           <div className="history-error">
@@ -88,21 +107,38 @@ export default function History() {
           </div>
         )}
 
+
         {history.length === 0 && !error ? (
           <div className="empty-history">
+
             <h2>No history yet</h2>
+
             <p>
-              Places you explore will appear here.
+              Places you mark as visited
+              will appear here.
             </p>
+
           </div>
         ) : (
           <div className="history-list">
+
             {history.map((item) => (
-              <div
+              <Link
+                to={`/places/${item.placeId}`}
                 className="history-card"
                 key={item.id}
               >
+
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="history-card-image"
+                  />
+                )}
+
                 <div className="history-card-content">
+
                   <p className="history-category">
                     {item.category}
                   </p>
@@ -110,7 +146,8 @@ export default function History() {
                   <h2>{item.name}</h2>
 
                   <p className="history-location">
-                    {item.location}
+                    {item.location},{" "}
+                    {item.county}
                   </p>
 
                   <p className="history-description">
@@ -118,18 +155,22 @@ export default function History() {
                   </p>
 
                   <small>
-                    Viewed{" "}
+                    Visited{" "}
                     {item.viewedAt
                       ? new Date(
                           item.viewedAt
                         ).toLocaleString()
                       : "Recently"}
                   </small>
+
                 </div>
-              </div>
+
+              </Link>
             ))}
+
           </div>
         )}
+
       </div>
     </div>
   );

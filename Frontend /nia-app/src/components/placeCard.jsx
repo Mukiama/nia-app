@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 function PlaceCard({ place }) {
   return (
-    <div className="place-card">
+    <Link
+      to={`/places/${place.id}`}
+      className="place-card"
+    >
       <img
         src={place.image}
         alt={place.name}
@@ -10,16 +13,25 @@ function PlaceCard({ place }) {
       />
 
       <div className="place-card-content">
-        <h2>{place.name}</h2>
-        <p className="place-location">{place.county}, Kenya</p>
-        <p className="place-category">{place.category}</p>
-        <p className="place-description">{place.description}</p>
+        <p className="place-category">
+          {place.category}
+        </p>
 
-        <Link to={`/places/${place.id}`} className="place-card-link">
+        <h2>{place.name}</h2>
+
+        <p className="place-location">
+          {place.county}, Kenya
+        </p>
+
+        <p className="place-description">
+          {place.description}
+        </p>
+
+        <span className="place-card-link">
           Explore →
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 
