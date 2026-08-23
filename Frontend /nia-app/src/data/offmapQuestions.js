@@ -1,7 +1,7 @@
 const offMapQuestions = [
   {
     id: "who",
-    question: "Who's coming?",
+    question: "Who's coming along?",
     options: [
       {
         value: "solo",
@@ -122,7 +122,7 @@ const offMapQuestions = [
 
   {
     id: "time",
-    question: "How long are we disappearing for?",
+    question: "How far are you willing to go??",
     options: [
       {
         value: "one-hour",

@@ -24,10 +24,14 @@ function OffMap() {
   };
 
   const handleNext = () => {
-    if (currentQuestion < offMapQuestions.length - 1) {
-      setCurrentQuestion((previous) => previous + 1);
-    }
-  };
+  if (!selectedValue) {
+    return;
+  }
+
+  if (currentQuestion < offMapQuestions.length - 1) {
+    setCurrentQuestion((previous) => previous + 1);
+  }
+ };
 
   const handleBack = () => {
     if (currentQuestion > 0) {
@@ -91,14 +95,14 @@ function OffMap() {
               🎲 Feeling Lucky
             </button>
           ) : (
-            <button
-              type="button"
-              onClick={handleNext}
-              className="offmap-next"
-            >
-              Next →
-            </button>
-          )}
+<button
+  type="button"
+  onClick={handleNext}
+  className="offmap-next"
+  disabled={!selectedValue}
+>
+  Next →
+</button>          )}
         </div>
 
       </section>

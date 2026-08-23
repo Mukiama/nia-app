@@ -1194,129 +1194,147 @@
 }
 
 
-/* OFFMAP */
+/* ========================================
+   OFFMAP
+======================================== */
 
 .offmap-page {
   min-height: calc(100vh - 76px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 24px;
+  padding: 70px 24px 90px;
   background: #f8f7f3;
 }
 
-.offmap-hero {
-  width: min(760px, 100%);
-  text-align: center;
-}
-
-.offmap-label {
-  margin-bottom: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-}
-
-.offmap-hero h1 {
-  margin: 0;
-  font-size: clamp(48px, 8vw, 96px);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-}
-
-.offmap-hero p:last-child {
-  margin-top: 28px;
-  font-size: 20px;
-  line-height: 1.6;
-  color: #555;
-}
-
-/* OFFMAP QUESTION FLOW */
-
 .offmap-container {
-  width: min(900px, 100%);
+  width: min(980px, 100%);
   margin: 0 auto;
 }
 
+/* HEADER */
+
 .offmap-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 55px;
+}
+
+.offmap-label {
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
 }
 
 .offmap-header h1 {
   margin: 0;
+  font-size: clamp(52px, 8vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
 }
 
+.offmap-header p:last-child {
+  margin: 26px auto 0;
+  max-width: 500px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* PROGRESS */
+
 .offmap-progress {
+  width: 100%;
+  margin-bottom: 45px;
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+}
+
+.offmap-progress span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
   color: #777;
 }
+
+/* QUESTION */
 
 .offmap-question {
   text-align: center;
 }
 
 .offmap-question h2 {
-  margin-bottom: 30px;
+  margin: 0 0 30px;
   font-size: clamp(28px, 4vw, 42px);
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
+
+/* OPTIONS */
 
 .offmap-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 
 .offmap-option {
-  min-height: 120px;
-  padding: 24px;
-  border: 1px solid #ddd;
-  border-radius: 16px;
-  background: #fff;
+  position: relative;
+  min-height: 145px;
+  padding: 26px 20px;
+
+  border: 1px solid #deddd8;
+  border-radius: 18px;
+
+  background: #ffffff;
+  color: #171717;
+
   cursor: pointer;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 
   transition:
     transform 0.2s ease,
+    box-shadow 0.2s ease,
     border-color 0.2s ease,
     background 0.2s ease;
 }
 
 .offmap-option:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: #222;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.offmap-option:active {
+  transform: translateY(-1px);
 }
 
 .offmap-option.selected {
   background: #111;
   color: #fff;
   border-color: #111;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .offmap-option-icon {
-  font-size: 28px;
+  font-size: 30px;
+  line-height: 1;
 }
 
 .offmap-option-label {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
 }
+
+/* NAVIGATION */
 
 .offmap-navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 35px;
+  margin-top: 40px;
 }
 
 .offmap-back,
@@ -1324,27 +1342,108 @@
 .offmap-lucky-button {
   border: none;
   cursor: pointer;
-  padding: 14px 22px;
-  border-radius: 999px;
+  font-family: inherit;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .offmap-back {
+  padding: 12px 0;
   background: transparent;
+  color: #555;
+}
+
+.offmap-back:hover:not(:disabled) {
+  color: #111;
 }
 
 .offmap-back:disabled {
-  opacity: 0.3;
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
 .offmap-next,
 .offmap-lucky-button {
+  padding: 15px 24px;
+  border-radius: 999px;
   background: #111;
   color: #fff;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.offmap-next:hover,
+.offmap-lucky-button:hover {
+  transform: translateY(-2px);
 }
 
 .offmap-lucky-button {
-  padding: 16px 28px;
+  padding: 16px 30px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .offmap-page {
+    padding: 45px 18px 70px;
+  }
+
+  .offmap-header {
+    margin-bottom: 40px;
+  }
+
+  .offmap-header h1 {
+    font-size: clamp(48px, 15vw, 70px);
+  }
+
+  .offmap-header p:last-child {
+    font-size: 16px;
+  }
+
+  .offmap-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .offmap-option {
+    min-height: 120px;
+    padding: 20px 12px;
+  }
+
+  .offmap-option-icon {
+    font-size: 26px;
+  }
+
+  .offmap-option-label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 430px) {
+  .offmap-options {
+    grid-template-columns: 1fr;
+  }
+
+  .offmap-option {
+    min-height: 85px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 18px 20px;
+  }
+
+  .offmap-navigation {
+    margin-top: 28px;
+  }
+}
+
+
+.offmap-next:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.offmap-next:not(:disabled):hover {
+  transform: translateY(-2px);
 }
