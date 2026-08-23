@@ -17,6 +17,12 @@
       "email": "john@doe02.com",
       "password": "string",
       "id": "YVH9pNZEJt0"
+    },
+    {
+      "name": "milk buoy",
+      "email": "milk@buoy.com",
+      "password": "string",
+      "id": "G32gf5OVQjE"
     }
   ],
   "places": [

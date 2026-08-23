@@ -10,41 +10,25 @@ import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
 import Profile from "./pages/profile";
 import History from "./pages/history";
-
-// import FilterPage from "./pages/filterPage";
 import Filter from "./pages/filter";
-
+import Favourites from "./pages/favourites";
 import "./App.css";
 
 export default function App() {
   return (
-    
-      <Routes>
-        <Route path="/" element={<Home />} />
-
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/signup" element={<Signup />} />
-
-        <Route path="/logout" element={<Logout />} />
-
-        {/* <Route path="/place" element={<PlaceCard />} /> */}
-
-        <Route path="/places/:id" element={<PlaceDetails />} />
-
-        <Route path="/hero" element={<Hero />} />
-
-        <Route path="/dashboard" element={<Dashboard />}/>
-
-        <Route path="/about" element={<About />}/>
-
-        <Route path="/profile" element={<Profile />} />
-
-        <Route path="/history" element={<History />} />
-
-        <Route path="/filter" element={<Filter />} />
-        {/* <Route path="/filter" element={<FilterPage />} /> */}
-      </Routes>
-    
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/logout" element={<Logout />} />
+      <Route path="/places/:id" element={<PlaceDetails />} />
+      <Route path="/hero" element={<Hero />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/history" element={<History />} />
+      <Route path="/filter" element={<Filter />} />
+      <Route path="/favourites" element={<Favourites />} />
+    </Routes>
   );
 }
