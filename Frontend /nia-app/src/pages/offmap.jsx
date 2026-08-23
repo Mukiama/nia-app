@@ -1,11 +1,10 @@
 import { useState } from "react";
 import OffMapQuestion from "../components/offmap/OffMapQuestion";
 import OffMapProgress from "../components/offmap/OffMapProgress";
-import offMapQuestions from "../data/offmapQuestions";
 import OffMapResult from "../components/offmap/OffMapResult";
+import offMapQuestions from "../data/offmapQuestions";
 import offMapPlaces from "../data/offMapPlaces";
 import { getOffMapRecommendation } from "../utils/offmapRecommendation";
-
 
 function OffMap() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -21,6 +20,11 @@ function OffMap() {
 
   const question = offMapQuestions[currentQuestion];
 
+  const selectedValue = preferences[question.id];
+
+  const isLastQuestion =
+    currentQuestion === offMapQuestions.length - 1;
+
   const handleSelect = (value) => {
     setPreferences((previous) => ({
       ...previous,
@@ -29,14 +33,14 @@ function OffMap() {
   };
 
   const handleNext = () => {
-  if (!selectedValue) {
-    return;
-  }
+    if (!selectedValue) {
+      return;
+    }
 
-  if (currentQuestion < offMapQuestions.length - 1) {
-    setCurrentQuestion((previous) => previous + 1);
-  }
- };
+    if (currentQuestion < offMapQuestions.length - 1) {
+      setCurrentQuestion((previous) => previous + 1);
+    }
+  };
 
   const handleBack = () => {
     if (currentQuestion > 0) {
@@ -44,102 +48,113 @@ function OffMap() {
     }
   };
 
-const handleFeelingLucky = () => {
-  console.log("OffMap preferences:", preferences);
+  const handleFeelingLucky = () => {
+    console.log("OffMap preferences:", preferences);
 
-  const recommendation = getOffMapRecommendation(
-    preferences,
-    offMapPlaces
-  );
+    const recommendation = getOffMapRecommendation(
+      preferences,
+      offMapPlaces
+    );
 
-  setResult(recommendation);
-};
+    setResult(recommendation);
+  };
 
-const selectedValue = preferences[question.id];
+  const handleRollAgain = () => {
+    const recommendation = getOffMapRecommendation(
+      preferences,
+      offMapPlaces,
+      result?.id
+    );
 
-  const isLastQuestion =
-    currentQuestion === offMapQuestions.length - 1;
+    setResult(recommendation);
+  };
 
-if (result) {
+  /*
+   * RESULT SCREEN
+   */
+  if (result) {
+    return (
+      <main className="offmap-page">
+        <div className="offmap-container">
+          <OffMapResult
+            place={result}
+            preferences={preferences}
+            onRollAgain={handleRollAgain}
+          />
+        </div>
+      </main>
+    );
+  }
+
+  /*
+   * QUESTION SCREEN
+   */
   return (
     <main className="offmap-page">
-      <div className="offmap-container">
-        <OffMapResult
-          place={result}
-          preferences={preferences}
-          onRollAgain={() => setResult(demoPlace)}
+      <section className="offmap-container">
+
+        <div className="offmap-header">
+          <p className="offmap-label">
+            OFFMAP
+          </p>
+
+          <h1>Feeling Lucky?</h1>
+
+          <p>
+            Don't know where to go?
+            <br />
+            Let OffMap decide.
+          </p>
+        </div>
+
+        <OffMapProgress
+          current={currentQuestion + 1}
+          total={offMapQuestions.length}
         />
-      </div>
+
+        <OffMapQuestion
+          question={question.question}
+          options={question.options}
+          selected={selectedValue}
+          onSelect={handleSelect}
+        />
+
+        <div className="offmap-navigation">
+
+          <button
+            type="button"
+            onClick={handleBack}
+            disabled={currentQuestion === 0}
+            className="offmap-back"
+          >
+            ← Back
+          </button>
+
+          {isLastQuestion ? (
+            <button
+              type="button"
+              onClick={handleFeelingLucky}
+              className="offmap-lucky-button"
+              disabled={!selectedValue}
+            >
+              🎲 Feeling Lucky
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleNext}
+              disabled={!selectedValue}
+              className="offmap-next"
+            >
+              Next →
+            </button>
+          )}
+
+        </div>
+
+      </section>
     </main>
   );
-}
-
-return (
-  <main className="offmap-page">
-    <section className="offmap-container">
-
-      <div className="offmap-header">
-        <p className="offmap-label">
-          OFFMAP
-        </p>
-
-        <h1>Feeling Lucky?</h1>
-
-        <p>
-          Don't know where to go?
-          <br />
-          Let OffMap decide.
-        </p>
-      </div>
-
-      <OffMapProgress
-        current={currentQuestion + 1}
-        total={offMapQuestions.length}
-      />
-
-      <OffMapQuestion
-        question={question.question}
-        options={question.options}
-        selected={selectedValue}
-        onSelect={handleSelect}
-      />
-
-      <div className="offmap-navigation">
-
-        <button
-          type="button"
-          onClick={handleBack}
-          disabled={currentQuestion === 0}
-          className="offmap-back"
-        >
-          ← Back
-        </button>
-
-        {isLastQuestion ? (
-          <button
-            type="button"
-            onClick={handleFeelingLucky}
-            className="offmap-lucky-button"
-            disabled={!selectedValue}
-          >
-            🎲 Feeling Lucky
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={handleNext}
-            className="offmap-next"
-            disabled={!selectedValue}
-          >
-            Next →
-          </button>
-        )}
-
-      </div>
-
-    </section>
-  </main>
-);
 }
 
 export default OffMap;

@@ -1641,3 +1641,19 @@
     min-width: 100px;
   }
 }
+
+.offmap-result {
+  animation: offmapResultIn 0.45s ease;
+}
+
+@keyframes offmapResultIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

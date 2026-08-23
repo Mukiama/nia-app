@@ -5,13 +5,8 @@ function OffMapResult({
   preferences,
   onRollAgain,
 }) {
-  const reasons = [
-    "Fits your mood",
-    "Works for your group",
-    "Within your budget",
-    "Something different",
-  ];
 
+  
   return (
     <section className="offmap-result">
 
@@ -48,8 +43,10 @@ function OffMapResult({
             <span>⏱️ {place.time}</span>
           </div>
 
-          <WhyThisPlace reasons={reasons} />
-
+          <WhyThisPlace
+            place={place}
+            preferences={preferences}
+          />
           <p className="offmap-result-message">
             This isn't necessarily where
             everyone goes. That's the point.
@@ -68,13 +65,13 @@ function OffMapResult({
 
       <div className="offmap-result-actions">
 
-        <button
-          type="button"
-          onClick={onRollAgain}
-        >
-          🔄 Roll Again
-        </button>
-
+      <button
+        type="button"
+        onClick={onRollAgain}
+      >
+        ↻ Give me another
+      </button>
+      
         <button type="button">
           🃏 Wildcard
         </button>
