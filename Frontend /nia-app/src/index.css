@@ -1214,7 +1214,7 @@
 }
 
 .dashboard-page {
-    min-height: 60vh;
+    min-height: 100vh;
     background: #f5f3ee;
     display: flex;
     align-items: center;

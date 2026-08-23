@@ -2,7 +2,7 @@ import {Link} from 'react-router'
 import Footer from '../components/footer'
 
 
-export default function LandingPage() {
+export default function About() {
 
     return (
         <>

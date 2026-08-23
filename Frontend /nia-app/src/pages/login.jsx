@@ -39,7 +39,7 @@ export default function Login() {
 
     setError("");
 
-    window.location.href = "/";
+    window.location.href = "/dashboard";
   } catch (error) {
     setError("Unable to connect to the server.");
   }
