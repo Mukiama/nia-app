@@ -2,9 +2,23 @@ import { useState } from "react";
 import OffMapQuestion from "../components/offmap/OffMapQuestion";
 import OffMapProgress from "../components/offmap/OffMapProgress";
 import offMapQuestions from "../data/offmapQuestions";
+import OffMapResult from "../components/offmap/OffMapResult";
+
+const demoPlace = {
+  id: 1,
+  name: "Karura Forest",
+  category: "Nature",
+  location: "Karura, Nairobi",
+  price: "Free – KSh 100",
+  time: "2–3 hours",
+  image:
+    "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80",
+};
+
 
 function OffMap() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [result, setResult] = useState(null);
 
   const [preferences, setPreferences] = useState({
     who: null,
@@ -40,74 +54,95 @@ function OffMap() {
   };
 
   const handleFeelingLucky = () => {
-    console.log("OffMap preferences:", preferences);
-  };
+  console.log("OffMap preferences:", preferences);
 
+  setResult(demoPlace);
+ };
   const selectedValue = preferences[question.id];
 
   const isLastQuestion =
     currentQuestion === offMapQuestions.length - 1;
 
+if (result) {
   return (
     <main className="offmap-page">
-      <section className="offmap-container">
-
-        <div className="offmap-header">
-          <p className="offmap-label">OFFMAP</p>
-
-          <h1>Feeling Lucky?</h1>
-
-          <p>
-            Don't know where to go?
-            <br />
-            Let OffMap decide.
-          </p>
-        </div>
-
-        <OffMapProgress
-          current={currentQuestion + 1}
-          total={offMapQuestions.length}
+      <div className="offmap-container">
+        <OffMapResult
+          place={result}
+          preferences={preferences}
+          onRollAgain={() => setResult(demoPlace)}
         />
-
-        <OffMapQuestion
-          question={question.question}
-          options={question.options}
-          selected={selectedValue}
-          onSelect={handleSelect}
-        />
-
-        <div className="offmap-navigation">
-          <button
-            type="button"
-            onClick={handleBack}
-            disabled={currentQuestion === 0}
-            className="offmap-back"
-          >
-            ← Back
-          </button>
-
-          {isLastQuestion ? (
-            <button
-              type="button"
-              onClick={handleFeelingLucky}
-              className="offmap-lucky-button"
-            >
-              🎲 Feeling Lucky
-            </button>
-          ) : (
-<button
-  type="button"
-  onClick={handleNext}
-  className="offmap-next"
-  disabled={!selectedValue}
->
-  Next →
-</button>          )}
-        </div>
-
-      </section>
+      </div>
     </main>
   );
+}
+
+return (
+  <main className="offmap-page">
+    <section className="offmap-container">
+
+      <div className="offmap-header">
+        <p className="offmap-label">
+          OFFMAP
+        </p>
+
+        <h1>Feeling Lucky?</h1>
+
+        <p>
+          Don't know where to go?
+          <br />
+          Let OffMap decide.
+        </p>
+      </div>
+
+      <OffMapProgress
+        current={currentQuestion + 1}
+        total={offMapQuestions.length}
+      />
+
+      <OffMapQuestion
+        question={question.question}
+        options={question.options}
+        selected={selectedValue}
+        onSelect={handleSelect}
+      />
+
+      <div className="offmap-navigation">
+
+        <button
+          type="button"
+          onClick={handleBack}
+          disabled={currentQuestion === 0}
+          className="offmap-back"
+        >
+          ← Back
+        </button>
+
+        {isLastQuestion ? (
+          <button
+            type="button"
+            onClick={handleFeelingLucky}
+            className="offmap-lucky-button"
+            disabled={!selectedValue}
+          >
+            🎲 Feeling Lucky
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleNext}
+            className="offmap-next"
+            disabled={!selectedValue}
+          >
+            Next →
+          </button>
+        )}
+
+      </div>
+
+    </section>
+  </main>
+);
 }
 
 export default OffMap;
