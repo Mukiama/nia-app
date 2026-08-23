@@ -9,6 +9,7 @@ import Hero from "./pages/hero";
 import Dashboard from "./pages/dashboard";
 import LandingPage from "./pages /LandingPage";
 import Profile from "./pages/profile";
+import History from "./pages/history";
 import "./App.css";
 
 export default function App() {
@@ -31,6 +32,8 @@ export default function App() {
 
         {/* <Route path="/landingPage" element={<LandingPage />}/> */}
         <Route path="/profile" element={<Profile />} />
+
+        <Route path="/history" element={<History />} />
       </Routes>
     
   );
