@@ -6,6 +6,8 @@ import Signup from "./pages/signup";
 import Logout from "./pages/logout";
 import PlaceDetails from "./pages/placeDetails";
 import Hero from "./pages/hero";
+import Dashboard from "./pages/dashboard";
+import LandingPage from "./pages /LandingPage";
 import Profile from "./pages/profile";
 import "./App.css";
 
@@ -25,6 +27,9 @@ export default function App() {
 
         <Route path="/hero" element={<Hero />} />
 
+        {/* <Route path="/dashboard" element={<Dashboard />}/> */}
+
+        {/* <Route path="/landingPage" element={<LandingPage />}/> */}
         <Route path="/profile" element={<Profile />} />
       </Routes>
     

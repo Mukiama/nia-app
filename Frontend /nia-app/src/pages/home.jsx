@@ -6,6 +6,7 @@ import SearchBar from "../components/searchBar";
 import FilterBar from "../components/filterBar";
 import PlaceCard from "../components/placeCard";
 
+
 function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
