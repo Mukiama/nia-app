@@ -1214,7 +1214,7 @@
 }
 
 .dashboard-page {
-    min-height: 100vh;
+    min-height: 60vh;
     background: #f5f3ee;
     display: flex;
     align-items: center;
@@ -1224,7 +1224,7 @@
 
 .dashboard-card {
     width: 100%;
-    max-width: 420px;
+    max-width: 500px;
     background: #e8e6dd;
     border: 1px solid rgba(120, 140, 110, 0.25);
     border-radius: 16px;
@@ -1243,7 +1243,7 @@
 
 .greeting-box {
     flex: 1;
-    background: #faf9f5;
+    background: #ece3bb;
     border: 1px solid rgba(120, 140, 110, 0.3);
     border-radius: 10px;
     padding: 14px 16px;
@@ -1274,6 +1274,7 @@
     border: none;
     border-radius: 10px;
     background: #7c9473;
+    text-align: center;
     color: #ffffff;
     font-weight: 600;
     font-size: 1rem;
@@ -1297,6 +1298,7 @@
   border-radius: 10px;
   border: 1px solid rgba(120, 140, 110, 0.35);
   background: #faf9f5;
+  text-align: center;
   color: #4a5c46;
   font-weight: 600;
   font-size: 0.9rem;
