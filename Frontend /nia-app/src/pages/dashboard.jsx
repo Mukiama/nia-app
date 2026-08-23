@@ -16,7 +16,7 @@ export default function Dashboard({user}) {
                         </p>
                     </div>
                     <div className='profile-avatar'>
-                        {user?.name ? user.name.charAt(0).toUpperCase() : '?'}
+                        <Link to='/profilepage'>{user?.name ? user.name.charAt(0).toUpperCase() : '?'}</Link>
                     </div>
                 </div>
 
