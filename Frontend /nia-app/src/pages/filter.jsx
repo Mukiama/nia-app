@@ -1,52 +1,233 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import SearchBar from "../components/searchBar.jsx";
 import FilterBar from "../components/filterBar.jsx";
-// import Signup from "./pages/signup.jsx";
-// import PlaceDetails from "./pages/placeDetails.jsx";
-// A small temporary list of places, just so we can test Search and Filter.
-// Once Mukiama merges the real places.js data, we'll swap this out.
-const places = [
-  { id: 1, name: "Gedi Ruins", county: "Kilifi", category: "Historical" },
-  { id: 2, name: "Kit-Mikayi", county: "Kisumu", category: "Cultural" },
-  { id: 3, name: "Kakamega Forest", county: "Kakamega", category: "Nature" },
-  { id: 4, name: "Fort Jesus", county: "Mombasa", category: "Historical" },
-  { id: 5, name: "Lamu Old Town", county: "Lamu", category: "Cultural" },
-  { id: 6, name: "Hell's Gate National Park", county: "Nakuru", category: "Adventure" },
-];
+
+import PlaceCard from "../components/placeCard.jsx";
+
+import "../styles/filter.css";
 
 function Filter() {
+  const [places, setPlaces] = useState([]);
 
-  const [searchText, setSearchText] = useState("");
-  const [filters, setFilters] = useState({ category: "All", county: "All" });
+  const [search, setSearch] = useState("");
 
-  const categories = [...new Set(places.map((place) => place.category))];
-  const counties = [...new Set(places.map((place) => place.county))];
-
-  const filteredPlaces = places.filter((place) => {
-    const matchesSearch = place.name.toLowerCase().includes(searchText.toLowerCase());
-    const matchesCategory = filters.category === "All" || place.category === filters.category;
-    const matchesCounty = filters.county === "All" || place.county === filters.county;
-    return matchesSearch && matchesCategory && matchesCounty;
+  const [filters, setFilters] = useState({
+    category: "All",
+    county: "All",
   });
 
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState("");
+
+  /* ================================
+     FETCH PLACES
+  ================================= */
+
+  useEffect(() => {
+    async function fetchPlaces() {
+      try {
+        setLoading(true);
+
+        const response = await fetch(
+          "http://localhost:3001/places"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch places");
+        }
+
+        const data = await response.json();
+
+        setPlaces(data);
+        setError("");
+      } catch (error) {
+        console.error(error);
+
+        setError(
+          "Could not load places. Make sure the mock API is running."
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPlaces();
+  }, []);
+
+  /* ================================
+     FILTER OPTIONS
+  ================================= */
+
+  const categories = [
+    ...new Set(
+      places
+        .map((place) => place.category)
+        .filter(Boolean)
+    ),
+  ];
+
+  const counties = [
+    ...new Set(
+      places
+        .map((place) => place.county)
+        .filter(Boolean)
+    ),
+  ];
+
+  /* ================================
+     SEARCH + FILTER
+  ================================= */
+
+  const filteredPlaces = places.filter((place) => {
+    const searchValue = search
+      .trim()
+      .toLowerCase();
+
+    const matchesSearch =
+      !searchValue ||
+      place.name
+        ?.toLowerCase()
+        .includes(searchValue);
+
+    const matchesCategory =
+      filters.category === "All" ||
+      place.category === filters.category;
+
+    const matchesCounty =
+      filters.county === "All" ||
+      place.county === filters.county;
+
+    return (
+      matchesSearch &&
+      matchesCategory &&
+      matchesCounty
+    );
+  });
+
+  /* ================================
+     RENDER
+  ================================= */
+
   return (
-    <div>
-      <h1>Nia — Find your next thing</h1>
+    <main className="filter-page">
 
-      {/* <Signup />
-      <PlaceDetails /> */}
+      <section className="filter-hero">
 
-      <SearchBar onSearch={setSearchText} />
-      <FilterBar categories={categories} counties={counties} onFilterChange={setFilters} />
+        <p className="filter-eyebrow">
+          DISCOVER KENYA
+        </p>
 
-      <ul>
-        {filteredPlaces.map((place) => (
-          <li key={place.id}>
-            {place.name} — {place.county} ({place.category})
-          </li>
-        ))}
-      </ul>
-    </div>
+        <h1>
+          Find your
+          <span> next thing.</span>
+        </h1>
+
+        <p className="filter-description">
+          Discover places worth exploring,
+          from hidden cultural gems to
+          unforgettable experiences.
+        </p>
+
+        <div className="search-area">
+
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+          />
+
+          <FilterBar
+            categories={categories}
+            counties={counties}
+            onFilterChange={setFilters}
+          />
+
+        </div>
+
+      </section>
+
+
+      <section className="places-section">
+
+        <div className="places-heading">
+
+          <div>
+            <p className="section-label">
+              EXPLORE
+            </p>
+
+            <h2>
+              {filteredPlaces.length}{" "}
+              {filteredPlaces.length === 1
+                ? "place"
+                : "places"}
+            </h2>
+          </div>
+
+        </div>
+
+
+        {/* LOADING */}
+
+        {loading && (
+          <div className="status-message">
+            Loading places...
+          </div>
+        )}
+
+
+        {/* ERROR */}
+
+        {!loading && error && (
+          <div className="status-message error">
+            {error}
+          </div>
+        )}
+
+
+        {/* EMPTY */}
+
+        {!loading &&
+          !error &&
+          filteredPlaces.length === 0 && (
+            <div className="empty-state">
+
+              <h3>
+                No places found
+              </h3>
+
+              <p>
+                Try changing your search
+                or filters.
+              </p>
+
+            </div>
+          )}
+
+
+        {/* RESULTS */}
+
+        {!loading &&
+          !error &&
+          filteredPlaces.length > 0 && (
+
+            <div className="places-grid">
+
+              {filteredPlaces.map((place) => (
+                <PlaceCard
+                  key={place.id}
+                  place={place}
+                />
+              ))}
+
+            </div>
+
+          )}
+
+      </section>
+
+    </main>
   );
 }
 
