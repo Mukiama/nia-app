@@ -10,9 +10,10 @@ import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
 import Profile from "./pages/profile";
 import History from "./pages/history";
+import Favorites from "./pages/favorites";
 // import FilterPage from "./pages/filterPage";
 import Filter from "./pages/filter";
-import PlaceCard from "./components/placeCard";
+// import PlaceCard from "./components/placeCard";
 import "./App.css";
 
 export default function App() {
@@ -27,9 +28,9 @@ export default function App() {
 
         <Route path="/logout" element={<Logout />} />
 
-        <Route path="/place" element={<PlaceCard />} />
+        {/* <Route path="/place" element={<PlaceCard />} /> */}
 
-        <Route path="/places" element={<PlaceDetails />} />
+        <Route path="/places/:id" element={<PlaceDetails />} />
 
         <Route path="/hero" element={<Hero />} />
 
@@ -42,6 +43,8 @@ export default function App() {
         <Route path="/history" element={<History />} />
 
         <Route path="/filter" element={<Filter />} />
+
+        <Route path="/favourites" element={<Favorites />} />
         {/* <Route path="/filter" element={<FilterPage />} /> */}
       </Routes>
     

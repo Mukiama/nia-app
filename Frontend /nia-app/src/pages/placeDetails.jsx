@@ -1,151 +1,351 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-function FilterBar({
-  categories,
-  counties,
-  selectedCategory,
-  setSelectedCategory,
-  onFilterChange,
-}) {
-  const defaultCategories = [
-    "All",
-    "Photography",
-    "Nature",
-    "Food",
-    "Art",
-    "Culture",
-    "Family",
-    "Adventure",
-    "Nightlife",
-  ];
+import "../styles/placeDetail.css";
 
-  const cats =
-    categories && categories.length ? categories : defaultCategories;
+const API_URL = "http://localhost:3001";
 
-  const cnts = counties && counties.length ? counties : [];
+export default function PlaceDetails() {
+  const { id } = useParams();
 
-  const [localCategory, setLocalCategory] = useState(
-    selectedCategory || "All"
-  );
+  const [place, setPlace] = useState(null);
 
-  const [localCounty, setLocalCounty] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  const [liked, setLiked] = useState(false);
+  const [visited, setVisited] = useState(false);
+
+  const [actionLoading, setActionLoading] = useState(false);
+
+  const [error, setError] = useState("");
+
+  /* ================================
+     LOAD PLACE
+  ================================= */
 
   useEffect(() => {
-    if (selectedCategory !== undefined) {
-      setLocalCategory(selectedCategory);
+    async function loadPlace() {
+      try {
+        setLoading(true);
+        setError("");
+
+        const response = await fetch(
+          `${API_URL}/places/${id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Place not found.");
+        }
+
+        const data = await response.json();
+
+        setPlace(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [selectedCategory]);
 
-  function handleCategoryChange(event) {
-    const newCategory = event.target.value;
+    loadPlace();
+  }, [id]);
 
-    setLocalCategory(newCategory);
+  /* ================================
+     CHECK FAVOURITE + HISTORY
+  ================================= */
 
-    if (setSelectedCategory) {
-      setSelectedCategory(newCategory);
+  useEffect(() => {
+    async function checkStatus() {
+      try {
+        const [favouritesResponse, historyResponse] =
+          await Promise.all([
+            fetch(`${API_URL}/favourites`),
+            fetch(`${API_URL}/history`),
+          ]);
+
+        const favourites =
+          await favouritesResponse.json();
+
+        const history =
+          await historyResponse.json();
+
+        setLiked(
+          favourites.some(
+            (item) => String(item.placeId) === String(id)
+          )
+        );
+
+        setVisited(
+          history.some(
+            (item) => String(item.placeId) === String(id)
+          )
+        );
+      } catch (err) {
+        console.error(
+          "Could not check place status:",
+          err
+        );
+      }
     }
 
-    if (onFilterChange) {
-      onFilterChange({
-        category: newCategory,
-        county: localCounty,
-      });
+    if (id) {
+      checkStatus();
+    }
+  }, [id]);
+
+  /* ================================
+     LIKE
+  ================================= */
+
+  async function handleLike() {
+    if (!place || actionLoading) {
+      return;
+    }
+
+    try {
+      setActionLoading(true);
+
+      if (liked) {
+        const response = await fetch(
+          `${API_URL}/favourites?placeId=${place.id}`
+        );
+
+        const favourites = await response.json();
+
+        await Promise.all(
+          favourites.map((item) =>
+            fetch(
+              `${API_URL}/favourites/${item.id}`,
+              {
+                method: "DELETE",
+              }
+            )
+          )
+        );
+
+        setLiked(false);
+      } else {
+        await fetch(`${API_URL}/favourites`, {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            placeId: place.id,
+            name: place.name,
+            location: place.location,
+            county: place.county,
+            category: place.category,
+            description: place.description,
+            image: place.image,
+          }),
+        });
+
+        setLiked(true);
+      }
+    } catch (err) {
+      setError("Could not update favourite.");
+    } finally {
+      setActionLoading(false);
     }
   }
 
-  function handleCountyChange(event) {
-    const newCounty = event.target.value;
+  /* ================================
+     VISITED
+  ================================= */
 
-    setLocalCounty(newCounty);
+  async function handleVisited() {
+    if (!place || actionLoading || visited) {
+      return;
+    }
 
-    if (onFilterChange) {
-      onFilterChange({
-        category: localCategory,
-        county: newCounty,
+    try {
+      setActionLoading(true);
+
+      await fetch(`${API_URL}/history`, {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          placeId: place.id,
+          name: place.name,
+          location: place.location,
+          county: place.county,
+          category: place.category,
+          description: place.description,
+          image: place.image,
+          viewedAt: new Date().toISOString(),
+        }),
       });
+
+      setVisited(true);
+    } catch (err) {
+      setError("Could not mark place as visited.");
+    } finally {
+      setActionLoading(false);
     }
   }
 
-  function clearFilters() {
-    setLocalCategory("All");
-    setLocalCounty("All");
+  /* ================================
+     LOADING
+  ================================= */
 
-    if (setSelectedCategory) {
-      setSelectedCategory("All");
-    }
-
-    if (onFilterChange) {
-      onFilterChange({
-        category: "All",
-        county: "All",
-      });
-    }
+  if (loading) {
+    return (
+      <main className="place-details-page">
+        <div className="place-details-loading">
+          Loading place...
+        </div>
+      </main>
+    );
   }
+
+  /* ================================
+     ERROR
+  ================================= */
+
+  if (error || !place) {
+    return (
+      <main className="place-details-page">
+        <div className="place-details-error">
+          <h1>Place not found</h1>
+
+          <p>
+            {error || "We couldn't find this place."}
+          </p>
+
+          <Link to="/places">
+            Back to places
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
+  /* ================================
+     PAGE
+  ================================= */
 
   return (
-    <div className="filter-section">
-      <div className="filter-heading">
-        <div>
-          <h2>Explore places</h2>
-          <p>Find places based on what you're looking for.</p>
-        </div>
+    <main className="place-details-page">
 
-        <button
-          type="button"
-          className="clear-filters"
-          onClick={clearFilters}
-        >
-          Clear filters
-        </button>
-      </div>
+      {/* IMAGE */}
 
-      <div className="filter-bar">
-        <div className="filter-group">
-          <label htmlFor="category-filter">
-            Category
-          </label>
+      <section className="place-details-hero">
 
-          <select
-            id="category-filter"
-            className="filter-select"
-            value={localCategory}
-            onChange={handleCategoryChange}
+        <img
+          src={place.image}
+          alt={place.name}
+        />
+
+        <div className="place-details-overlay">
+          <Link
+            to="/filter"
+            className="back-link"
           >
-            {cats.map((category) => (
-              <option key={category} value={category}>
-                {category === "All"
-                  ? "All Categories"
-                  : category}
-              </option>
-            ))}
-          </select>
+            ← Back to places
+          </Link>
         </div>
 
-        {cnts.length > 0 && (
-          <div className="filter-group">
-            <label htmlFor="county-filter">
-              County
-            </label>
+      </section>
 
-            <select
-              id="county-filter"
-              className="filter-select"
-              value={localCounty}
-              onChange={handleCountyChange}
+
+      {/* CONTENT */}
+
+      <section className="place-details-content">
+
+        <div className="place-details-main">
+
+          <p className="place-details-category">
+            {place.category}
+          </p>
+
+          <h1>{place.name}</h1>
+
+          <p className="place-details-location">
+            {place.location}, {place.county}, Kenya
+          </p>
+
+          <p className="place-details-description">
+            {place.description}
+          </p>
+
+
+          {/* ACTIONS */}
+
+          <div className="place-details-actions">
+
+            <button
+              type="button"
+              className={
+                liked
+                  ? "details-action liked"
+                  : "details-action"
+              }
+              onClick={handleLike}
+              disabled={actionLoading}
             >
-              <option value="All">All Counties</option>
+              {liked ? "♥ Liked" : "♡ Like"}
+            </button>
 
-              {cnts.map((county) => (
-                <option key={county} value={county}>
-                  {county}
-                </option>
-              ))}
-            </select>
+
+            <button
+              type="button"
+              className={
+                visited
+                  ? "details-action visited"
+                  : "details-action"
+              }
+              onClick={handleVisited}
+              disabled={actionLoading || visited}
+            >
+              {visited
+                ? "✓ Visited"
+                : "Mark as visited"}
+            </button>
+
           </div>
-        )}
-      </div>
-    </div>
+
+        </div>
+
+
+        {/* INFORMATION */}
+
+        <aside className="place-details-info">
+
+          <div>
+            <span>LOCATION</span>
+            <strong>{place.location}</strong>
+          </div>
+
+          <div>
+            <span>COUNTY</span>
+            <strong>{place.county}</strong>
+          </div>
+
+          <div>
+            <span>OPENING HOURS</span>
+            <strong>
+              {place.openingHours || "Not available"}
+            </strong>
+          </div>
+
+          <div>
+            <span>ENTRY FEE</span>
+            <strong>
+              {place.entryFee || "Not available"}
+            </strong>
+          </div>
+
+        </aside>
+
+      </section>
+
+    </main>
   );
 }
-
-export default FilterBar;
