@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import SearchBar from "../components/searchBar";
 import FilterBar from "../components/filterBar";
 import PlaceCard from "../components/placeCard";
+import Dashboard from "./dashboard";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -77,6 +78,7 @@ function Home() {
 
   return (
     <>
+    <Dashboard/>
       <Navbar />
 
       <main>

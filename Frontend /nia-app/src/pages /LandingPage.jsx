@@ -1,4 +1,5 @@
 import {Link} from 'react-router'
+import Footer from '../components/footer'
 
 
 export default function LandingPage() {
@@ -46,10 +47,9 @@ export default function LandingPage() {
                     <p>Save a spot or open Uber/Maps directly to head over right away.</p>
                 </div>
             </section>
+
+            <Footer/>
         </div>
-
-
-
 
         </>
     )

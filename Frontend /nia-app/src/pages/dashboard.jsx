@@ -1,5 +1,4 @@
-import './Dashboard.css'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import Footer from '../components/footer'
 
 export default function Dashboard({user}) {
@@ -13,7 +12,7 @@ export default function Dashboard({user}) {
                 <div className='dashboard-header'>
                     <div className='greeting-box'>
                         <p className='greeting-text'>
-                            Hey {user?.name || 'there'}, ready to discovver with <span className='app-name'>Nia</span>
+                            Hey {user?.name || 'there'}, ready to discover with <span className='app-name'>Nia</span>
                         </p>
                     </div>
                     <div className='profile-avatar'>
@@ -27,11 +26,11 @@ export default function Dashboard({user}) {
 
                 <div className='dashboard-shortcuts'>
                     <Link to='/history' className='shortcut-link'>History</Link>
-                    <Link to='/Favourites' className='shortcut-link'>Favourites</Link>
+                    <Link to='/favourites' className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
-            <Footer/>
         </div>
+        <Footer/>
         </>
     )
 }
