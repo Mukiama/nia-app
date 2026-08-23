@@ -11,18 +11,9 @@ function PlaceCard({ place }) {
 
       <div className="place-card-content">
         <h2>{place.name}</h2>
-
-        <p className="place-location">
-          {place.county}, Kenya
-        </p>
-
-        <p className="place-category">
-          {place.category}
-        </p>
-
-        <p className="place-description">
-          {place.description}
-        </p>
+        <p className="place-location">{place.county}, Kenya</p>
+        <p className="place-category">{place.category}</p>
+        <p className="place-description">{place.description}</p>
 
         <Link to={`/places/${place.id}`} className="place-card-link">
           Explore →
