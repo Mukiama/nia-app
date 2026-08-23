@@ -11,7 +11,7 @@ import About from "./pages/About";
 import Profile from "./pages/profile";
 import History from "./pages/history";
 import Filter from "./pages/filter";
-import Favourites from "./pages/favourites";
+import Favorites from "./pages/favorites";
 import "./App.css";
 
 export default function App() {
@@ -28,7 +28,7 @@ export default function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/history" element={<History />} />
       <Route path="/filter" element={<Filter />} />
-      <Route path="/favourites" element={<Favourites />} />
+      <Route path="/favorites" element={<Favorites />} />
     </Routes>
   );
 }

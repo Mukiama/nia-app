@@ -47,7 +47,7 @@ export default function Dashboard( ) {
 
                 <div className='dashboard-shortcuts'>
                     <Link to='/history' className='shortcut-link'>History</Link>
-                    <Link to='/favourites' className='shortcut-link'>Favourites</Link>
+                    <Link to='/favorites' className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
         </div>
