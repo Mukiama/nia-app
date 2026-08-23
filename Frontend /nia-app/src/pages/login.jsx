@@ -1,61 +1,9 @@
 import { useState } from "react";
-<<<<<<< HEAD
-=======
 import "../App.css";
->>>>>>> origin/dev
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-<<<<<<< HEAD
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    console.log({
-      email,
-      password,
-    });
-  }
-
-  return (
-    <div>
-      <h1>Login to Nia</h1>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-          />
-        </div>
-
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-        </div>
-
-        <button type="submit">
-          Login
-        </button>
-      </form>
-
-      <p>
-        Don't have an account?
-        <a href="/signup"> Sign up</a>
-      </p>
-    </div>
-  );
-}
-=======
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -91,7 +39,7 @@ export default function Login() {
 
     setError("");
 
-    window.location.href = "/";
+    window.location.href = "/dashboard";
   } catch (error) {
     setError("Unable to connect to the server.");
   }
@@ -167,4 +115,3 @@ export default function Login() {
     </div>
   );
 }
->>>>>>> origin/dev

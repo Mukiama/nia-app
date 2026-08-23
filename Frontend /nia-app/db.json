@@ -5,6 +5,18 @@
       "email": "user@example.com",
       "password": "string",
       "id": "DsO9sJ8XUgk"
+    },
+    {
+      "name": "John Doe",
+      "email": "john@doe.com",
+      "password": "string",
+      "id": "YafKFTevLLE"
+    },
+    {
+      "name": "John Doe 02",
+      "email": "john@doe02.com",
+      "password": "string",
+      "id": "YVH9pNZEJt0"
     }
   ],
   "places": [
@@ -29,5 +41,6 @@
       "entryFee": "KES 200"
     }
   ],
-  "history" : []
+  "history": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }
