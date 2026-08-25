@@ -1,151 +1,185 @@
-/* =================================
-   NIA PLACE CARD
-================================= */
+/* =========================================
+   PLACE CARD
+========================================= */
 
 .place-card {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  max-width: 384px;
+
+  border-radius: 12px;
   overflow: hidden;
-  height: 100%;
-  background: #ffffff;
-  border: 1px solid #e4e9e0;
-  border-radius: 22px;
-  box-shadow: 0 5px 20px rgba(25, 45, 25, 0.04);
+
+  background-color: #1c1917;
+  color: #f5f5f4;
+
+  border: 1px solid #44403c;
+
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .place-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(25, 45, 25, 0.1);
+
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* =================================
+
+/* =========================================
    IMAGE
-================================= */
+========================================= */
+
+.place-card-image-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 170px;
+
+  overflow: hidden;
+}
 
 .place-card-image {
   display: block;
+
   width: 100%;
-  height: 230px;
+  height: 100%;
+
   object-fit: cover;
-  background: #dfe8da;
-  transition: transform 0.4s ease;
+
+  transition: transform 0.5s ease;
 }
 
 .place-card:hover .place-card-image {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
-/* =================================
-   CONTENT
-================================= */
+
+/* =========================================
+   LOCATION BADGE
+========================================= */
+
+.place-location-badge {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  padding: 5px 12px;
+
+  border-radius: 999px;
+
+  background-color: rgba(28, 25, 23, 0.9);
+
+  color: #fbbf24;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
 
 .place-card-content {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  padding: 22px;
+
+  gap: 8px;
+
+  padding: 18px 20px 20px;
+
+  /* Explicitly keep the content dark */
+  background-color: #1c1917;
 }
 
-.place-card-content h2 {
-  margin: 0 0 6px;
-  color: #171a17;
-  font-size: 1.4rem;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-}
 
-/* =================================
-   LOCATION
-================================= */
+/* =========================================
+   TITLE
+========================================= */
 
-.place-location {
+.place-card-title {
   margin: 0;
-  color: #687064;
-  font-size: 0.82rem;
-}
-
-/* =================================
-   CATEGORY
-================================= */
-
-.place-category {
-  display: inline-flex;
-  align-self: flex-start;
-  margin: 15px 0 12px;
-  padding: 6px 11px;
-  border-radius: 20px;
-  background: #e8f0e4;
-  color: #52794d;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-/* =================================
-   DESCRIPTION
-================================= */
-
-.place-description {
-  display: -webkit-box;
-  overflow: hidden;
-  margin: 0;
-  color: #6d746b;
-  font-size: 0.9rem;
-  line-height: 1.6;
-
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-/* =================================
-   EXPLORE LINK
-================================= */
-
-.place-card-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-
-  margin-top: auto;
-  padding: 10px 16px;
-
-  border-radius: 25px;
-  background: #171a17;
 
   color: #ffffff;
-  text-decoration: none;
 
-  font-size: 0.82rem;
+  font-family: Georgia, serif;
+
+  font-size: 0.90rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.place-card-description {
+  margin: 0;
+
+  color: #a8a29e;
+
+  font-family: system-ui, sans-serif;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   EXPLORE LINK
+========================================= */
+
+.place-card-link {
+  display: inline-block;
+
+  width: fit-content;
+
+  margin-top: 5px;
+
+  color: #fbbf24;
+
+  font-size: 0.9rem;
   font-weight: 600;
 
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  text-decoration: none;
 }
 
 .place-card-link:hover {
-  background: #5d8c55;
-  transform: translateX(2px);
+  color: #fcd34d;
+
+  text-decoration: underline;
 }
 
-/* =================================
+
+/* =========================================
    RESPONSIVE
-================================= */
+========================================= */
 
-@media (max-width: 700px) {
-  .place-card-image {
-    height: 210px;
+@media (max-width: 600px) {
+  .place-card {
+    max-width: 100%;
   }
 
-  .place-card-content {
-    padding: 18px;
-  }
-
-  .place-card-content h2 {
-    font-size: 1.25rem;
+  .place-card-image-wrapper {
+    height: 200px;
   }
 }
