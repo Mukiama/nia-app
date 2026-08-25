@@ -5,6 +5,24 @@
       "email": "user@example.com",
       "password": "string",
       "id": "DsO9sJ8XUgk"
+    },
+    {
+      "name": "John Doe",
+      "email": "john@doe.com",
+      "password": "string",
+      "id": "YafKFTevLLE"
+    },
+    {
+      "name": "John Doe 02",
+      "email": "john@doe02.com",
+      "password": "string",
+      "id": "YVH9pNZEJt0"
+    },
+    {
+      "name": "milk buoy",
+      "email": "milk@buoy.com",
+      "password": "string",
+      "id": "G32gf5OVQjE"
     }
   ],
   "places": [
@@ -16,7 +34,8 @@
       "category": "Nature",
       "description": "A large urban forest with walking trails, waterfalls, caves and scenic green spaces.",
       "openingHours": "6:00 AM - 6:00 PM",
-      "entryFee": "KES 100"
+      "entryFee": "KES 100",
+      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
     },
     {
       "id": "2",
@@ -26,8 +45,99 @@
       "category": "Culture",
       "description": "A museum featuring Kenyan history, art, culture and natural heritage.",
       "openingHours": "8:30 AM - 5:30 PM",
-      "entryFee": "KES 200"
+      "entryFee": "KES 200",
+      "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08"
+    },
+    {
+      "id": "3",
+      "name": "Gedi Ruins",
+      "location": "Kilifi",
+      "county": "Kilifi",
+      "category": "Culture",
+      "description": "Ancient Swahili ruins surrounded by lush coastal forest near Watamu.",
+      "openingHours": "8:00 AM - 6:00 PM",
+      "entryFee": "KES 500",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada"
+    },
+    {
+      "id": "4",
+      "name": "Hell's Gate National Park",
+      "location": "Naivasha",
+      "county": "Nakuru",
+      "category": "Adventure",
+      "description": "A dramatic landscape of cliffs, gorges and wildlife popular for hiking and cycling.",
+      "openingHours": "6:00 AM - 6:00 PM",
+      "entryFee": "KES 300",
+      "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801"
+    },
+    {
+      "id": "5",
+      "name": "Fort Jesus",
+      "location": "Mombasa",
+      "county": "Mombasa",
+      "category": "Historical",
+      "description": "A historic Portuguese fort overlooking the Indian Ocean in Mombasa Old Town.",
+      "openingHours": "8:00 AM - 6:00 PM",
+      "entryFee": "KES 200",
+      "image": "https://images.unsplash.com/photo-1596005554384-d293674c91d7"
+    },
+    {
+      "id": "6",
+      "name": "Lamu Old Town",
+      "location": "Lamu",
+      "county": "Lamu",
+      "category": "Culture",
+      "description": "A historic Swahili settlement known for its architecture, narrow streets and coastal culture.",
+      "openingHours": "Open daily",
+      "entryFee": "Free",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada"
+    },
+    {
+      "id": "7",
+      "name": "Kakamega Forest",
+      "location": "Kakamega",
+      "county": "Kakamega",
+      "category": "Nature",
+      "description": "A tropical rainforest known for biodiversity, bird watching and scenic walking trails.",
+      "openingHours": "6:00 AM - 6:00 PM",
+      "entryFee": "KES 200",
+      "image": "https://images.unsplash.com/photo-1448375240586-882707db888b"
+    },
+    {
+      "id": "8",
+      "name": "Kit-Mikayi",
+      "location": "Kisumu",
+      "county": "Kisumu",
+      "category": "Cultural",
+      "description": "A striking rock formation and sacred cultural site surrounded by traditional stories and heritage.",
+      "openingHours": "8:00 AM - 5:00 PM",
+      "entryFee": "KES 200",
+      "image": "https://images.unsplash.com/photo-1500534623283-312aade485b7"
     }
   ],
-  "history" : []
+  "history": [
+    {
+      "placeId": "3",
+      "name": "Gedi Ruins",
+      "location": "Kilifi",
+      "county": "Kilifi",
+      "category": "Culture",
+      "description": "Ancient Swahili ruins surrounded by lush coastal forest near Watamu.",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada",
+      "viewedAt": "2026-08-23T22:35:24.160Z",
+      "id": "MKez3G0n_-U"
+    }
+  ],
+  "favourites": [
+    {
+      "placeId": "2",
+      "name": "Nairobi National Museum",
+      "location": "Nairobi",
+      "county": "Nairobi",
+      "category": "Culture",
+      "description": "A museum featuring Kenyan history, art, culture and natural heritage.",
+      "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08",
+      "id": "ZsYz7lPvBJY"
+    }
+  ]
 }

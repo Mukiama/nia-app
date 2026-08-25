@@ -128,7 +128,7 @@ function Home() {
               <button>🎒 Kids</button>
             </div>
           </div>
-        </section>
+        </section> 
 
         {/* NIA PICKS */}
         <section className="picks-section">
@@ -144,7 +144,7 @@ function Home() {
             </p>
 
 
-            {/* FILTER */}
+          
             <div className="filter-bar">
               {categories.map((category) => (
                  <button
@@ -157,7 +157,7 @@ function Home() {
              ))}
             </div>
 
-            {/* PLACE CARDS */}
+          
             <div className="places-grid">
               {filteredPlaces.map((place) => (
                 <PlaceCard
@@ -191,7 +191,7 @@ function Home() {
           </div>
         </section>
 
-        {/* BUSINESS */}
+        
         <section className="business-section">
           <div className="section-container">
             <h2>
@@ -207,7 +207,7 @@ function Home() {
             </button>
           </div>
         </section>
-      </main>
+      </main> 
 
       {/* FOOTER */}
       <Footer />

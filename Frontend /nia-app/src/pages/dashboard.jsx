@@ -1,8 +1,25 @@
 import {Link} from 'react-router-dom'
-import Footer from '../components/footer'
+// import Footer from '../components/footer'
+// import FilterBar from '../components/filterBar'
+import { useState, useEffect } from 'react';
 
-export default function Dashboard({user}) {
+export default function Dashboard( ) {
+    const [ user, setUser] = useState(null);
 
+    useEffect(() => {
+        const storedUser = localStorage.getItem('niaUser');
+
+        if (!storedUser) return;
+
+        fetch(`http://localhost:3001/users/${JSON.parse(storedUser).id}`)
+            .then((response) => response.json())
+            .then((data) => setUser(data))
+            .catch((error) => console.error("Error fetching user data:", error));
+    }, []); 
+
+    if (!user) {
+        return <p> Loading ... </p>;
+    }
 
     return (
         <>
@@ -21,17 +38,20 @@ export default function Dashboard({user}) {
                     </div>
                 </div>
 
-                <Link to='/' className='homepage-link'>Discover with Nia</Link>
+                <Link to='/filter' className='homepage-link'>
+                    Discover with Nia</Link>
+
+                
 
                 <Link to='/feeling-lucky' className='lucky-link'>Feeling Lucky</Link>
 
                 <div className='dashboard-shortcuts'>
                     <Link to='/history' className='shortcut-link'>History</Link>
-                    <Link to='/favourites' className='shortcut-link'>Favourites</Link>
+                    <Link to='/favorites' className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
         </>
     )
 }

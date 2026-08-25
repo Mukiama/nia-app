@@ -1,0 +1,267 @@
+/* ================================
+   NIA FILTER PAGE
+================================ */
+
+.filter-page {
+  min-height: 100vh;
+  background: #f6f8f3;
+  color: #171a17;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.filter-hero {
+  padding: 80px 8% 60px;
+  background: #f6f8f3;
+}
+
+.filter-eyebrow {
+  margin: 0 0 14px;
+  color: #5d8c55;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.filter-hero h1 {
+  max-width: 700px;
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+}
+
+.filter-hero h1 span {
+  color: #5d8c55;
+}
+
+.filter-description {
+  max-width: 580px;
+  margin: 28px 0 40px;
+  color: #666c65;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ================================
+   SEARCH + FILTERS
+================================ */
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+/* ================================
+   PLACES SECTION
+================================ */
+
+.places-section {
+  padding: 55px 8% 100px;
+  background: #ffffff;
+  border-radius: 40px 40px 0 0;
+}
+
+.places-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.section-label {
+  margin: 0 0 6px;
+  color: #5d8c55;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.places-heading h2 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+}
+
+/* ================================
+   GRID
+================================ */
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+/* ================================
+   PLACE CARD
+================================ */
+
+.place-card {
+  overflow: hidden;
+  background: #f6f8f3;
+  border: 1px solid #e7ebe3;
+  border-radius: 22px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.place-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(30, 50, 30, 0.08);
+}
+
+/* Temporary image area.
+   Replace with actual image later. */
+
+.place-image {
+  position: relative;
+  height: 190px;
+  background:
+    linear-gradient(
+      135deg,
+      #dce8d6,
+      #a9c29f
+    );
+}
+
+.place-image span {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 7px 11px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #42653d;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* ================================
+   CARD CONTENT
+================================ */
+
+.place-content {
+  padding: 20px;
+}
+
+.place-county {
+  margin: 0 0 7px;
+  color: #7a8178;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.place-content h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.place-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #e1e6de;
+}
+
+.place-footer span {
+  color: #737970;
+  font-size: 0.85rem;
+}
+
+.place-footer button {
+  padding: 8px 13px;
+  border: none;
+  border-radius: 20px;
+  background: #171a17;
+  color: #ffffff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.place-footer button:hover {
+  background: #5d8c55;
+}
+
+/* ================================
+   STATES
+================================ */
+
+.status-message {
+  padding: 40px 0;
+  color: #6f756e;
+}
+
+.status-message.error {
+  color: #a04444;
+}
+
+.empty-state {
+  padding: 70px 20px;
+  text-align: center;
+  background: #f6f8f3;
+  border-radius: 22px;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #737970;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .places-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-hero {
+    padding: 60px 6% 45px;
+  }
+
+  .places-section {
+    padding: 45px 6% 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-hero h1 {
+    font-size: 3.5rem;
+  }
+
+  .filter-description {
+    font-size: 0.95rem;
+  }
+
+  .places-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .places-section {
+    border-radius: 25px 25px 0 0;
+  }
+
+  .place-image {
+    height: 210px;
+  }
+}
