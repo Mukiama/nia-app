@@ -6,10 +6,11 @@ import Filter from './filter';
 
 export default function Dashboard( ) {
     const [ user, setUser] = useState(null);
+     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const storedUser = localStorage.getItem('niaUser')
-        const [isLoading, setIsLoading] = useState(true)
+       
 
         if (!storedUser) {
             setIsLoading(false)
@@ -29,6 +30,7 @@ export default function Dashboard( ) {
 
     return (
         <>
+<<<<<<< HEAD
         {/* <div className='dashboard-page'>
             <div className='dashboard-card'>
 
@@ -58,6 +60,8 @@ export default function Dashboard( ) {
             </div>
         </div>  */}
         {/* <Footer/> */}
+=======
+>>>>>>> 2dfcf9b (Added loading feature styling)
         <Filter />
         </>
     )
