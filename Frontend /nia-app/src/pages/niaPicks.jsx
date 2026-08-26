@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
 import karuraImage from "../images/karura.jpg";
 import museumImage from "../images/museum.jpg";
 import ngongImage from "../images/ngong.jpg";
 import arboretumImage from "../images/arboretum.jpg";
 
 /* =========================================
-   PLACES FOR NIA PICK
+   NIA PICKS
 ========================================= */
 
 const places = [
@@ -61,81 +60,54 @@ const getDailyPick = (places) => {
 };
 
 /* =========================================
-   HERO COMPONENT
+   NIA PICKS PAGE
 ========================================= */
 
-function Hero() {
+function NiaPicks() {
   const dailyPick = getDailyPick(places);
 
   return (
-    <section className="hero">
+    <main className="nia-picks-page">
 
-      {/* ================================
-          MAIN HERO CONTENT
-      ================================= */}
+      {/* HEADER */}
 
-      <div className="hero-content">
+      <section className="nia-picks-header">
 
-        <p className="hero-eyebrow">
-          Find your next thing
+        <p className="nia-picks-eyebrow">
+          NIA PICKS
         </p>
 
         <h1>
-          Discover places
-          <br />
-          worth knowing.
+          Places worth knowing.
         </h1>
 
-        <p className="hero-description">
-          Explore hidden gems, beautiful spaces, and local experiences
-          around Nairobi.
+        <p>
+          Handpicked places and experiences we think
+          are worth discovering around Nairobi.
         </p>
 
-      <div className="hero-actions">
+      </section>
 
-        <Link
-          to="/nearby-finds"
-          className="hero-primary"
-        >
-         Nearby Finds
-        </Link>
+      {/* PICK OF THE DAY */}
 
-        <Link
-          to="/nia-picks"
-          className="hero-secondary"
-        >
-         Find Your Next Thing
-        </Link>
-        </div>
+      <section className="nia-picks-featured">
 
-      </div>
-
-      {/* ================================
-          NIA PICK
-      ================================= */}
-
-      <div className="nia-pick">
-
-        {/* Place image */}
-
-        <div className="nia-pick-image">
+        <div className="nia-picks-featured-image">
 
           <img
             src={dailyPick.image}
             alt={dailyPick.name}
           />
 
-          <span className="nia-pick-tag">
+          <span className="nia-picks-tag">
             NIA PICK OF THE DAY
           </span>
 
         </div>
 
-        {/* Place information */}
+        <div className="nia-picks-featured-content">
 
-        <div className="nia-pick-content">
-
-          <p className="nia-pick-location">
+          <p className="nia-picks-location">
             {dailyPick.location}
           </p>
 
@@ -143,28 +115,72 @@ function Hero() {
             {dailyPick.name}
           </h2>
 
-          <p className="nia-pick-description">
+          <p>
             {dailyPick.description}
           </p>
 
-          <div className="nia-pick-footer">
+        </div>
 
-            <span>
-              Explore this place
-            </span>
+      </section>
 
-            <span className="nia-arrow">
-              ↗
-            </span>
+      {/* ALL PICKS */}
 
-          </div>
+      <section className="nia-picks-list">
+
+        <div className="nia-picks-list-header">
+
+          <h2>
+            More Nia Picks
+          </h2>
+
+          <p>
+            Places we're currently loving.
+          </p>
 
         </div>
 
-      </div>
+        <div className="nia-picks-grid">
 
-    </section>
+          {places.map((place) => (
+            <article
+              className="nia-pick-card"
+              key={place.name}
+            >
+
+              <div className="nia-pick-card-image">
+
+                <img
+                  src={place.image}
+                  alt={place.name}
+                />
+
+              </div>
+
+              <div className="nia-pick-card-content">
+
+                <p className="nia-pick-card-location">
+                  {place.location}
+                </p>
+
+                <h3>
+                  {place.name}
+                </h3>
+
+                <p>
+                  {place.description}
+                </p>
+
+              </div>
+
+            </article>
+          ))}
+
+        </div>
+
+      </section>
+
+    </main>
   );
 }
 
-export default Hero;
+export default NiaPicks;
