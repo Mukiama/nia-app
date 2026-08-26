@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Hero from "./hero";
 import Footer from "../components/footer";
@@ -184,9 +185,9 @@ function Home() {
               you wouldn't normally think to visit.
             </p>
 
-            <button>
+            <Link to="/offmap" className="offmap-home-button">
               Explore OffMap
-            </button>
+            </Link>
           </div>
         </section>
 
@@ -201,7 +202,7 @@ function Home() {
               Help people discover your business on Nia.
             </p>
 
-            <button>
+            <button className="business-cta-button">
               List Your Business
             </button>
           </div>
