@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Topbar from "../components/topbar";
 import Navbar from "../components/navbar";
 import Hero from "./hero";
 import Footer from "../components/footer";
 import SearchBar from "../components/searchBar";
 import FilterBar from "../components/filterBar";
 import PlaceCard from "../components/placeCard";
+
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -129,7 +131,7 @@ function Home() {
               <button>🎒 Kids</button>
             </div>
           </div>
-        </section>
+        </section> 
 
         {/* NIA PICKS */}
         <section className="picks-section">
@@ -159,7 +161,7 @@ function Home() {
 
             </div>
 
-            {/* FILTER */}
+          
             <div className="filter-bar">
               {categories.map((category) => (
                 <button
@@ -178,7 +180,7 @@ function Home() {
               ))}
             </div>
 
-            {/* PLACE CARDS */}
+          
             <div className="places-grid">
               {filteredPlaces.map((place) => (
                 <PlaceCard
@@ -216,7 +218,7 @@ function Home() {
           </div>
         </section>
 
-        {/* BUSINESS */}
+        
         <section className="business-section">
           <div className="section-container">
             <h2>
@@ -232,7 +234,7 @@ function Home() {
             </button>
           </div>
         </section>
-      </main>
+      </main> 
 
       {/* FOOTER */}
       <Footer />

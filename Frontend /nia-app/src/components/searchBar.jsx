@@ -1,36 +1,51 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function SearchBar({ search, setSearch, onSearch }) {
   const [searchText, setSearchText] = useState(search || "");
 
   useEffect(() => {
-    if (search !== undefined) setSearchText(search);
+    if (search !== undefined) {
+      setSearchText(search);
+    }
   }, [search]);
 
-  function handleChange(e) {
-    const val = e.target.value;
-    if (setSearch) setSearch(val);
-    setSearchText(val);
-    if (onSearch) onSearch(val);
+  function handleChange(event) {
+    const value = event.target.value;
+
+    setSearchText(value);
+
+    if (setSearch) {
+      setSearch(value);
+    }
+
+    if (onSearch) {
+      onSearch(value);
+    }
   }
 
-  function handleSubmit() {
-    if (onSearch) onSearch(searchText);
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (onSearch) {
+      onSearch(searchText);
+    }
   }
 
   return (
-    <div className="search-container">
+    <form className="search-container" onSubmit={handleSubmit}>
+      <span className="search-icon">⌕</span>
+
       <input
         type="text"
-        placeholder="Search places in Nairobi..."
+        placeholder="Search places..."
         value={searchText}
         onChange={handleChange}
       />
 
-      <button type="button" onClick={handleSubmit}>
+      <button type="submit">
         Search
       </button>
-    </div>
+    </form>
   );
 }
 

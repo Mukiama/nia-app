@@ -20,17 +20,20 @@ function FilterBar({
   ];
 
   const cats =
-    categories && categories.length ? categories : defaultCategories;
+    categories && categories.length
+      ? categories
+      : defaultCategories;
 
-  const cnts = counties && counties.length ? counties : [];
+  const cnts =
+    counties && counties.length
+      ? counties
+      : [];
 
   const [localCategory, setLocalCategory] = useState(
     selectedCategory || "All"
   );
 
-  const [localCounty, setLocalCounty] = useState(
-    cnts.length ? cnts[0] : "All"
-  );
+  const [localCounty, setLocalCounty] = useState("All");
 
   useEffect(() => {
     if (selectedCategory !== undefined) {
@@ -41,10 +44,10 @@ function FilterBar({
   function handleCategoryChange(event) {
     const newCategory = event.target.value;
 
+    setLocalCategory(newCategory);
+
     if (setSelectedCategory) {
       setSelectedCategory(newCategory);
-    } else {
-      setLocalCategory(newCategory);
     }
 
     if (onFilterChange) {
@@ -68,29 +71,63 @@ function FilterBar({
     }
   }
 
+  function clearFilters() {
+    setLocalCategory("All");
+    setLocalCounty("All");
+
+    if (setSelectedCategory) {
+      setSelectedCategory("All");
+    }
+
+    if (onFilterChange) {
+      onFilterChange({
+        category: "All",
+        county: "All",
+      });
+    }
+  }
+
   return (
     <div className="filter-bar">
-      <select
-        className="filter-select"
-        value={localCategory}
-        onChange={handleCategoryChange}
-      >
-        <option value="All">All Categories</option>
+      <div className="filter-group">
+        <label htmlFor="category-filter">
+          Category
+        </label>
 
-        {cats.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-
-      {cnts.length > 0 && (
         <select
+          id="category-filter"
+          className="filter-select"
+          value={localCategory}
+          onChange={handleCategoryChange}
+        >
+          <option value="All">
+            All Categories
+          </option>
+
+          {cats
+            .filter((category) => category !== "All")
+            .map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+        </select>
+      </div>
+
+      <div className="filter-group">
+        <label htmlFor="county-filter">
+          County
+        </label>
+
+        <select
+          id="county-filter"
           className="filter-select"
           value={localCounty}
           onChange={handleCountyChange}
         >
-          <option value="All">All Counties</option>
+          <option value="All">
+            All Counties
+          </option>
 
           {cnts.map((county) => (
             <option key={county} value={county}>
@@ -98,7 +135,15 @@ function FilterBar({
             </option>
           ))}
         </select>
-      )}
+      </div>
+
+      <button
+        type="button"
+        className="clear-filters"
+        onClick={clearFilters}
+      >
+        Clear
+      </button>
     </div>
   );
 }

@@ -1,28 +1,38 @@
+import { Link } from "react-router-dom";
+import "../styles/placeCard.css";
+
 function PlaceCard({ place }) {
   return (
-    <article className="place-card">
-      <img
-        src={place.image}
-        alt={place.name}
-        className="place-image"
-      />
+    <div className="place-card">
+      <div className="place-card-image-wrapper">
+        <img
+          src={place.image}
+          alt={place.name}
+          className="place-card-image"
+        />
+
+        <span className="place-location-badge">
+          {place.location}
+        </span>
+      </div>
 
       <div className="place-card-content">
-        <p className="place-category">
-          {place.category}
+        <h2 className="place-card-title">
+          {place.name}
+        </h2>
+
+        <p className="place-card-description">
+          {place.description}
         </p>
 
-        <h3>{place.name}</h3>
-
-        <p>{place.description}</p>
-
-        <span>{place.location}</span>
-
-        <button>
-          Explore
-        </button>
+        <Link
+          to={`/places/${place.id}`}
+          className="place-card-link"
+        >
+          Explore →
+        </Link>
       </div>
-    </article>
+    </div>
   );
 }
 

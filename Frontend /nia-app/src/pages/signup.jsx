@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [signupForm, setSignUpForm] = useState({
@@ -7,6 +8,8 @@ export default function Signup() {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -73,7 +76,7 @@ export default function Signup() {
       password: "",
     });
 
-    alert("Signup successful");
+    navigate("/dashboard");
   } catch (error) {
     setError(error.message);
   }
