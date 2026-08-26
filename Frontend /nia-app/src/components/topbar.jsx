@@ -12,9 +12,9 @@ function Topbar() {
         </Link>
 
         {/* MAIN NAVIGATION */}
-        <nav className="navbar-links">
+        {/* <nav className="navbar-links">
 
-          {/* DISCOVER */}
+            
           <div className="nav-dropdown">
             <button className="nav-link" type="button">
               Discover
@@ -39,7 +39,6 @@ function Topbar() {
             </div>
           </div>
 
-          {/* EXPLORE */}
           <div className="nav-dropdown">
             <button className="nav-link" type="button">
               Explore
@@ -54,7 +53,6 @@ function Topbar() {
             </div>
           </div>
 
-          {/* CATEGORIES */}
           <div className="nav-dropdown">
             <button className="nav-link" type="button">
               Categories
@@ -96,10 +94,10 @@ function Topbar() {
             </div>
           </div>
 
-        </nav>
+        </nav> */}
         
         {/* SEARCH */}
-        <div className="navbar-search">
+        {/* <div className="navbar-search">
           <span className="search-icon">⌕</span>
 
           <input
@@ -107,21 +105,28 @@ function Topbar() {
             placeholder="Search places..."
             aria-label="Search places"
           />
-        </div>
+        </div> */}
 
 
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
 
           <Link
+            to="/signup"
+            className="navbar-action business-link"
+          >
+            GET STARTED
+          </Link>
+
+          {/* <Link
             to="/business"
             className="navbar-action business-link"
           >
             List Your Business
-          </Link>
+          </Link> */}
 
           {/* ACCOUNT */}
-          <div className="profile-menu">
+          {/* <div className="profile-menu">
 
             <button
               type="button"
@@ -141,12 +146,12 @@ function Topbar() {
             </button>
 
             <div className="profile-dropdown">
-              {/* <Link to="/profile">My Profile</Link> */}
+               <Link to="/profile">My Profile</Link> 
               <Link to="/login">Log in</Link>
               <Link to="/signup">Sign up</Link>
             </div>
 
-          </div>
+          </div> */}
 
         </div>
 

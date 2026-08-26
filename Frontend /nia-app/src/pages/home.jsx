@@ -84,7 +84,7 @@ function Home() {
         <Hero />
 
         {/* INTERESTS */}
-        <section className="interests-section">
+        {/* <section className="interests-section">
           <div className="section-container">
             <p className="section-eyebrow">
               START EXPLORING
@@ -103,10 +103,10 @@ function Home() {
               <button>🌙 Nightlife</button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* WHO ARE YOU WITH */}
-        <section className="companions-section">
+        {/* <section className="companions-section">
           <div className="section-container">
             <p className="section-eyebrow">
               MAKE IT PERSONAL
@@ -128,10 +128,10 @@ function Home() {
               <button>🎒 Kids</button>
             </div>
           </div>
-        </section> 
+        </section>  */}
 
         {/* NIA PICKS */}
-        <section className="picks-section">
+        {/* <section className="picks-section">
           <div className="section-container">
                 <p className="section-eyebrow">
                   DISCOVER
@@ -167,10 +167,10 @@ function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* OFFMAP */}
-        <section className="offmap-section">
+        {/* <section className="offmap-section">
           <div className="section-container">
             <p className="section-eyebrow">
               OFFMAP
@@ -189,10 +189,10 @@ function Home() {
               Explore OffMap
             </button>
           </div>
-        </section>
+        </section> */}
 
         
-        <section className="business-section">
+        {/* <section className="business-section">
           <div className="section-container">
             <h2>
               Own a hidden gem?
@@ -206,7 +206,7 @@ function Home() {
               List Your Business
             </button>
           </div>
-        </section>
+        </section> */}
       </main> 
 
       {/* FOOTER */}

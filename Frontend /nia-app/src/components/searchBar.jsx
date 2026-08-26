@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import "../styles/filter.css"
 function SearchBar({ search, setSearch, onSearch }) {
   const [searchText, setSearchText] = useState(search || "");
 
@@ -33,18 +33,27 @@ function SearchBar({ search, setSearch, onSearch }) {
 
   return (
     <form className="search-container" onSubmit={handleSubmit}>
-      <span className="search-icon">⌕</span>
-
+      {/* <span className="search-icon">⌕</span> */}
+      
+    <div className="search-cont">
       <input
+      className="search-input"
         type="text"
         placeholder="Search places..."
         value={searchText}
         onChange={handleChange}
       />
 
-      <button type="submit">
+      <button 
+      className="search-btn"
+      type="submit">
+        
         Search
       </button>
+
+      
+    </div>
+      
     </form>
   );
 }
