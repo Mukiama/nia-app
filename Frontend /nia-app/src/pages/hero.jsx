@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import karuraImage from "../images/karura.jpg";
 import museumImage from "../images/museum.jpg";
 import ngongImage from "../images/ngong.jpg";
@@ -90,16 +91,21 @@ function Hero() {
           around Nairobi.
         </p>
 
-        <div className="hero-actions">
+      <div className="hero-actions">
 
-          <button className="hero-primary">
-            Explore 
-          </button>
+        <Link
+          to="/nearby-finds"
+          className="hero-primary"
+        >
+         Nearby Finds
+        </Link>
 
-          <button className="hero-secondary">
-            Discover hidden gems
-          </button>
-
+        <Link
+          to="/nia-picks"
+          className="hero-secondary"
+        >
+         Find Your Next Thing
+        </Link>
         </div>
 
       </div>
