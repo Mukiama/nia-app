@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/navbar";
+import Topbar from "../components/topbar";
 import Hero from "./hero";
 import Footer from "../components/footer";
 import SearchBar from "../components/searchBar";
@@ -11,14 +11,14 @@ function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const categories = [
-  "All",
-  "Nature",
-  "Food",
-  "Art",
-  "Culture",
-  "Adventure",
-  "Nightlife",
-];
+    "All",
+    "Nature",
+    "Food",
+    "Art",
+    "Culture",
+    "Adventure",
+    "Nightlife",
+  ];
 
   const places = [
     {
@@ -78,7 +78,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Topbar />
 
       <main>
         <Hero />
@@ -133,28 +133,28 @@ function Home() {
         {/* NIA PICKS */}
         <section className="picks-section">
           <div className="section-container">
-            <p className="section-eyebrow">
-              DISCOVER
-            </p>
+                <p className="section-eyebrow">
+                  DISCOVER
+                </p>
 
-            <h2>Nia Picks</h2>
+                <h2>Nia Picks</h2>
 
-            <p>
-              Interesting places we think you'll love.
-            </p>
+                <p>
+                  Interesting places we think you'll love.
+                </p>
 
 
           
             <div className="filter-bar">
               {categories.map((category) => (
-                 <button
-                   key={category}
+                <button
+                  key={category}
                    className={selectedCategory === category ? "active" : ""}
                    onClick={() => setSelectedCategory(category)}
-                 >
-                   {category}
-             </button>
-             ))}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
 
           

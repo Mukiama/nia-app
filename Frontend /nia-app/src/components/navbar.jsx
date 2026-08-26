@@ -1,158 +1,137 @@
 import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 
-function Navbar() {
+export default function Navbar({
+  user,
+  sidebarOpen,
+  setSidebarOpen,
+  onLogout,
+}) {
   return (
-    <header className="navbar">
-      <div className="navbar-container">
+    <>
+      {/* DESKTOP NAVBAR */}
+      <header className="navbar">
 
-        {/* LOGO */}
-        <Link to="/" className="navbar-logo">
+        <div className="navbar-logo">
           <span className="nia-mark">✦</span>
-          <span>Nia</span>
-        </Link>
+          <Link to="/home">NIA</Link>
+        </div>
 
-        {/* MAIN NAVIGATION */}
-        <nav className="navbar-links">
+        <nav className="desktop-nav">
+          <Link to="/home">Explore</Link>
+          <Link to="/history">History</Link>
+          <Link to="/profile">Profile</Link>
+          <Link to="/favorites">Favourites</Link>
+        </nav>
 
-          {/* DISCOVER */}
-          <div className="nav-dropdown">
-            <button className="nav-link" type="button">
-              Discover
-              <span className="nav-arrow">⌄</span>
-            </button>
+        <div className="navbar-user">
+          <span>
+            Hi, {user?.name || "Guest"}
+          </span>
 
-            <div className="dropdown-menu discover-menu">
-              <div>
-                <p className="dropdown-title">DISCOVER</p>
+          {/* <button onClick={onLogout}>
+            Logout
+          </button> */}
+        </div>
 
-                <Link to="/hidden-gems">Hidden Gems</Link>
-                <Link to="/nia-picks">Nia Picks</Link>
-                <Link to="/new-places">New Places</Link>
-              </div>
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="hamburger"
+          onClick={() => setSidebarOpen(true)}
+        >
+          ☰
+        </button>
 
-              <div>
-                <p className="dropdown-title">EXPLORE</p>
+      </header>
 
-                <Link to="/popular-places">Popular Places</Link>
-                <Link to="/surprise-me">Surprise Me</Link>
-              </div>
-            </div>
+
+      {/* MOBILE SIDEBAR */}
+      <aside
+        className={`mobile-sidebar ${
+          sidebarOpen ? "open" : ""
+        }`}
+      >
+
+        <div className="sidebar-header">
+          <span className="nia-mark">✦</span>
+          <strong>NIA</strong>
+
+          <button
+            className="close-sidebar"
+            onClick={() => setSidebarOpen(false)}
+          >
+            ×
+          </button>
+
+        </div>
+
+
+        {/* USER */}
+        <div className="sidebar-user">
+
+          <div className="user-avatar">
+            {user?.name?.charAt(0).toUpperCase() || "U"}
           </div>
 
-          {/* EXPLORE */}
-          <div className="nav-dropdown">
-            <button className="nav-link" type="button">
-              Explore
-              <span className="nav-arrow">⌄</span>
-            </button>
-
-            <div className="dropdown-menu">
-              <Link to="/near-me">Near Me</Link>
-              <Link to="/map">Interactive Map</Link>
-              <Link to="/offmap">OffMap</Link>
-              <Link to="/recently-added">Recently Added</Link>
-            </div>
+          <div>
+            <strong>{user?.name || "Guest"}</strong>
+            <p>{user?.email || ""}</p>
           </div>
 
-          {/* CATEGORIES */}
-          <div className="nav-dropdown">
-            <button className="nav-link" type="button">
-              Categories
-              <span className="nav-arrow">⌄</span>
-            </button>
+        </div>
 
-            <div className="dropdown-menu categories-menu">
-              <Link to="/categories/photography">
-                📸 Photography
-              </Link>
 
-              <Link to="/categories/nature">
-                🌿 Nature
-              </Link>
+        {/* NAVIGATION */}
+        <nav className="sidebar-nav">
 
-              <Link to="/categories/food">
-                ☕ Food
-              </Link>
+          <Link
+            to="/home"
+            onClick={() => setSidebarOpen(false)}
+          >
+            Explore
+          </Link>
 
-              <Link to="/categories/art">
-                🎨 Art
-              </Link>
+          <Link
+            to="/history"
+            onClick={() => setSidebarOpen(false)}
+          >
+            History
+          </Link>
 
-              <Link to="/categories/culture">
-                🏛️ Culture
-              </Link>
+          <Link
+            to="/favorites"
+            onClick={() => setSidebarOpen(false)}
+          >
+            Favourites
+          </Link>
 
-              <Link to="/categories/family">
-                👨‍👩‍👧 Family
-              </Link>
-
-              <Link to="/categories/adventure">
-                🥾 Adventure
-              </Link>
-
-              <Link to="/categories/nightlife">
-                🌙 Nightlife
-              </Link>
-            </div>
-          </div>
+          <Link
+            to="/profile"
+            onClick={() => setSidebarOpen(false)}
+          >
+            Profile
+          </Link>
 
         </nav>
         
-        {/* SEARCH */}
-        <div className="navbar-search">
-          <span className="search-icon">⌕</span>
+        <button
+          className="sidebar-logout"
+          onClick={onLogout}
+        >
+          Logout
+        </button>
 
-          <input
-            type="text"
-            placeholder="Search places..."
-            aria-label="Search places"
-          />
-        </div>
+      </aside>
 
 
-        {/* RIGHT SIDE */}
-        <div className="navbar-actions">
+      {/* DARK OVERLAY */}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-          <Link
-            to="/business"
-            className="navbar-action business-link"
-          >
-            List Your Business
-          </Link>
-
-          {/* ACCOUNT */}
-          <div className="profile-menu">
-
-            <button
-              type="button"
-              className="nav-link profile-button"
-              aria-label="Account"
-            >
-              <svg
-                className="profile-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="12" cy="8" r="3.5" />
-                <path d="M5 21c0-4 3-6 7-6s7 2 7 6" />
-              </svg>
-            </button>
-
-            <div className="profile-dropdown">
-              {/* <Link to="/profile">My Profile</Link> */}
-              <Link to="/login">Log in</Link>
-              <Link to="/signup">Sign up</Link>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </header>
+    </>
   );
 }
-
-export default Navbar;
