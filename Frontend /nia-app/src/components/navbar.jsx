@@ -14,12 +14,16 @@ export default function Navbar({
 
         <div className="navbar-logo">
           <span className="nia-mark">✦</span>
-          <Link to="/home">NIA</Link>
+          <Link to="/">NIA</Link>
         </div>
 
         <nav className="desktop-nav">
+<<<<<<< HEAD
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/offmap">Off Map</Link>
+=======
+          <Link to="/">Explore</Link>
+>>>>>>> 0a23f69 (Added loading feature to the dashboard)
           <Link to="/history">History</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/favorites">Favourites</Link>
