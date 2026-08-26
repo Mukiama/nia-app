@@ -1,83 +1,123 @@
-function WhyThisPlace({ place, preferences }) {
-  const reasons = [];
+import WhyThisPlace from "./WhyThisPlace";
 
-  if (
-    preferences.mood &&
-    preferences.mood !== "surprise" &&
-    place.moods.includes(preferences.mood)
-  ) {
-    reasons.push("Matches your mood");
+function OffMapResult({
+  place,
+  preferences,
+  onRollAgain,
+  onWildcard,
+}) {
+  if (!place) {
+    return null;
   }
 
-  if (
-    preferences.who &&
-    preferences.who !== "surprise" &&
-    place.suitableFor.includes(preferences.who)
-  ) {
-    reasons.push("Works for your group");
-  }
-
-  if (
-    preferences.distance === "nearby" &&
-    place.distanceMinutes <= 10
-  ) {
-    reasons.push("It's close by");
-  }
-
-  if (
-    preferences.distance === "15-min" &&
-    place.distanceMinutes <= 15
-  ) {
-    reasons.push("Within your 15-minute range");
-  }
-
-  if (
-    preferences.distance === "30-min" &&
-    place.distanceMinutes <= 30
-  ) {
-    reasons.push("Within your 30-minute range");
-  }
-
-  if (
-    preferences.budget === "free" &&
-    place.priceLevel === 0
-  ) {
-    reasons.push("Fits your free budget");
-  }
-
-  if (
-    preferences.budget === "500-1500" &&
-    place.priceLevel <= 1
-  ) {
-    reasons.push("Fits your budget");
-  }
-
-  if (reasons.length === 0) {
-    reasons.push("Something different caught our eye");
-  }
+  const isWildcard = Boolean(place.wildcardRule);
 
   return (
-    <section className="offmap-why">
-      <p className="offmap-result-eyebrow">
-        WHY THIS?
-      </p>
+    <section className="offmap-result">
 
-      <div className="offmap-reasons">
-        {reasons.slice(0, 4).map((reason) => (
-          <div
-            className="offmap-reason"
-            key={reason}
-          >
-            <span className="offmap-reason-check">
-              ✓
+      {/* WILDCARD BANNER */}
+      {isWildcard && (
+        <div className="offmap-wildcard-banner">
+          <span>🃏 WILDCARD</span>
+
+          <span>
+            We broke your {place.wildcardRule} rule.
+          </span>
+        </div>
+      )}
+
+      {/* HEADING */}
+      <div className="offmap-result-heading">
+        <p className="offmap-label">
+          OFFMAP HAS SPOKEN
+        </p>
+
+        <h1>
+          You should go here.
+        </h1>
+      </div>
+
+      {/* RESULT CARD */}
+      <article className="offmap-result-card">
+
+        {/* IMAGE */}
+        <div className="offmap-result-image">
+          <img
+            src={place.image}
+            alt={place.name}
+          />
+        </div>
+
+        {/* CONTENT */}
+        <div className="offmap-result-content">
+
+          <p className="offmap-result-category">
+            {place.category}
+          </p>
+
+          <h2>{place.name}</h2>
+
+          <div className="offmap-result-details">
+            <span>
+              📍 {place.location}
             </span>
 
-            <span>{reason}</span>
+            <span>
+              💰 {place.price}
+            </span>
+
+            <span>
+              ⏱️ {place.time || place.timeRequired}
+            </span>
           </div>
-        ))}
+
+          {/* WHY THIS PLACE */}
+          <WhyThisPlace
+            place={place}
+            preferences={preferences}
+          />
+
+          <p className="offmap-result-message">
+            This isn't necessarily where everyone goes.
+            That's the point.
+          </p>
+
+          <button
+            type="button"
+            className="offmap-go-button"
+          >
+            Take me there →
+          </button>
+
+        </div>
+
+      </article>
+
+      {/* ACTIONS */}
+      <div className="offmap-result-actions">
+
+        <button
+          type="button"
+          onClick={onRollAgain}
+        >
+          ↻ Give me another
+        </button>
+
+        <button
+          type="button"
+          onClick={onWildcard}
+        >
+          🃏 Wildcard
+        </button>
+
+        <button type="button">
+          🎭 Mystery
+        </button>
+
       </div>
+
     </section>
   );
 }
 
-export default WhyThisPlace;
+export default OffMapResult;

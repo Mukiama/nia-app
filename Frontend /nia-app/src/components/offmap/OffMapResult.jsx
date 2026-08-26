@@ -4,12 +4,30 @@ function OffMapResult({
   place,
   preferences,
   onRollAgain,
+  onWildcard,
 }) {
+  // Don't render the result screen until a place exists
+  if (!place) {
+    return null;
+  }
 
-  
+  const isWildcard = Boolean(place.wildcardRule);
+
   return (
     <section className="offmap-result">
 
+      {/* WILDCARD BANNER */}
+      {isWildcard && (
+        <div className="offmap-wildcard-banner">
+          <span>🃏 WILDCARD</span>
+
+          <span>
+            We broke your {place.wildcardRule} rule.
+          </span>
+        </div>
+      )}
+
+      {/* HEADING */}
       <div className="offmap-result-heading">
         <p className="offmap-label">
           OFFMAP HAS SPOKEN
@@ -20,6 +38,7 @@ function OffMapResult({
         </h1>
       </div>
 
+      {/* RESULT CARD */}
       <article className="offmap-result-card">
 
         <div className="offmap-result-image">
@@ -38,18 +57,27 @@ function OffMapResult({
           <h2>{place.name}</h2>
 
           <div className="offmap-result-details">
-            <span>📍 {place.location}</span>
-            <span>💰 {place.price}</span>
-            <span>⏱️ {place.time}</span>
+            <span>
+              📍 {place.location}
+            </span>
+
+            <span>
+              💰 {place.price}
+            </span>
+
+            <span>
+              ⏱️ {place.time || place.timeRequired}
+            </span>
           </div>
 
           <WhyThisPlace
             place={place}
             preferences={preferences}
           />
+
           <p className="offmap-result-message">
-            This isn't necessarily where
-            everyone goes. That's the point.
+            This isn't necessarily where everyone goes.
+            That's the point.
           </p>
 
           <button
@@ -63,16 +91,20 @@ function OffMapResult({
 
       </article>
 
+      {/* ACTIONS */}
       <div className="offmap-result-actions">
 
-      <button
-        type="button"
-        onClick={onRollAgain}
-      >
-        ↻ Give me another
-      </button>
-      
-        <button type="button">
+        <button
+          type="button"
+          onClick={onRollAgain}
+        >
+          ↻ Give me another
+        </button>
+
+        <button
+          type="button"
+          onClick={onWildcard}
+        >
           🃏 Wildcard
         </button>
 
