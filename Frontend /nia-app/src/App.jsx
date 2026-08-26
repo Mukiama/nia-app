@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Routes, Route } from "react-router-dom";
 
 import AppLayout from "./components/AppLayout";
@@ -7,6 +8,12 @@ import { useState } from "react";
 import SearchBar from "./components/searchBar.jsx";
 import FilterBar from "./components/filterBar.jsx";
 import LandingPage from "./pages /LandingPage.jsx";
+=======
+// import { useState } from "react";
+// import SearchBar from "./components/searchBar.jsx";
+// import FilterBar from "./components/filterBar.jsx";
+// import LandingPage from "./pages /LandingPage.jsx";
+>>>>>>> 4873e06 (Minor changes)
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -21,7 +28,7 @@ import Hero from "./pages/hero";
 <<<<<<< HEAD
 import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
-import Profile from "./pages/profile";
+// import Profile from "./pages/profile";
 import History from "./pages/history";
 import Filter from "./pages/filter";
 import Favorites from "./pages/favorites";
