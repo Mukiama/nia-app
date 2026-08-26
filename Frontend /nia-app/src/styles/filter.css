@@ -14,7 +14,7 @@
 
 .filter-hero {
   padding: 80px 8% 60px;
-  background: #f6f8f3;
+  background: #f2f2f1;
 }
 
 .filter-eyebrow {
@@ -264,4 +264,24 @@
   .place-image {
     height: 210px;
   }
+}
+
+.search-cont {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  background-color: #42653d;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.search-input {
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.search-btn {
+  border-radius: 12px;
+  padding: 1rem;
 }

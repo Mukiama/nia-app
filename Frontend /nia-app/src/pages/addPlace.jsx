@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../styles/offMap.css"
 function AddPlace() {
   const [formData, setFormData] = useState({
     name: "",

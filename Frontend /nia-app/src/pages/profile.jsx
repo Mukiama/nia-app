@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import places from "../data/places.js";
+
 import "./profile.css";
 
 export default function Profile() {
@@ -29,6 +30,8 @@ export default function Profile() {
       setInterests([...interests, interest]);
     }
   }
+
+  
 
   const budgetOptions = ["Low", "Moderate", "High"];
   const [budget, setBudget] = useState("Moderate");
@@ -77,7 +80,7 @@ export default function Profile() {
 
   function handleLogout() {
     localStorage.removeItem("niaUser");
-    window.location.href = "/login";
+    window.location.href = "/";
   }
 
   return (
@@ -240,6 +243,11 @@ export default function Profile() {
           {passwordMessage && <p className="profile-save-note">{passwordMessage}</p>}
         </form>
       </div>
+
+      <button className="profile-save-btn">
+        <Link to="/add-place">Add a Place</Link>
+      </button> 
+      <br></br><br></br>
 
       {/* LOGOUT */}
       <button type="button" className="profile-logout-btn" onClick={handleLogout}>

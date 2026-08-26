@@ -51,7 +51,7 @@ export default function Dashboard( ) {
                     <Link to='/favorites' className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
-        </div> */}
+        </div>  */}
         {/* <Footer/> */}
         <Filter />
         </>

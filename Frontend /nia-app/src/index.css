@@ -201,19 +201,6 @@
   background: #dbd8d8; 
 }
 
-/* ADD A PLACE */
-
-.add-place-link {
-  color: #1b1b1b;
-  background: #ffffff;
-  border: 1px solid #e1e1e1;
-}
-
-.add-place-link:hover {
-  background: #f4f3f3;
-  border-color: #dbd8d8;
-}
-
 /* ACCOUNT*/
 
 .profile-menu {
@@ -1519,8 +1506,6 @@
   }
 }
 
-
-<<<<<<< HEAD
 /* ========================================
    OFFMAP
 ======================================== */
@@ -2871,7 +2856,7 @@
 @media (max-width: 520px) {
   .nia-picks-grid {
     grid-template-columns: 1fr;
-=======
+  }
 /* Dashboard css */
 .homepage-link {
     display: block;
@@ -3244,6 +3229,5 @@
   }
   .landing-title {
     font-size: 2rem;
->>>>>>> origin/dev
   }
-}
+}}
