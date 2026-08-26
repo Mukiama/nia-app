@@ -109,13 +109,14 @@ const initials = getInitials(user.name);
         <div className="pill-group">
           {allInterests.map((interest) => (
             <button
-              key={interest}
-              type="button"
-              className={interests.includes(interest) ? "active" : ""}
-              onClick={() => toggleInterest(interest)}
-            >
-              {interest}
-            </button>
+  key={interest}
+  type="button"
+  className={interests.includes(interest) ? "active" : ""}
+  onClick={() => toggleInterest(interest)}
+  aria-label={`Toggle interest: ${interest}`}
+>
+  {interest}
+</button>
           ))}
         </div>
       </div>
