@@ -13,11 +13,16 @@ export default function Profile() {
     ? JSON.parse(storedUser)
     : { name: "Guest User", email: "guest@nia.app" };
 
-  const initials = user.name
+  // Turns a full name into initials, e.g. "Ted Karani" -> "TK"
+function getInitials(name) {
+  return name
     .split(" ")
     .map((word) => word[0])
     .join("")
     .toUpperCase();
+}
+
+const initials = getInitials(user.name);
 
  
   const allInterests = ["Nature", "Culture", "Food", "Art", "Adventure", "Nightlife"];
@@ -65,18 +70,21 @@ export default function Profile() {
   const [passwordMessage, setPasswordMessage] = useState("");
 
   function handlePasswordSave(event) {
-    event.preventDefault();
-    if (!currentPassword || !newPassword || !confirmPassword) {
-      setPasswordMessage("Please fill in all fields.");
-      return;
-    }
-    if (newPassword !== confirmPassword) {
-      setPasswordMessage("New password and confirmation don't match.");
-      return;
-    }
-
-    setPasswordMessage("Password changes will be enabled once the backend is ready.");
+  event.preventDefault();
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    setPasswordMessage("Please fill in all fields.");
+    return;
   }
+  if (newPassword.length < 8) {
+    setPasswordMessage("New password must be at least 8 characters.");
+    return;
+  }
+  if (newPassword !== confirmPassword) {
+    setPasswordMessage("New password and confirmation don't match.");
+    return;
+  }
+  setPasswordMessage("Password changes will be enabled once the backend is ready.");
+}
 
   function handleLogout() {
     localStorage.removeItem("niaUser");
@@ -104,13 +112,14 @@ export default function Profile() {
         <div className="pill-group">
           {allInterests.map((interest) => (
             <button
-              key={interest}
-              type="button"
-              className={interests.includes(interest) ? "active" : ""}
-              onClick={() => toggleInterest(interest)}
-            >
-              {interest}
-            </button>
+  key={interest}
+  type="button"
+  className={interests.includes(interest) ? "active" : ""}
+  onClick={() => toggleInterest(interest)}
+  aria-label={`Toggle interest: ${interest}`}
+>
+  {interest}
+</button>
           ))}
         </div>
       </div>
@@ -157,8 +166,11 @@ export default function Profile() {
         </p>
         {savedPlaces.length === 0 ? (
           <div className="empty-state">
-            You haven't saved any places yet. Explore Nia and tap the save icon on places you love.
-          </div>
+  <p style={{ fontSize: "1.5rem", margin: "0 0 8px" }}>🗺️</p>
+  <p style={{ margin: 0 }}>
+    You haven't saved any places yet. Explore Nia and tap the save icon on places you love.
+  </p>
+</div>
         ) : (
           <div className="profile-card-grid">
             {savedPlaces.map((place) => (
