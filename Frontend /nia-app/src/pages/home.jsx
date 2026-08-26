@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/navbar";
+import Topbar from "../components/topbar";
 import Hero from "./hero";
 import Footer from "../components/footer";
 import SearchBar from "../components/searchBar";
@@ -78,7 +78,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Topbar />
 
       <main>
         <Hero />
