@@ -4,11 +4,15 @@ import OffMapProgress from "../components/offmap/OffMapProgress";
 import OffMapResult from "../components/offmap/OffMapResult";
 import offMapQuestions from "../data/offmapQuestions";
 import offMapPlaces from "../data/offMapPlaces";
-import { getOffMapRecommendation } from "../utils/offmapRecommendation";
+import {
+  getOffMapRecommendation,
+  getOffMapWildcard,
+} from "../utils/offmapRecommendation";
 
 function OffMap() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [result, setResult] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const [preferences, setPreferences] = useState({
     who: null,
@@ -19,44 +23,42 @@ function OffMap() {
   });
 
   const question = offMapQuestions[currentQuestion];
-
   const selectedValue = preferences[question.id];
 
-  const isLastQuestion =
-    currentQuestion === offMapQuestions.length - 1;
-
   const handleSelect = (value) => {
-    setPreferences((previous) => ({
-      ...previous,
+    if (isTransitioning) return;
+
+    const updatedPreferences = {
+      ...preferences,
       [question.id]: value,
-    }));
-  };
+    };
 
-  const handleNext = () => {
-    if (!selectedValue) {
-      return;
-    }
+    setPreferences(updatedPreferences);
+    setIsTransitioning(true);
 
-    if (currentQuestion < offMapQuestions.length - 1) {
-      setCurrentQuestion((previous) => previous + 1);
-    }
+    setTimeout(() => {
+      if (currentQuestion < offMapQuestions.length - 1) {
+        setCurrentQuestion((previous) => previous + 1);
+        setIsTransitioning(false);
+      } else {
+        const recommendation = getOffMapRecommendation(
+          updatedPreferences,
+          offMapPlaces
+        );
+
+        console.log("Final preferences:", updatedPreferences);
+        console.log("Recommendation:", recommendation);
+
+        setResult(recommendation);
+        setIsTransitioning(false);
+      }
+    }, 300);
   };
 
   const handleBack = () => {
-    if (currentQuestion > 0) {
+    if (currentQuestion > 0 && !isTransitioning) {
       setCurrentQuestion((previous) => previous - 1);
     }
-  };
-
-  const handleFeelingLucky = () => {
-    console.log("OffMap preferences:", preferences);
-
-    const recommendation = getOffMapRecommendation(
-      preferences,
-      offMapPlaces
-    );
-
-    setResult(recommendation);
   };
 
   const handleRollAgain = () => {
@@ -67,6 +69,16 @@ function OffMap() {
     );
 
     setResult(recommendation);
+  };
+
+  const handleWildcard = () => {
+    const wildcard = getOffMapWildcard(
+      preferences,
+      offMapPlaces,
+      result?.id
+    );
+
+    setResult(wildcard);
   };
 
   /*
@@ -80,6 +92,7 @@ function OffMap() {
             place={result}
             preferences={preferences}
             onRollAgain={handleRollAgain}
+            onWildcard={handleWildcard}
           />
         </div>
       </main>
@@ -112,44 +125,34 @@ function OffMap() {
           total={offMapQuestions.length}
         />
 
-        <OffMapQuestion
-          question={question.question}
-          options={question.options}
-          selected={selectedValue}
-          onSelect={handleSelect}
-        />
+        <div
+          key={currentQuestion}
+          className={`offmap-question-transition ${
+            isTransitioning
+              ? "is-exiting"
+              : "is-entering"
+          }`}
+        >
+          <OffMapQuestion
+            question={question.question}
+            options={question.options}
+            selected={selectedValue}
+            onSelect={handleSelect}
+          />
+        </div>
 
         <div className="offmap-navigation">
-
           <button
             type="button"
             onClick={handleBack}
-            disabled={currentQuestion === 0}
+            disabled={
+              currentQuestion === 0 ||
+              isTransitioning
+            }
             className="offmap-back"
           >
             ← Back
           </button>
-
-          {isLastQuestion ? (
-            <button
-              type="button"
-              onClick={handleFeelingLucky}
-              className="offmap-lucky-button"
-              disabled={!selectedValue}
-            >
-              🎲 Feeling Lucky
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={!selectedValue}
-              className="offmap-next"
-            >
-              Next →
-            </button>
-          )}
-
         </div>
 
       </section>
