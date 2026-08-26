@@ -1,0 +1,881 @@
+/* ========================================
+   OFFMAP
+======================================== */
+
+.offmap-page {
+  min-height: calc(100vh - 76px);
+  padding: 70px 24px 90px;
+  background: #f8f7f3;
+}
+
+.offmap-container {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.offmap-header {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.offmap-label {
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+}
+
+.offmap-header h1 {
+  margin: 0;
+  font-size: clamp(52px, 8vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.offmap-header p:last-child {
+  margin: 26px auto 0;
+  max-width: 500px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* PROGRESS */
+
+.offmap-progress {
+  width: 100%;
+  margin-bottom: 45px;
+  text-align: center;
+}
+
+.offmap-progress span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #777;
+}
+
+/* QUESTION */
+
+.offmap-question {
+  text-align: center;
+}
+
+.offmap-question h2 {
+  margin: 0 0 30px;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+/* OPTIONS */
+
+.offmap-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.offmap-option {
+  position: relative;
+  min-height: 145px;
+  padding: 26px 20px;
+
+  border: 1px solid #deddd8;
+  border-radius: 18px;
+
+  background: #ffffff;
+  color: #171717;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.offmap-option:hover {
+  transform: translateY(-4px);
+  border-color: #222;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.offmap-option:active {
+  transform: translateY(-1px);
+}
+
+.offmap-option.selected {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.offmap-option-icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.offmap-option-label {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* NAVIGATION */
+
+.offmap-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.offmap-back,
+.offmap-next,
+.offmap-lucky-button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.offmap-back {
+  padding: 12px 0;
+  background: transparent;
+  color: #555;
+}
+
+.offmap-back:hover:not(:disabled) {
+  color: #111;
+}
+
+.offmap-back:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.offmap-next,
+.offmap-lucky-button {
+  padding: 15px 24px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.offmap-next:hover,
+.offmap-lucky-button:hover {
+  transform: translateY(-2px);
+}
+
+.offmap-lucky-button {
+  padding: 16px 30px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .offmap-page {
+    padding: 45px 18px 70px;
+  }
+
+  .offmap-header {
+    margin-bottom: 40px;
+  }
+
+  .offmap-header h1 {
+    font-size: clamp(48px, 15vw, 70px);
+  }
+
+  .offmap-header p:last-child {
+    font-size: 16px;
+  }
+
+  .offmap-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .offmap-option {
+    min-height: 120px;
+    padding: 20px 12px;
+  }
+
+  .offmap-option-icon {
+    font-size: 26px;
+  }
+
+  .offmap-option-label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 430px) {
+  .offmap-options {
+    grid-template-columns: 1fr;
+  }
+
+  .offmap-option {
+    min-height: 85px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 18px 20px;
+  }
+
+  .offmap-navigation {
+    margin-top: 28px;
+  }
+}
+
+
+.offmap-next:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.offmap-next:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   OFFMAP RESULT
+======================================== */
+
+.offmap-result {
+  width: min(1050px, 100%);
+  margin: 0 auto;
+}
+
+.offmap-result-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.offmap-result-heading h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.offmap-result-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid #deddd8;
+}
+
+.offmap-result-image {
+  min-height: 600px;
+}
+
+.offmap-result-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.offmap-result-content {
+  padding: 55px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.offmap-result-category {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.offmap-result-content h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.offmap-result-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #555;
+}
+
+.offmap-why {
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.offmap-result-eyebrow {
+  margin: 0 0 15px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.offmap-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offmap-reason {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.offmap-reason-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.offmap-result-message {
+  margin: 30px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  font-style: italic;
+}
+
+.offmap-go-button {
+  width: 100%;
+  padding: 17px 24px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #111;
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.offmap-go-button:hover {
+  opacity: 0.85;
+}
+
+.offmap-result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.offmap-result-actions button {
+  padding: 12px 18px;
+
+  border: 1px solid #ddd;
+  border-radius: 999px;
+
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.offmap-result-actions button:hover {
+  border-color: #111;
+  background: #fff;
+}
+
+@media (max-width: 700px) {
+  .offmap-result-card {
+    grid-template-columns: 1fr;
+  }
+
+  .offmap-result-image {
+    min-height: 320px;
+  }
+
+  .offmap-result-content {
+    padding: 35px 25px;
+  }
+
+  .offmap-result-actions {
+    flex-wrap: wrap;
+  }
+
+  .offmap-result-actions button {
+    flex: 1;
+    min-width: 100px;
+  }
+}
+
+.offmap-result {
+  animation: offmapResultIn 0.45s ease;
+}
+
+@keyframes offmapResultIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.offmap-wildcard-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  width: fit-content;
+
+  margin-bottom: 20px;
+  padding: 12px 16px;
+
+  border: 1px solid #111;
+  border-radius: 12px;
+
+  background: #f5f1e8;
+
+  font-size: 12px;
+}
+
+.offmap-wildcard-banner strong {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.offmap-wildcard-banner span {
+  color: #555;
+}/* ========================================
+   OFFMAP QUESTION TRANSITIONS
+======================================== */
+
+.offmap-question-transition {
+  width: 100%;
+  animation-duration: 0.35s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.offmap-question-transition.is-entering {
+  animation-name: offmapQuestionEnter;
+}
+
+.offmap-question-transition.is-exiting {
+  animation-name: offmapQuestionExit;
+}
+
+@keyframes offmapQuestionEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes offmapQuestionExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+
+/* ========================================
+   OFFMAP OPTION INTERACTION
+======================================== */
+
+.offmap-option {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.offmap-option:hover {
+  transform: translateY(-2px);
+}
+
+.offmap-option:active {
+  transform: scale(0.97);
+}
+
+
+/* ========================================
+   OFFMAP NAVIGATION
+======================================== */
+
+.offmap-navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.offmap-back {
+  padding: 11px 18px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: transparent;
+  color: #111;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.offmap-back:hover:not(:disabled) {
+  border-color: #111;
+  background: #fff;
+  transform: translateX(-2px);
+}
+
+.offmap-back:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   OFFMAP RESULT
+======================================== */
+
+.offmap-result {
+  width: min(1050px, 100%);
+  margin: 0 auto;
+  animation: offmapResultIn 0.45s ease;
+}
+
+.offmap-result-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.offmap-result-heading h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.offmap-result-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid #deddd8;
+}
+
+.offmap-result-image {
+  min-height: 600px;
+}
+
+.offmap-result-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.offmap-result-content {
+  padding: 55px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.offmap-result-category {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.offmap-result-content h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.offmap-result-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #555;
+}
+
+.offmap-why {
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.offmap-result-eyebrow {
+  margin: 0 0 15px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.offmap-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offmap-reason {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.offmap-reason-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.offmap-result-message {
+  margin: 30px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  font-style: italic;
+}
+
+.offmap-go-button {
+  width: 100%;
+  padding: 17px 24px;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.offmap-go-button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.offmap-result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.offmap-result-actions button {
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.offmap-result-actions button:hover {
+  border-color: #111;
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+
+/* ========================================
+   RESULT ANIMATION
+======================================== */
+
+@keyframes offmapResultIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================================
+   WILDCARD BANNER
+======================================== */
+
+.offmap-wildcard-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: fit-content;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border: 1px solid #111;
+  border-radius: 12px;
+  background: #f5f1e8;
+  font-size: 12px;
+}
+
+.offmap-wildcard-banner strong {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.offmap-wildcard-banner span {
+  color: #555;
+}
+
+.offmap-home-button {
+  display: inline-block;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.offmap-home-button:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+  .offmap-result-card {
+    grid-template-columns: 1fr;
+  }
+
+  .offmap-result-image {
+    min-height: 320px;
+  }
+
+  .offmap-result-content {
+    padding: 35px 25px;
+  }
+
+  .offmap-result-actions {
+    flex-wrap: wrap;
+  }
+
+  .offmap-result-actions button {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .offmap-navigation {
+    margin-top: 25px;
+  }
+
+  .offmap-back {
+    padding: 10px 16px;
+  }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .offmap-question-transition,
+  .offmap-result {
+    animation: none;
+  }
+
+  .offmap-option,
+  .offmap-back,
+  .offmap-go-button,
+  .offmap-result-actions button {
+    transition: none;
+  }
+}
