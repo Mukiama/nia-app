@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Topbar from "../components/topbar";
-import Navbar from "../components/navbar";
 import Hero from "./hero";
 import Footer from "../components/footer";
 import SearchBar from "../components/searchBar";
@@ -12,7 +10,6 @@ import PlaceCard from "../components/placeCard";
 function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-
   const categories = [
     "All",
     "Nature",
@@ -81,7 +78,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Topbar />
 
       <main>
         <Hero />
@@ -136,11 +133,6 @@ function Home() {
         {/* NIA PICKS */}
         <section className="picks-section">
           <div className="section-container">
-
-            {/* NIA PICKS HEADER */}
-            <div className="picks-heading-row">
-
-              <div>
                 <p className="section-eyebrow">
                   DISCOVER
                 </p>
@@ -150,30 +142,15 @@ function Home() {
                 <p>
                   Interesting places we think you'll love.
                 </p>
-              </div>
 
-              <Link
-                to="/nia-picks"
-                className="nia-picks-all"
-              >
-                View All
-              </Link>
-
-            </div>
 
           
             <div className="filter-bar">
               {categories.map((category) => (
                 <button
                   key={category}
-                  className={
-                    selectedCategory === category
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() =>
-                    setSelectedCategory(category)
-                  }
+                   className={selectedCategory === category ? "active" : ""}
+                   onClick={() => setSelectedCategory(category)}
                 >
                   {category}
                 </button>
@@ -189,7 +166,6 @@ function Home() {
                 />
               ))}
             </div>
-
           </div>
         </section>
 
@@ -209,12 +185,9 @@ function Home() {
               you wouldn't normally think to visit.
             </p>
 
-            <Link
-              to="/offmap"
-              className="offmap-home-button"
-            >
+            <button>
               Explore OffMap
-            </Link>
+            </button>
           </div>
         </section>
 
@@ -229,7 +202,7 @@ function Home() {
               Help people discover your business on Nia.
             </p>
 
-            <button className="business-cta-button">
+            <button>
               List Your Business
             </button>
           </div>
