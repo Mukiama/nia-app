@@ -162,8 +162,11 @@ const initials = getInitials(user.name);
         </p>
         {savedPlaces.length === 0 ? (
           <div className="empty-state">
-            You haven't saved any places yet. Explore Nia and tap the save icon on places you love.
-          </div>
+  <p style={{ fontSize: "1.5rem", margin: "0 0 8px" }}>🗺️</p>
+  <p style={{ margin: 0 }}>
+    You haven't saved any places yet. Explore Nia and tap the save icon on places you love.
+  </p>
+</div>
         ) : (
           <div className="profile-card-grid">
             {savedPlaces.map((place) => (
