@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 // import Footer from '../components/footer'
 // import FilterBar from '../components/filterBar'
 import { useState, useEffect } from 'react';
+import Filter from './filter';
 
 export default function Dashboard( ) {
     const [ user, setUser] = useState(null);
@@ -23,7 +24,7 @@ export default function Dashboard( ) {
 
     return (
         <>
-        <div className='dashboard-page'>
+        {/* <div className='dashboard-page'>
             <div className='dashboard-card'>
 
                 <h2 className='dashboard-title'><span className='app-name'>Nia</span> Dashboard</h2>
@@ -34,7 +35,7 @@ export default function Dashboard( ) {
                         </p>
                     </div>
                     <div className='profile-avatar'>
-                        <Link to='/profilepage' className='profile-avatar-link'>{user?.name ? user.name.charAt(0).toUpperCase() : '?'}</Link>
+                        <Link to='/profile' className='profile-avatar-link'>{user?.name ? user.name.charAt(0).toUpperCase() : '?'}</Link>
                     </div>
                 </div>
 
@@ -50,8 +51,9 @@ export default function Dashboard( ) {
                     <Link to='/favorites' className='shortcut-link'>Favourites</Link>
                 </div>
             </div>
-        </div>
+        </div> */}
         {/* <Footer/> */}
+        <Filter />
         </>
     )
 }
