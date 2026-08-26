@@ -67,18 +67,21 @@ const initials = getInitials(user.name);
   const [passwordMessage, setPasswordMessage] = useState("");
 
   function handlePasswordSave(event) {
-    event.preventDefault();
-    if (!currentPassword || !newPassword || !confirmPassword) {
-      setPasswordMessage("Please fill in all fields.");
-      return;
-    }
-    if (newPassword !== confirmPassword) {
-      setPasswordMessage("New password and confirmation don't match.");
-      return;
-    }
-
-    setPasswordMessage("Password changes will be enabled once the backend is ready.");
+  event.preventDefault();
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    setPasswordMessage("Please fill in all fields.");
+    return;
   }
+  if (newPassword.length < 8) {
+    setPasswordMessage("New password must be at least 8 characters.");
+    return;
+  }
+  if (newPassword !== confirmPassword) {
+    setPasswordMessage("New password and confirmation don't match.");
+    return;
+  }
+  setPasswordMessage("Password changes will be enabled once the backend is ready.");
+}
 
   function handleLogout() {
     localStorage.removeItem("niaUser");
