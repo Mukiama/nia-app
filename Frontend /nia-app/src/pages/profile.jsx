@@ -48,7 +48,9 @@ const initials = getInitials(user.name);
   const [savedPlaceIds, setSavedPlaceIds] = useState(
     places.slice(0, 3).map((place) => place.id)
   );
+  
   const savedPlaces = places.filter((place) => savedPlaceIds.includes(place.id));
+  
 
   function removeSavedPlace(id, event) {
     event.stopPropagation(); // don't trigger the card's own click (navigation)
@@ -68,7 +70,7 @@ const initials = getInitials(user.name);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
-
+  
   function handlePasswordSave(event) {
   event.preventDefault();
   if (!currentPassword || !newPassword || !confirmPassword) {
@@ -159,6 +161,7 @@ const initials = getInitials(user.name);
       </div>
 
       {/* SAVED PLACES */}
+      
       <div className="profile-section">
         <h2>Saved Places</h2>
         <p className="profile-section-subtitle">
