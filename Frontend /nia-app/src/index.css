@@ -1000,6 +1000,35 @@
   color: white;
 }
 
+/* ========================================
+   NIA PICKS HEADER
+======================================== */
+
+.picks-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nia-picks-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 15px;
+  border-radius: 10px;
+  background: #f4f3f3;
+  color: #1b1b1b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.nia-picks-all:hover {
+  background: #dbd8d8;
+}
+
 /* PLACE CARD */
 
 .place-card {

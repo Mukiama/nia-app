@@ -10,15 +10,16 @@ import PlaceCard from "../components/placeCard";
 function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
   const categories = [
-  "All",
-  "Nature",
-  "Food",
-  "Art",
-  "Culture",
-  "Adventure",
-  "Nightlife",
-];
+    "All",
+    "Nature",
+    "Food",
+    "Art",
+    "Culture",
+    "Adventure",
+    "Nightlife",
+  ];
 
   const places = [
     {
@@ -133,28 +134,48 @@ function Home() {
         {/* NIA PICKS */}
         <section className="picks-section">
           <div className="section-container">
-            <p className="section-eyebrow">
-              DISCOVER
-            </p>
 
-            <h2>Nia Picks</h2>
+            {/* NIA PICKS HEADER */}
+            <div className="picks-heading-row">
 
-            <p>
-              Interesting places we think you'll love.
-            </p>
+              <div>
+                <p className="section-eyebrow">
+                  DISCOVER
+                </p>
 
+                <h2>Nia Picks</h2>
+
+                <p>
+                  Interesting places we think you'll love.
+                </p>
+              </div>
+
+              <Link
+                to="/nia-picks"
+                className="nia-picks-all"
+              >
+                View All
+              </Link>
+
+            </div>
 
             {/* FILTER */}
             <div className="filter-bar">
               {categories.map((category) => (
-                 <button
-                   key={category}
-                   className={selectedCategory === category ? "active" : ""}
-                   onClick={() => setSelectedCategory(category)}
-                 >
-                   {category}
-             </button>
-             ))}
+                <button
+                  key={category}
+                  className={
+                    selectedCategory === category
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setSelectedCategory(category)
+                  }
+                >
+                  {category}
+                </button>
+              ))}
             </div>
 
             {/* PLACE CARDS */}
@@ -166,6 +187,7 @@ function Home() {
                 />
               ))}
             </div>
+
           </div>
         </section>
 
@@ -185,7 +207,10 @@ function Home() {
               you wouldn't normally think to visit.
             </p>
 
-            <Link to="/offmap" className="offmap-home-button">
+            <Link
+              to="/offmap"
+              className="offmap-home-button"
+            >
               Explore OffMap
             </Link>
           </div>
