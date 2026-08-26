@@ -8,9 +8,14 @@ export default function Dashboard( ) {
     const [ user, setUser] = useState(null);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('niaUser');
+        const storedUser = localStorage.getItem('niaUser')
+        const [isLoading, setIsLoading] = useState(true)
 
-        if (!storedUser) return;
+        if (!storedUser) {
+            setIsLoading(false)
+            return;
+        }
+            
 
         fetch(`http://localhost:3001/users/${JSON.parse(storedUser).id}`)
             .then((response) => response.json())
@@ -18,8 +23,8 @@ export default function Dashboard( ) {
             .catch((error) => console.error("Error fetching user data:", error));
     }, []); 
 
-    if (!user) {
-        return <p> Loading ... </p>;
+    if (isLoading) {
+        return <p className="dashboard-loading"> Loading ... </p>;
     }
 
     return (
