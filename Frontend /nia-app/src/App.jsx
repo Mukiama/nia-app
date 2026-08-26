@@ -8,6 +8,7 @@ import Hero from "./pages/hero";
 import Profile from "./pages/profile";
 import OffMap from "./pages/offmap";
 import AddPlace from "./pages/addPlace";
+import NiaPicks from "./pages/niaPicks";
 import "./App.css";
 
 export default function App() {
@@ -31,6 +32,8 @@ export default function App() {
         <Route path="/offmap" element={<OffMap />} />
 
         <Route path="/add-place" element={<AddPlace />} />
+
+        <Route path="/nia-picks" element={<NiaPicks />} />
         
       </Routes>
     
