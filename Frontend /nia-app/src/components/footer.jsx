@@ -25,43 +25,39 @@ function Footer() {
 
         </div>
 
-        {/* EXPLORE */}
+        {/* DISCOVER */}
         <div className="footer-column">
 
-          <h3>Explore</h3>
+          <h3>Discover</h3>
 
-          <Link to="/discover">Discover</Link>
-          <Link to="/nearby">NearMe</Link>
-          <Link to="/map">Interactive Map</Link>
-          <Link to="/categories">Categories</Link>
-          <Link to="/surprise">Surprise Me</Link>
+          <Link to="/hidden-gems">Hidden Gems</Link>
+          <Link to="/nia-picks">Nia Picks</Link>
+          <Link to="/new-places">New Places</Link>
+          <Link to="/add-place">Add a Place</Link>
 
         </div>
 
-        {/* BUSINESS */}
+        {/* FOR BUSINESSES */}
         <div className="footer-column">
 
           <h3>For Businesses</h3>
 
           <Link to="/business">List Your Business</Link>
-          <Link to="/business">Add a Place</Link>
-          <Link to="/business">Claim Your Listing</Link>
-
-          <p className="footer-business-text">
-            Have a place worth discovering?
-          </p>
+          <Link to="/claim-listing">Claim Your Listing</Link>
+          <Link to="/business/dashboard">Business Dashboard</Link>
 
         </div>
 
-        {/* NIA */}
+        {/* ABOUT NIA */}
         <div className="footer-column">
 
-          <h3>Nia</h3>
+          <h3>About Nia</h3>
 
-          <Link to="/about">About Nia</Link>
-          <Link to="/login">Log in</Link>
-          <Link to="/signup">Create an Account</Link>
-          <Link to="/contact">Contact Us</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/community-guidelines">
+            Community Guidelines
+          </Link>
 
         </div>
 
