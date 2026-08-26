@@ -110,16 +110,22 @@ function Navbar() {
         </div>
 
 
-        {/* RIGHT SIDE */}
-        <div className="navbar-actions">
+{/* RIGHT SIDE */}
+<div className="navbar-actions">
 
-          <Link
-            to="/business"
-            className="navbar-action business-link"
-          >
-            List Your Business
-          </Link>
+  <Link
+    to="/add-place"
+    className="navbar-action add-place-link"
+  >
+    + Add a Place
+  </Link>
 
+  <Link
+    to="/business"
+    className="navbar-action business-link"
+  >
+    List Your Business
+  </Link>
           {/* ACCOUNT */}
           <div className="profile-menu">
 

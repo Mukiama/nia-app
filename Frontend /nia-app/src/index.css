@@ -198,7 +198,20 @@
 }
 
 .business-link:hover {
-  background: #dbd8d8;
+  background: #dbd8d8; 
+}
+
+/* ADD A PLACE */
+
+.add-place-link {
+  color: #1b1b1b;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+}
+
+.add-place-link:hover {
+  background: #f4f3f3;
+  border-color: #dbd8d8;
 }
 
 /* ACCOUNT*/
@@ -1656,4 +1669,653 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.offmap-wildcard-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  width: fit-content;
+
+  margin-bottom: 20px;
+  padding: 12px 16px;
+
+  border: 1px solid #111;
+  border-radius: 12px;
+
+  background: #f5f1e8;
+
+  font-size: 12px;
+}
+
+.offmap-wildcard-banner strong {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.offmap-wildcard-banner span {
+  color: #555;
+}/* ========================================
+   OFFMAP QUESTION TRANSITIONS
+======================================== */
+
+.offmap-question-transition {
+  width: 100%;
+  animation-duration: 0.35s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.offmap-question-transition.is-entering {
+  animation-name: offmapQuestionEnter;
+}
+
+.offmap-question-transition.is-exiting {
+  animation-name: offmapQuestionExit;
+}
+
+@keyframes offmapQuestionEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes offmapQuestionExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+
+/* ========================================
+   OFFMAP OPTION INTERACTION
+======================================== */
+
+.offmap-option {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.offmap-option:hover {
+  transform: translateY(-2px);
+}
+
+.offmap-option:active {
+  transform: scale(0.97);
+}
+
+
+/* ========================================
+   OFFMAP NAVIGATION
+======================================== */
+
+.offmap-navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.offmap-back {
+  padding: 11px 18px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: transparent;
+  color: #111;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.offmap-back:hover:not(:disabled) {
+  border-color: #111;
+  background: #fff;
+  transform: translateX(-2px);
+}
+
+.offmap-back:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   OFFMAP RESULT
+======================================== */
+
+.offmap-result {
+  width: min(1050px, 100%);
+  margin: 0 auto;
+  animation: offmapResultIn 0.45s ease;
+}
+
+.offmap-result-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.offmap-result-heading h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.offmap-result-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid #deddd8;
+}
+
+.offmap-result-image {
+  min-height: 600px;
+}
+
+.offmap-result-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.offmap-result-content {
+  padding: 55px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.offmap-result-category {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.offmap-result-content h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.offmap-result-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #555;
+}
+
+.offmap-why {
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.offmap-result-eyebrow {
+  margin: 0 0 15px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.offmap-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offmap-reason {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.offmap-reason-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.offmap-result-message {
+  margin: 30px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  font-style: italic;
+}
+
+.offmap-go-button {
+  width: 100%;
+  padding: 17px 24px;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.offmap-go-button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.offmap-result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.offmap-result-actions button {
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.offmap-result-actions button:hover {
+  border-color: #111;
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+
+/* ========================================
+   RESULT ANIMATION
+======================================== */
+
+@keyframes offmapResultIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================================
+   WILDCARD BANNER
+======================================== */
+
+.offmap-wildcard-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: fit-content;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border: 1px solid #111;
+  border-radius: 12px;
+  background: #f5f1e8;
+  font-size: 12px;
+}
+
+.offmap-wildcard-banner strong {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.offmap-wildcard-banner span {
+  color: #555;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+  .offmap-result-card {
+    grid-template-columns: 1fr;
+  }
+
+  .offmap-result-image {
+    min-height: 320px;
+  }
+
+  .offmap-result-content {
+    padding: 35px 25px;
+  }
+
+  .offmap-result-actions {
+    flex-wrap: wrap;
+  }
+
+  .offmap-result-actions button {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .offmap-navigation {
+    margin-top: 25px;
+  }
+
+  .offmap-back {
+    padding: 10px 16px;
+  }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .offmap-question-transition,
+  .offmap-result {
+    animation: none;
+  }
+
+  .offmap-option,
+  .offmap-back,
+  .offmap-go-button,
+  .offmap-result-actions button {
+    transition: none;
+  }
+}
+
+/* ========================================
+   ADD A PLACE
+======================================== */
+
+.add-place-page {
+  min-height: calc(100vh - 76px);
+  padding: 70px 20px;
+  background: #fafafa;
+}
+
+.add-place-container {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.add-place-header {
+  margin-bottom: 40px;
+}
+
+.add-place-eyebrow {
+  margin-bottom: 10px;
+  color: #888888;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.add-place-header h1 {
+  margin: 0 0 12px;
+  color: #111111;
+  font-size: 2.5rem;
+  line-height: 1.15;
+}
+
+.add-place-header p:last-child {
+  margin: 0;
+  color: #666666;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.add-place-form {
+  padding: 35px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.form-section {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.form-section h2 {
+  margin: 0 0 20px;
+  color: #111111;
+  font-size: 1.15rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #222222;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #dddddd;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #222222;
+  font-family: inherit;
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #30bc6f;
+  box-shadow: 0 0 0 3px rgba(48, 188, 111, 0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-help {
+  margin: -10px 0 18px;
+  color: #777777;
+  font-size: 0.88rem;
+}
+
+.photo-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px dashed #cccccc;
+  border-radius: 12px;
+  background: #fafafa;
+  color: #555555;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.photo-upload:hover {
+  background: #f5f5f5;
+  border-color: #aaaaaa;
+}
+
+.photo-upload input {
+  display: none;
+}
+
+.selected-photos {
+  margin-top: 15px;
+}
+
+.selected-photos p {
+  margin: 0 0 10px;
+  color: #555555;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.photo-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.photo-names span {
+  padding: 6px 9px;
+  border-radius: 7px;
+  background: #f3f3f3;
+  color: #555555;
+  font-size: 0.78rem;
+}
+
+.rating-selector {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-star {
+  padding: 3px;
+  border: none;
+  background: transparent;
+  color: #cccccc;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rating-star.active {
+  color: #111111;
+}
+
+.add-place-submit {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #111111;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.add-place-submit:hover {
+  opacity: 0.85;
+}
+
+.add-place-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* SUCCESS */
+
+.add-place-success {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 50px 35px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #f1f1f1;
+  color: #111111;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.add-place-success h1 {
+  margin: 0 0 12px;
+}
+
+.add-place-success p {
+  margin: 0 auto 25px;
+  max-width: 480px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.add-place-success button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 9px;
+  background: #111111;
+  color: white;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
 }

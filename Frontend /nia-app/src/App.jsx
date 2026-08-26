@@ -7,6 +7,7 @@ import PlaceDetails from "./pages/placeDetails";
 import Hero from "./pages/hero";
 import Profile from "./pages/profile";
 import OffMap from "./pages/offmap";
+import AddPlace from "./pages/addPlace";
 import "./App.css";
 
 export default function App() {
@@ -28,6 +29,8 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         
         <Route path="/offmap" element={<OffMap />} />
+
+        <Route path="/add-place" element={<AddPlace />} />
         
       </Routes>
     
