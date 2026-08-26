@@ -12,11 +12,16 @@ export default function Profile() {
     ? JSON.parse(storedUser)
     : { name: "Guest User", email: "guest@nia.app" };
 
-  const initials = user.name
+  // Turns a full name into initials, e.g. "Ted Karani" -> "TK"
+function getInitials(name) {
+  return name
     .split(" ")
     .map((word) => word[0])
     .join("")
     .toUpperCase();
+}
+
+const initials = getInitials(user.name);
 
  
   const allInterests = ["Nature", "Culture", "Food", "Art", "Adventure", "Nightlife"];
