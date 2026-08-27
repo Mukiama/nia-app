@@ -1,0 +1,152 @@
+[
+  {
+    "interests": "Wildlife,Nature,Adventure",
+    "budget": "moderate",
+    "company": "couple"
+  },
+  {
+    "interests": "Culture,History,Art",
+    "budget": "budget",
+    "company": "solo"
+  },
+  {
+    "interests": "Food,Shopping,Nightlife",
+    "budget": "premium",
+    "company": "friends"
+  },
+  {
+    "interests": "Nature,Wildlife,Photography",
+    "budget": "moderate",
+    "company": "family"
+  },
+  {
+    "interests": "Hiking,Adventure,Nature",
+    "budget": "budget",
+    "company": "friends"
+  },
+  {
+    "interests": "Shopping,Food,Culture",
+    "budget": "premium",
+    "company": "couple"
+  },
+  {
+    "interests": "History,Museums,Architecture",
+    "budget": "budget",
+    "company": "solo"
+  },
+  {
+    "interests": "Wildlife,Photography,Conservation",
+    "budget": "luxury",
+    "company": "couple"
+  },
+  {
+    "interests": "Adventure,Sports,Hiking",
+    "budget": "moderate",
+    "company": "friends"
+  },
+  {
+    "interests": "Culture,Food,History",
+    "budget": "moderate",
+    "company": "family"
+  },
+  {
+    "interests": "Wildlife,Nature,History",
+    "budget": "premium",
+    "company": "family"
+  },
+  {
+    "interests": "Art,Culture,Food",
+    "budget": "budget",
+    "company": "friends"
+  },
+  {
+    "interests": "Nightlife,Food,Entertainment",
+    "budget": "premium",
+    "company": "friends"
+  },
+  {
+    "interests": "Nature,Wellness,Photography",
+    "budget": "luxury",
+    "company": "couple"
+  },
+  {
+    "interests": "History,Architecture,Culture",
+    "budget": "moderate",
+    "company": "solo"
+  },
+  {
+    "interests": "Wildlife,Conservation,Nature",
+    "budget": "moderate",
+    "company": "family"
+  },
+  {
+    "interests": "Food,Culture,Local Experiences",
+    "budget": "budget",
+    "company": "friends"
+  },
+  {
+    "interests": "Shopping,Entertainment,Food",
+    "budget": "luxury",
+    "company": "couple"
+  },
+  {
+    "interests": "Hiking,Adventure,Photography",
+    "budget": "budget",
+    "company": "friends"
+  },
+  {
+    "interests": "Museums,History,Architecture",
+    "budget": "moderate",
+    "company": "solo"
+  },
+  {
+    "interests": "Wildlife,Nature,Family Activities",
+    "budget": "moderate",
+    "company": "family"
+  },
+  {
+    "interests": "Food,Nightlife,Entertainment",
+    "budget": "premium",
+    "company": "friends"
+  },
+  {
+    "interests": "Culture,Art,Shopping",
+    "budget": "moderate",
+    "company": "couple"
+  },
+  {
+    "interests": "Adventure,Nature,Wildlife",
+    "budget": "luxury",
+    "company": "friends"
+  },
+  {
+    "interests": "History,Culture,Museums",
+    "budget": "budget",
+    "company": "family"
+  },
+  {
+    "interests": "Photography,Nature,Hiking",
+    "budget": "moderate",
+    "company": "solo"
+  },
+  {
+    "interests": "Food,Local Experiences,Culture",
+    "budget": "premium",
+    "company": "couple"
+  },
+  {
+    "interests": "Sports,Adventure,Entertainment",
+    "budget": "moderate",
+    "company": "friends"
+  },
+  {
+    "interests": "Wildlife,Photography,Adventure",
+    "budget": "luxury",
+    "company": "family"
+  },
+  {
+    "interests": "Nature,Wellness,Culture",
+    "budget": "budget",
+    "company": "solo"
+  }
+]
