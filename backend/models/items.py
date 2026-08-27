@@ -16,3 +16,9 @@ class Item(db.Model):
         db.ForeignKey("places.id"),
         nullable=False,
     )
+
+    category_id = db.Column(
+        db.Integer,
+        db.ForeignKey("category.id"),
+        nullable=False,
+    )
