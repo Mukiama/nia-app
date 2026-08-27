@@ -8,6 +8,7 @@ import {
   getOffMapRecommendation,
   getOffMapWildcard,
 } from "../utils/offmapRecommendation";
+import "../styles/offMap.css"
 
 function OffMap() {
   const [currentQuestion, setCurrentQuestion] = useState(0);

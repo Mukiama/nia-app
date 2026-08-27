@@ -25,25 +25,26 @@ export default function App() {
   return (
     
     <Routes>
-
+      <Route path="" element={<Home />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/hero" element={<Hero />} />
+      <Route path="/nia-picks" element={<NiaPicks />} />
+      <Route path="/about" element={<About />} />
 
     <Route element={<AppLayout />}>
       
       <Route path="/logout" element={<Logout />} />
+      <Route path="/add-place" element={<AddPlace />} />
       <Route path="/places/:id" element={<PlaceDetails />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/about" element={<About />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/history" element={<History />} />
       <Route path="/filter" element={<Filter />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/offmap" element={<OffMap />} />
-      <Route path="/add-place" element={<AddPlace />} />
-      <Route path="/nia-picks" element={<NiaPicks />} />
+      
     </Route>
       
     </Routes>

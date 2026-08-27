@@ -93,7 +93,7 @@ function Hero() {
 
       <div className="hero-actions">
 
-        <Link
+        {/* <Link
           to="/nearby-finds"
           className="hero-primary"
         >
@@ -105,7 +105,7 @@ function Hero() {
           className="hero-secondary"
         >
          Find Your Next Thing
-        </Link>
+        </Link> */}
         </div>
 
       </div>

@@ -18,10 +18,12 @@ export default function Navbar({
         </div>
 
         <nav className="desktop-nav">
-          <Link to="/">Explore</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/offmap">Off Map</Link>
           <Link to="/history">History</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/favorites">Favourites</Link>
+          <Link to="/add-place">Add A Place</Link>
         </nav>
 
         <div className="navbar-user">
@@ -92,6 +94,13 @@ export default function Navbar({
           </Link>
 
           <Link
+            to="/offmap"
+            onClick={() => setSidebarOpen(false)}
+          >
+            Off Map
+          </Link>
+
+          <Link
             to="/history"
             onClick={() => setSidebarOpen(false)}
           >
@@ -110,6 +119,13 @@ export default function Navbar({
             onClick={() => setSidebarOpen(false)}
           >
             Profile
+          </Link>
+
+          <Link
+            to="add-place"
+            onClick={() => setSidebarOpen(false)}
+          >
+            Add a Place
           </Link>
 
         </nav>
