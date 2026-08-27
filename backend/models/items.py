@@ -10,3 +10,9 @@ class Item(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Strings, nullable=False)
     cost = db.Column(db.Float, nullable=False)
+
+    place_id = db.Column(
+        db.Integer,
+        db.ForeignKey("places.id"),
+        nullable=False,
+    )
