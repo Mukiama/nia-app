@@ -68,9 +68,10 @@ class Signup(Resource) :
 
 class Login(Resource) :
   def post(self) :
-    name = request.get_json()['name']
+    name = request.get_json()['name'] 
+    email = request.get_json()['email']
 
-    user = User.query.filter(User.name == name).first()
+    user = User.query.filter(User.name == name and User.email == email).first()
 
     password = request.get_json()['password']
 
@@ -86,6 +87,7 @@ class CheckSeesion(Resource) :
   def check_session(self) :
     user = User.query.filter(User.id == session['user_id']).first()
     return UserSchema().dump(user), 200
+
 
 class Logout(Resource) :
   def post(self) :
