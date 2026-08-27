@@ -81,5 +81,11 @@ class Login(Resource) :
     else :
       return {'error' : '401 Unauthorized'}, 401
 
+
+class CheckSeesion(Resource) :
+  def check_session(self) :
+    user = User.query.filter(User.id == session['user_id']).first()
+    return UserSchema().dump(user), 200
+
 if __name__ == "__main__":
   app.run(debug=True)
