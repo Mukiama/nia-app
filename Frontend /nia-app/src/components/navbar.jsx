@@ -14,7 +14,7 @@ export default function Navbar({
 
         <div className="navbar-logo">
           <span className="nia-mark">✦</span>
-          <Link to="/home">NIA</Link>
+          <Link to="/">NIA</Link>
         </div>
 
         <nav className="desktop-nav">
