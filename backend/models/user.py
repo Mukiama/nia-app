@@ -21,6 +21,14 @@ class User(db.Model) :
         db.CheckConstraint('length(password) >= 6')
     )
 
+    @validates('email')
+    def email_validation(self, key, value) :
+        try :
+            valid = validate_email(value, check_deliverability=False)
+            return valid.normalized
+        except EmailNotValidError as e :
+            raise ValueError(f'Invalid email {e}')
+
     
     def __repr__(self) :
         return f'<User {self.id} : {self.name}>'
