@@ -5,3 +5,5 @@ metadata = MetaData()
 db = SQLAlchemy(metadata=metadata)
 
 class Item(db.Model):
+    __tablename__ = "items"
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
