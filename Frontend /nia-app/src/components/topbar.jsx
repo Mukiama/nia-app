@@ -12,7 +12,7 @@ function Topbar() {
         </Link>
 
         {/* MAIN NAVIGATION */}
-        {/* <nav className="navbar-links">
+        <nav className="navbar-links">
 
             
           <div className="nav-dropdown">
@@ -27,37 +27,44 @@ function Topbar() {
 
                 <Link to="/hidden-gems">Hidden Gems</Link>
                 <Link to="/nia-picks">Nia Picks</Link>
-                <Link to="/new-places">New Places</Link>
+                <Link to="/popular-places">Popular Places</Link>
+                {/* <Link to="/new-places">New Places</Link> */}
               </div>
 
               <div>
                 <p className="dropdown-title">EXPLORE</p>
 
-                <Link to="/popular-places">Popular Places</Link>
-                <Link to="/surprise-me">Surprise Me</Link>
+                
+              <Link to="/near-me">Near Me</Link>
+              <Link to="/map">Interactive Map</Link>
+              <Link to="/offmap">OffMap</Link>
+              <Link to="/recently-added">Recently Added</Link>
+                {/* <Link to="/popular-places">Popular Places</Link> */}
+                {/* <Link to="/surprise-me">Surprise Me</Link> */}
               </div>
             </div>
           </div>
 
           <div className="nav-dropdown">
             <button className="nav-link" type="button">
-              Explore
+              Explore NIA
               <span className="nav-arrow">⌄</span>
             </button>
 
             <div className="dropdown-menu">
-              <Link to="/near-me">Near Me</Link>
-              <Link to="/map">Interactive Map</Link>
+              <Link to="/about">About</Link>
+              <Link to="/reviews">Application Reviews</Link>
+              {/* <Link to="/map">Interactive Map</Link>
               <Link to="/offmap">OffMap</Link>
-              <Link to="/recently-added">Recently Added</Link>
+              <Link to="/recently-added">Recently Added</Link> */}
             </div>
           </div>
 
           <div className="nav-dropdown">
-            <button className="nav-link" type="button">
+            {/* <button className="nav-link" type="button">
               Categories
               <span className="nav-arrow">⌄</span>
-            </button>
+            </button> */}
 
             <div className="dropdown-menu categories-menu">
               <Link to="/categories/photography">
@@ -94,7 +101,7 @@ function Topbar() {
             </div>
           </div>
 
-        </nav> */}
+        </nav> 
         
         {/* SEARCH */}
         {/* <div className="navbar-search">
@@ -105,28 +112,28 @@ function Topbar() {
             placeholder="Search places..."
             aria-label="Search places"
           />
-        </div> */}
+        </div>  */}
 
 
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
 
-          <Link
+          {/* <Link
             to="/signup"
             className="navbar-action business-link"
           >
             GET STARTED
-          </Link>
+          </Link> */}
 
-          {/* <Link
-            to="/business"
+          <Link
+            to="/signup"
             className="navbar-action business-link"
           >
             List Your Business
-          </Link> */}
+          </Link> 
 
           {/* ACCOUNT */}
-          {/* <div className="profile-menu">
+          <div className="profile-menu">
 
             <button
               type="button"
@@ -146,12 +153,12 @@ function Topbar() {
             </button>
 
             <div className="profile-dropdown">
-               <Link to="/profile">My Profile</Link> 
+               {/* <Link to="/profile">My Profile</Link>  */}
               <Link to="/login">Log in</Link>
               <Link to="/signup">Sign up</Link>
             </div>
 
-          </div> */}
+          </div> 
 
         </div>
 
