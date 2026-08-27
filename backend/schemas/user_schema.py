@@ -13,5 +13,6 @@ class UserSchema(Schema) :
     def check_email(self, data, **kwargs) :
         if '@' not in data.get('email') :
             raise ValidationError('Invalid email')
+
         
     
