@@ -2,10 +2,13 @@ from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
 from sqlalychemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
+from sqlalchemy.ext.hybrid import hybrid_property
 
 metadata = MetaData()
 
 db = SQLAlchemy(metadata=metadata)
+
+from app import bcrypt
 
 class User(db.Model) :
     __tablename__ = 'users'
@@ -13,7 +16,7 @@ class User(db.Model) :
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
-    password = db.Column(db.String, nullable=False)
+    _password_hash = db.Column(db.String, nullable=False)
 
     user_places = db.relationship('Userplace', back_populates='user')
 
@@ -29,6 +32,17 @@ class User(db.Model) :
         except EmailNotValidError as e :
             raise ValueError(f'Invalid email {e}')
 
+
+    @hybrid_property
+    def password_hash(self) :
+        raise AttributeError('Password hashes are not to be revealed')
+
+    @password_hash.setter
+    def password_hash(self, password) :
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8')
+        )
+        self._password_hash = password_hash.decode('utf-8')
     
     def __repr__(self) :
         return f'<User {self.id} : {self.name}>'
