@@ -14,8 +14,5 @@ class Place(db.Model):
     operating_hours = db.Column(db.String)
     gps = db.Column(db.String)
 
-    items = db.relationship("Item", backref="place")
-    user_places = db.relationship("UserPlace", backref="place")
-
     def __repr__(self):
         return f"<Place {self.id}: {self.name}>"
