@@ -19,9 +19,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -344,7 +342,6 @@ body {
   .feature-card h3 {
     font-size: 18px;
   }
-
   .feature-card p {
     font-size: 14px;
   }
