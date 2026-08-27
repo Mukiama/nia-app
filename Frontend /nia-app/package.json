@@ -16,6 +16,10 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "react-router": "^7.18.2",
+>>>>>>> 38851c5 (Vercel corrections)
     "react-router-dom": "^7.18.2",
     "router": "^2.2.0"
 =======
