@@ -15,10 +15,12 @@ class User(db.Model) :
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
 
-    user_places = db.relationship('Userplace', back_populates='user')
+        # TODO: restore once UserPlace model exists — was referencing a nonexistent
+    # class 'Userplace' (also misspelled), which broke app startup entirely
+    # user_places = db.relationship('UserPlace', back_populates='user')
 
     __table_args__ = (
-        db.CheckConstraint('length(password) >= 6')
+        db.CheckConstraint('length(password) >= 6'),
     )
 
     @validates('email')
