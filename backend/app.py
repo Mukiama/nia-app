@@ -36,7 +36,7 @@ def check_if_logged_in() :
 class Signup(Resource) :
   def post(self) :
 
-    name = request.get_json()['username']
+    name = request.get_json()['name']
     email = request.get_json()['email']
     password = request.get_json()['password']
 
@@ -53,6 +53,22 @@ class Signup(Resource) :
       return UserSchema().dump(user), 200
     except IntegrityError :
       return {'error' : '422 Unprocessed Entity'}, 422
+
+
+class Login(Resource) :
+  def post(self) :
+    name = request.get_json()['name']
+
+    user = User.query.filter(User.name == name).first()
+
+    password = request.get_json()['password']
+
+    if user and user.authenticate(password) :
+      session['user_id'] = user.id
+      return UserSchema().dump(user)
+
+    else :
+      return {'error' : '401 Unauthorized'}, 401
 
 if __name__ == "__main__":
   app.run(debug=True)
