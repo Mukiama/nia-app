@@ -87,5 +87,10 @@ class CheckSeesion(Resource) :
     user = User.query.filter(User.id == session['user_id']).first()
     return UserSchema().dump(user), 200
 
+class Logout(Resource) :
+  def post(self) :
+    session['user_id'] = None
+    return {}, 204
+
 if __name__ == "__main__":
   app.run(debug=True)
