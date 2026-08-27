@@ -6,6 +6,8 @@ flask-cors==6.0.5
 Flask-Migrate==4.1.0
 Flask-SQLAlchemy==3.1.1
 greenlet==3.5.5
+marshmallow==3.26.2
+marshmallow-sqlalchemy==1.4.2
 itsdangerous==2.2.0
 Jinja2==3.1.6
 Mako==1.4.1
