@@ -1,6 +1,6 @@
 from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
-from sqlalychemy.orm import validates
+from sqlalchemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
 
 metadata = MetaData()
