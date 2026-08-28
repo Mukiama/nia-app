@@ -33,7 +33,7 @@ function Footer() {
           <Link to="/hidden-gems">Hidden Gems</Link>
           <Link to="/nia-picks">Nia Picks</Link>
           <Link to="/new-places">New Places</Link>
-          <Link to="/add-place">Add a Place</Link>
+          <Link to="/signup">Add a Place</Link>
 
         </div>
 
@@ -42,7 +42,7 @@ function Footer() {
 
           <h3>For Businesses</h3>
 
-          <Link to="/business">List Your Business</Link>
+          <Link to="/signup">List Your Business</Link>
           <Link to="/claim-listing">Claim Your Listing</Link>
           <Link to="/business/dashboard">Business Dashboard</Link>
 

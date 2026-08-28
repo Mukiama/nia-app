@@ -42,7 +42,7 @@ export default function Signup() {
 
   try {
     const existingUsers = await fetch(
-      `http://localhost:3001/users?email=${encodeURIComponent(
+      `https://nia-app-ik4c.onrender.com/users?email=${encodeURIComponent(
         signupForm.email
       )}`
     );
@@ -54,7 +54,7 @@ export default function Signup() {
       return;
     }
 
-    const response = await fetch("http://localhost:3001/users", {
+    const response = await fetch("https://nia-app-ik4c.onrender.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
