@@ -1,23 +1,19 @@
 from flask import Blueprint, jsonify, request
 from models import Profile, db
+from schemas.profile_schema import ProfileSchema
 
 profile_bp = Blueprint("profile",  __name__, url_prefix="/profiles")
 
+profile_schema = ProfileSchema()
+profiles_schema = ProfileSchema(many=True)
 
 # GET all profiles
 @profile_bp.route("/", methods=["GET"])
 def get_profiles():
     profiles = db.session.query(Profile).all()
 
-    return jsonify([
-        {
-        "id": profile.id,
-        "interests": profile.interests,
-        "budget": profile.budget,
-        "company": profile.company
-        }
-        for profile in profiles
-]), 200
+    return jsonify(profiles_schema.dump(profiles)), 200
+  
 
 
 # GET one profile by ID
@@ -28,12 +24,7 @@ def get_profile(id):
         return jsonify({
             "error": "Profile not found"}), 404
 
-    return jsonify({
-    "id": profile.id,
-    "interests": profile.interests,
-    "budget": profile.budget,
-    "company": profile.company
-}), 200
+    return jsonify(profile_schema.dump(profile)), 200
 
 @profile_bp.route("/", methods=["POST"])
 def create_profile():
@@ -50,12 +41,7 @@ def create_profile():
     db.session.add(new_profile)
     db.session.commit()
 
-    return jsonify({
-        "id": new_profile.id,
-        "interests": new_profile.interests,
-        "budget": new_profile.budget,
-        "company": new_profile.company
-    }), 201
+    return jsonify(profile_schema.dump(new_profile)), 201
 
 @profile_bp.route("/<int:id>", methods=["PATCH"])
 def update_profile(id):
@@ -73,12 +59,7 @@ def update_profile(id):
 
     db.session.commit()
 
-    return jsonify({
-        "id": profile.id,
-        "interests": profile.interests,
-        "budget": profile.budget,
-        "company": profile.company
-    }), 200
+    return jsonify(profile_schema.dump(profile)), 200
 
 @profile_bp.route("/<int:id>", methods=["DELETE"])
 def delete_profile(id):
