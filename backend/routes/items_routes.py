@@ -27,3 +27,15 @@ def create_item():
     db.session.commit()
 
     return jsonify(item_schema.dump(new_item)), 201
+
+@item_bp.route("/<int:item_id>", methods=["DELETE"])
+def delete_item(item_id):
+    item = Item.query.get(item_id)
+
+    if not item:
+        return jsonify({"error": "Item not found"}), 404
+
+    db.session.delete(item)
+    db.session.commit()
+
+    return jsonify({"message": "Item deleted"}), 200
