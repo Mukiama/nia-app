@@ -13,3 +13,17 @@ items_schema = ItemSchema(many=True)
 def get_items():
     items = Item.query.all()
     return jsonify(items_schema.dump(items)), 200
+
+@item_bp.route("/", methods=["POST"])
+def create_item():
+    data = request.get_json()
+
+    try:
+        new_item = item_schema.load(data, session=db.session)
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
+    db.session.add(new_item)
+    db.session.commit()
+
+    return jsonify(item_schema.dump(new_item)), 201
