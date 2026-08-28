@@ -52,8 +52,16 @@ bcrypt = Bcrypt(app)
 >>>>>>> 11b695b (User model and routes fixes)
 
 
+<<<<<<< HEAD
 class Signup(Resource) :
   def post(self) :
+=======
+
+
+@app.route("/")
+def index():
+    return {"message":"backend running"}
+>>>>>>> 756aa6d (Minor fixes)
 
     name = request.get_json()['name']
     email = request.get_json()['email']
