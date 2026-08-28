@@ -21,7 +21,8 @@ export default function Dashboard( ) {
         fetch(`https://nia-app-ik4c.onrender.com/users/${JSON.parse(storedUser).id}`)
             .then((response) => response.json())
             .then((data) => setUser(data))
-            .catch((error) => console.error("Error fetching user data:", error));
+            .catch((error) => console.error("Error fetching user data:", error))
+            .finally(() => setIsLoading(false));
     }, []); 
 
     if (isLoading) {
