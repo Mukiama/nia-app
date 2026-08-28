@@ -1645,7 +1645,7 @@
   }
 }
 
-<<<<<<< HEAD
+
 /* ========================================
    OFFMAP
 ======================================== */
@@ -2997,9 +2997,7 @@
   .nia-picks-grid {
     grid-template-columns: 1fr;
   }
-=======
 
->>>>>>> 2dfcf9b (Added loading feature styling)
 /* Dashboard css */
 .homepage-link {
     display: block;

@@ -187,11 +187,9 @@ function Home() {
 
             </div>
           </div>
-        </section>
+        </section> 
 
-        {/* =========================
-            OFFMAP
-        ========================= */}
+        {/* OFFMAP */}
         <section className="offmap-section">
           <div className="section-container">
             <p className="section-eyebrow">
@@ -240,6 +238,8 @@ function Home() {
           </div>
         </section>
       </main>
+        </section> 
+      </main> 
 
       <Footer />
     </>

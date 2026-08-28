@@ -25,10 +25,10 @@
       "id": "G32gf5OVQjE"
     },
     {
-      "name": "Ted Karani Mutegi",
-      "email": "ted.karani@student.moringaschool.com",
-      "password": "hilltop2026",
-      "id": "tofxM0343XM"
+      "name": "Demo User",
+      "email": "demo@nia.app",
+      "password": "demo123",
+      "id": "demo001"
     },
     {
       "name": "rahab",
@@ -182,3 +182,5 @@
 }
 
 
+  ]
+}

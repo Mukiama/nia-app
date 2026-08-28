@@ -108,7 +108,7 @@ function Topbar() {
             <button className="nav-link" type="button">
               Categories
               <span className="nav-arrow">⌄</span>
-            </button>
+            </button> */}
 
             <div className="dropdown-menu categories-menu">
 

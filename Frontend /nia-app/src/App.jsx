@@ -8,9 +8,10 @@ import Signup from "./pages/signup";
 import Logout from "./pages/logout";
 import PlaceDetails from "./pages/placeDetails";
 import Hero from "./pages/hero";
+import Profile from "./pages/profile";
 import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
-import Profile from "./pages/profile";
+// import Profile from "./pages/profile";
 import History from "./pages/history";
 import Filter from "./pages/filter";
 import Favorites from "./pages/favorites";
@@ -23,6 +24,7 @@ import "./App.css";
 
 export default function App() {
   return (
+    
     <Routes>
       <Route path="" element={<Home />} />
       <Route path="/" element={<Home />} />
