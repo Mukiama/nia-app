@@ -5,6 +5,7 @@ from config import Config
 from models import db
 from routes.place_routes import place_bp
 from flask_bcrypt import Bcrypt
+from flask_restful import Api
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,6 +15,7 @@ migrate = Migrate(app, db)
 CORS(app)
 app.register_blueprint(place_bp)
 bcrypt = Bcrypt(app)
+api = Api(app)
 
 
 

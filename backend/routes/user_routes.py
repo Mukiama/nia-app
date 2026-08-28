@@ -1,7 +1,7 @@
 from flask import request, session
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from app import app, db
+from app import app, db, api
 
 from schemas import user_schema
 from models import user
@@ -57,7 +57,7 @@ class Login(Resource) :
       return {'error' : '401 Unauthorized'}, 401
 
 
-class CheckSeesion(Resource) :
+class CheckSession(Resource) :
   def check_session(self) :
     user = User.query.filter(User.id == session['user_id']).first()
     return UserSchema().dump(user), 200
@@ -68,3 +68,8 @@ class Logout(Resource) :
     session['user_id'] = None
     return {}, 204
 
+
+api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+api.add_resource(Logout, '/logout', endpoint='logout')
