@@ -17,6 +17,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
+
 db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)

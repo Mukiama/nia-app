@@ -2,7 +2,7 @@ from flask import request, session, make_response, jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from app import app, db, api, jwt
-from flask_jwt_extended import create_access_token, get_jwt_idenity, verify_jwt_in_request
+from flask_jwt_extended import create_access_token, get_jwt_identity, verify_jwt_in_request
 
 from schemas import user_schema
 from models import user
@@ -60,7 +60,9 @@ class Login(Resource) :
 
 class CheckSession(Resource) :
   def check_session(self) :
-    user = User.query.filter(User.id == session['user_id']).first()
+    user_id = get_jwt_identity()
+
+    user = User.query.filter(User.id == user_id).first()
     return UserSchema().dump(user), 200
 
 
