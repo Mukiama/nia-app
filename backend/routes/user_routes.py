@@ -35,8 +35,8 @@ class Signup(Resource) :
     try :
       db.session.add(user)
       db.session.commit()
-      session['user_id'] = user.id
-      return UserSchema().dump(user), 200
+      access_token = create_access_token(identity=int(user.id))
+      return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)      
     except IntegrityError :
       return {'error' : '422 Unprocessed Entity'}, 422
 
@@ -58,7 +58,7 @@ class Login(Resource) :
       return {'error' : '401 Unauthorized'}, 401
 
 
-class CheckSession(Resource) :
+class Verification(Resource) :
   def check_session(self) :
     user_id = get_jwt_identity()
 
@@ -74,5 +74,5 @@ class Logout(Resource) :
 
 api.add_resource(Signup, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
-api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+api.add_resource(Verification, '/verification', endpoint='check_session')
 api.add_resource(Logout, '/logout', endpoint='logout')
