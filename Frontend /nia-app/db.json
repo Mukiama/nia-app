@@ -29,7 +29,12 @@
       "email": "demo@nia.app",
       "password": "demo123",
       "id": "demo001"
-
+    },
+    {
+      "name": "Alex Smith",
+      "email": "alex02@smith.com",
+      "password": "string",
+      "id": "er1OG-pA-qI"
     }
   ],
   "places": [

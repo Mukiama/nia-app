@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import "../styles/placeDetail.css";
 
-const API_URL = "http://localhost:3001";
+const API_URL = "https://nia-app-ik4c.onrender.com";
 
 export default function PlaceDetails() {
   const { id } = useParams();
