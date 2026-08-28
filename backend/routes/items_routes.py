@@ -39,3 +39,4 @@ def delete_item(item_id):
     db.session.commit()
 
     return jsonify({"message": "Item deleted"}), 200
+
