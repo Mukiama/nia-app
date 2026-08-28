@@ -35,6 +35,7 @@ import Favorites from "./pages/favorites";
 import OffMap from "./pages/offmap";
 import AddPlace from "./pages/addPlace";
 import NiaPicks from "./pages/niaPicks";
+import HiddenGems from "./pages/hiddenGems";
 
 =======
 import Profile from "./pages/profile";
@@ -64,6 +65,7 @@ export default function App() {
       <Route path="/filter" element={<Filter />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/offmap" element={<OffMap />} />
+      <Route path="/hidden-gems" element={<HiddenGems />} />
       
     </Route>
       

@@ -987,127 +987,266 @@
   color: white;
 }
 
-/* ========================================
-   NIA PICKS HEADER
-======================================== */
+/* =========================
+   NIA PICKS
+========================= */
 
-.picks-heading-row {
+.picks-section {
+  padding: 80px 0;
+}
+
+.picks-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
-.nia-picks-all {
+.picks-header h2 {
+  margin: 0 0 8px;
+}
+
+.picks-header p {
+  margin: 0;
+}
+
+/* =========================
+   VIEW ALL
+========================= */
+
+.view-all-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 9px 15px;
-  border-radius: 10px;
-  background: #f4f3f3;
-  color: #1b1b1b;
-  font-size: 0.9rem;
-  font-weight: 600;
+  gap: 8px;
+
+  color: #111;
   text-decoration: none;
-  transition: background 0.2s ease;
-}
 
-.nia-picks-all:hover {
-  background: #dbd8d8;
-}
-
-/* PLACE CARD */
-
-.place-card {
-  flex: 0 0 250px;
-  background: white;
-  border: 1px solid #30bc6f;
-  border-radius: 18px;
-  overflow: hidden;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.place-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(48, 188, 111, 0.12);
-}
-
-.place-card img {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  display: block;
-}
-
-/* CARD CONTENT */
-
-.place-card-content {
-  padding: 14px 16px;
-}
-
-.place-card h3 {
-  margin: 0 0 5px;
-  font-size: 1rem;
   font-weight: 600;
+  white-space: nowrap;
+
+  transition: gap 0.2s ease;
 }
 
-.place-card p {
-  margin: 0;
-  color: #666;
-  font-size: 0.9rem;
+.view-all-link span {
+  font-size: 20px;
 }
 
-/* ================================
+.view-all-link:hover {
+  gap: 12px;
+}
+
+/* =========================
+   CAROUSEL
+========================= */
+
+.picks-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Horizontal cards */
+
+.picks-carousel-wrapper .places-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  padding: 10px 70px 25px 0;
+
+  scrollbar-width: none;
+}
+
+.picks-carousel-wrapper .places-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual cards */
+
+.picks-carousel-wrapper .place-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+}
+
+/* =========================
+   NEXT ARROW
+========================= */
+
+.picks-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* HORIZONTAL CAROUSEL */
+
+.picks-carousel-wrapper .places-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  padding: 10px 70px 25px 70px;
+
+  scrollbar-width: none;
+}
+
+.picks-carousel-wrapper .places-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* PLACE CARDS */
+
+.picks-carousel-wrapper .place-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+}
+
+/* =========================
    CAROUSEL ARROWS
-================================ */
+========================= */
 
 .carousel-arrow {
   position: absolute;
+
   top: 50%;
   transform: translateY(-50%);
 
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
 
-  border: 1px solid #30bc6f;
+  border: none;
   border-radius: 50%;
 
-  background: white;
-  color: #30bc6f;
+  background: #ffffff;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   font-size: 24px;
   font-weight: 500;
 
   cursor: pointer;
-  z-index: 5;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 10;
 
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .carousel-arrow:hover {
-  background: #30bc6f;
-  color: white;
+  transform: translateY(-50%) scale(1.08);
+
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
 }
 
-.carousel-left {
-  left: -18px;
+/* LEFT */
+
+.carousel-arrow-left {
+  left: 0;
 }
 
-.carousel-right {
-  right: -18px;
+/* RIGHT */
+
+.carousel-arrow-right {
+  right: 0;
 }
+
+/* =========================
+   VIEW ALL
+========================= */
+
+.picks-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+
+  margin-bottom: 30px;
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #111;
+  text-decoration: none;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition: gap 0.2s ease;
+}
+
+.view-all-link:hover {
+  gap: 12px;
+}
+
+.view-all-link span {
+  font-size: 20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .picks-carousel-wrapper .places-grid {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  .picks-carousel-wrapper .place-card {
+    flex: 0 0 280px;
+  }
+
+  .carousel-arrow {
+    width: 42px;
+    height: 42px;
+
+    font-size: 20px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .picks-section {
+    padding: 60px 0;
+  }
+
+  .picks-header {
+    align-items: flex-start;
+  }
+
+  .picks-carousel-wrapper .place-card {
+    flex: 0 0 280px;
+  }
+
+  .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
 
 .business-cta-button {
   display: inline-flex;
