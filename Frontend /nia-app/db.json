@@ -25,8 +25,6 @@
       "id": "G32gf5OVQjE"
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
       "name": "Ted Karani Mutegi",
       "email": "ted.karani@student.moringaschool.com",
       "password": "hilltop2026",
@@ -43,37 +41,26 @@
       "email": "rahabnwanja@gmail.com",
       "password": "12345678",
       "id": "ZmeuAS6SLdc"
-<<<<<<< HEAD
-=======
       "name": "Risper Gichia",
       "email": "risper.gichia@student.moringaschool.com",
       "password": "264383546",
       "id": "QmAHeD-T_KQ"
->>>>>>> 4873e06 (Minor changes)
-=======
     },
     {
       "name": "Risper Gichia",
       "email": "risper.gichia@student.moringaschool.com",
       "password": "264383546",
       "id": "GIjXHYDrMSM"
->>>>>>> 0a23f69 (Added loading feature to the dashboard)
-=======
       "name": "Demo User",
       "email": "demo@nia.app",
       "password": "demo123",
       "id": "demo001"
-<<<<<<< HEAD
-
->>>>>>> 340fc75 (Configure deployable mock API)
-=======
     },
     {
       "name": "Alex Smith",
       "email": "alex02@smith.com",
       "password": "string",
       "id": "er1OG-pA-qI"
->>>>>>> c0677f1 (make mock-api live)
     }
   ],
   "places": [
@@ -190,18 +177,8 @@
       "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08",
       "id": "ZsYz7lPvBJY"
     }
-<<<<<<< HEAD
   ],
   "$schema": "./node_modules/json-server/schema.json"
-<<<<<<< HEAD
-=======
-  ]
-<<<<<<< HEAD
->>>>>>> 340fc75 (Configure deployable mock API)
 }
-=======
-}
->>>>>>> 4873e06 (Minor changes)
-=======
-}
->>>>>>> c0677f1 (make mock-api live)
+
+
