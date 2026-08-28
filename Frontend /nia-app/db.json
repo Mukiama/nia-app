@@ -26,6 +26,7 @@
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": "Ted Karani Mutegi",
       "email": "ted.karani@student.moringaschool.com",
       "password": "hilltop2026",
@@ -57,6 +58,13 @@
       "password": "264383546",
       "id": "GIjXHYDrMSM"
 >>>>>>> 0a23f69 (Added loading feature to the dashboard)
+=======
+      "name": "Demo User",
+      "email": "demo@nia.app",
+      "password": "demo123",
+      "id": "demo001"
+
+>>>>>>> 340fc75 (Configure deployable mock API)
     }
   ],
   "places": [
@@ -173,9 +181,13 @@
       "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08",
       "id": "ZsYz7lPvBJY"
     }
+<<<<<<< HEAD
   ],
   "$schema": "./node_modules/json-server/schema.json"
 <<<<<<< HEAD
+=======
+  ]
+>>>>>>> 340fc75 (Configure deployable mock API)
 }
 =======
 }
