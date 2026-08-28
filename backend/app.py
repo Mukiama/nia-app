@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from config import Config
 from models import db
 from routes.place_routes import place_bp
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -12,6 +13,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
 app.register_blueprint(place_bp)
+bcrypt = Bcrypt(app)
 
 
 @app.route("/")
