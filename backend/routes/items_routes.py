@@ -8,3 +8,8 @@ item_bp = Blueprint("items", __name__, url_prefix="/items")
 
 item_schema = ItemSchema()
 items_schema = ItemSchema(many=True)
+
+@item_bp.route("/", methods=["GET"])
+def get_items():
+    items = Item.query.all()
+    return jsonify(items_schema.dump(items)), 200
