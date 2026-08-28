@@ -5,6 +5,7 @@ from config import Config
 from models import db
 <<<<<<< HEAD
 from routes.place_routes import place_bp
+<<<<<<< HEAD
 =======
 from flask_bcrypt import Bcrypt
 <<<<<<< HEAD
@@ -13,6 +14,9 @@ from flask_bcrypt import Bcrypt
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 >>>>>>> 93eaba1 (Added endpoints access control)
+=======
+from flask_bcrypt import Bcrypt
+>>>>>>> 11b695b (User model and routes fixes)
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -22,6 +26,7 @@ migrate = Migrate(app, db)
 CORS(app)
 <<<<<<< HEAD
 app.register_blueprint(place_bp)
+<<<<<<< HEAD
 =======
 bcrypt = Bcrypt(app)
 >>>>>>> dfd37d6 (Set password hash)
@@ -42,6 +47,9 @@ def check_if_logged_in() :
 
   if (request.endpoint) not in open_access and (not session.get('user_id')) :
     return {'error' : '401 Unauthorized'}, 401
+=======
+bcrypt = Bcrypt(app)
+>>>>>>> 11b695b (User model and routes fixes)
 
 
 class Signup(Resource) :
