@@ -5,7 +5,7 @@ from app import app
 from models import db, Profile
 
 
-PROFILE_FILE = Path(__file__).resolve().parent / "seeds" / "profile.json"
+PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
 
 
 with app.app_context():
