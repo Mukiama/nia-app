@@ -16,6 +16,8 @@ app.register_blueprint(place_bp)
 bcrypt = Bcrypt(app)
 
 
+
+
 @app.route("/")
 def index():
     return {"message":"backend running"}
