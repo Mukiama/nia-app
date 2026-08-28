@@ -56,3 +56,26 @@ def create_profile():
         "budget": new_profile.budget,
         "company": new_profile.company
     }), 201
+
+@profile_bp.route("/<int:id>", methods=["PATCH"])
+def update_profile(id):
+    profile = db.session.get(Profile, id)
+    if profile is None:
+        return jsonify({"error": "Profile not found"}), 404
+
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Request body must contain valid JSON"}), 400
+
+    profile.interests = data.get("interests", profile.interests)
+    profile.budget = data.get("budget", profile.budget)
+    profile.company = data.get("company", profile.company)
+
+    db.session.commit()
+
+    return jsonify({
+        "id": profile.id,
+        "interests": profile.interests,
+        "budget": profile.budget,
+        "company": profile.company
+    }), 200
