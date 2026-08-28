@@ -66,13 +66,13 @@ class Verification(Resource) :
     return UserSchema().dump(user), 200
 
 
-# class Logout(Resource) :
-#   def post(self) :
-#     # session['user_id'] = None
-#     # return {}, 204
+# The client will be resposible of removing their own JWT tokens
+class Logout(Resource) :
+  def post(self) :
+    return {}, 204
 
 
 api.add_resource(Signup, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Verification, '/verification', endpoint='verification')
-# api.add_resource(Logout, '/logout', endpoint='logout')
+api.add_resource(Logout, '/logout', endpoint='logout')
