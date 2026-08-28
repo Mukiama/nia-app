@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from models import Profile, db
 from schemas.profile_schema import ProfileSchema
+from marshmallow import ValidationError
 
 profile_bp = Blueprint("profile",  __name__, url_prefix="/profiles")
 
@@ -31,12 +32,13 @@ def create_profile():
     data = request.get_json(silent=True)
     if not isinstance(data, dict):
         return jsonify({"error": "Request body must contain valid JSON"}), 400
+    try:
+        profile_data = profile_schema.load(data)
+    except ValidationError as error:
+        return jsonify({"errors": error.messages}), 400
 
-    new_profile = Profile(
-        interests=data.get("interests"),
-        budget=data.get("budget"),
-        company=data.get("company")
-    )
+    new_profile = Profile(**profile_data)
+
 
     db.session.add(new_profile)
     db.session.commit()
@@ -53,9 +55,13 @@ def update_profile(id):
     if not isinstance(data, dict):
         return jsonify({"error": "Request body must contain valid JSON"}), 400
 
-    profile.interests = data.get("interests", profile.interests)
-    profile.budget = data.get("budget", profile.budget)
-    profile.company = data.get("company", profile.company)
+    try:
+        profile_data = profile_schema.load(data, partial=True)
+    except ValidationError as error:
+        return jsonify({"errors": error.messages}), 400
+
+    for key, value in profile_data.items():
+        setattr(profile, key, value)
 
     db.session.commit()
 
