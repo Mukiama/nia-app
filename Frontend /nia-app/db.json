@@ -25,28 +25,16 @@
       "id": "G32gf5OVQjE"
     },
     {
-      "name": "Ted Karani Mutegi",
-      "email": "ted.karani@student.moringaschool.com",
-      "password": "hilltop2026",
-      "id": "tofxM0343XM"
+      "name": "Demo User",
+      "email": "demo@nia.app",
+      "password": "demo123",
+      "id": "demo001"
     },
     {
-      "name": "rahab",
-      "email": "rahab.wanja@student.moringaschool.com",
-      "password": "12345678",
-      "id": "wUFPcOMtVwQ"
-    },
-    {
-      "name": "rahab",
-      "email": "rahabnwanja@gmail.com",
-      "password": "12345678",
-      "id": "ZmeuAS6SLdc"
-    },
-    {
-      "name": "Risper Gichia",
-      "email": "risper.gichia@student.moringaschool.com",
-      "password": "264383546",
-      "id": "GIjXHYDrMSM"
+      "name": "Alex Smith",
+      "email": "alex02@smith.com",
+      "password": "string",
+      "id": "er1OG-pA-qI"
     }
   ],
   "places": [
@@ -163,6 +151,5 @@
       "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08",
       "id": "ZsYz7lPvBJY"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

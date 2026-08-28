@@ -31,7 +31,7 @@ function Filter() {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:3001/places"
+          "https://nia-app-ik4c.onrender.com/places"
         );
 
         if (!response.ok) {

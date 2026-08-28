@@ -1,6 +1,6 @@
 from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
-from sqlalychemy.orm import validates
+from sqlalchemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -18,10 +18,12 @@ class User(db.Model) :
     email = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
 
-    user_places = db.relationship('Userplace', back_populates='user')
+        # TODO: restore once UserPlace model exists — was referencing a nonexistent
+    # class 'Userplace' (also misspelled), which broke app startup entirely
+    # user_places = db.relationship('UserPlace', back_populates='user')
 
     __table_args__ = (
-        db.CheckConstraint('length(password) >= 6')
+        db.CheckConstraint('length(password) >= 6'),
     )
 
     @validates('email')
