@@ -18,12 +18,9 @@ export default function Navbar({
         </div>
 
         <nav className="desktop-nav">
-<<<<<<< HEAD
+          <Link to="/">Explore</Link>
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/offmap">Off Map</Link>
-=======
-          <Link to="/">Explore</Link>
->>>>>>> 0a23f69 (Added loading feature to the dashboard)
           <Link to="/history">History</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/favorites">Favourites</Link>

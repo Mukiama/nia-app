@@ -31,7 +31,6 @@ export default function Dashboard( ) {
 
     return (
         <>
-<<<<<<< HEAD
         {/* <div className='dashboard-page'>
             <div className='dashboard-card'>
 
@@ -61,8 +60,6 @@ export default function Dashboard( ) {
             </div>
         </div>  */}
         {/* <Footer/> */}
-=======
->>>>>>> 2dfcf9b (Added loading feature styling)
         <Filter />
         </>
     )
