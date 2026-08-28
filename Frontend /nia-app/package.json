@@ -16,17 +16,7 @@
     "json-server": "^1.0.0-beta.15",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    "react-router": "^7.18.2",
->>>>>>> 38851c5 (Vercel corrections)
-    "react-router-dom": "^7.18.2",
-    "router": "^2.2.0"
-=======
-    "react-router": "^8.3.0",
     "react-router-dom": "^7.18.2"
->>>>>>> 8e99171 (Minor correction)
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
