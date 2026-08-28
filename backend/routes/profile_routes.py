@@ -79,3 +79,14 @@ def update_profile(id):
         "budget": profile.budget,
         "company": profile.company
     }), 200
+
+@profile_bp.route("/<int:id>", methods=["DELETE"])
+def delete_profile(id):
+    profile = db.session.get(Profile, id)
+    if profile is None:
+        return jsonify({"error": "Profile not found"}), 404
+
+    db.session.delete(profile)
+    db.session.commit()
+
+    return jsonify({"message": "Profile deleted successfully"}), 200
