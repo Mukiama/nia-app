@@ -1,4 +1,4 @@
-from flask import request, session
+from flask import request, session, make_response, jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from app import app, db, api, jwt
@@ -51,8 +51,8 @@ class Login(Resource) :
     password = request.get_json()['password']
 
     if user and user.authenticate(password) :
-      session['user_id'] = user.id
-      return UserSchema().dump(user)
+      access_token = create_access_token(identity=int(user.id))
+      return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
 
     else :
       return {'error' : '401 Unauthorized'}, 401
