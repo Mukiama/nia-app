@@ -1,7 +1,8 @@
 from flask import request, session
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from app import app, db, api
+from app import app, db, api, jwt
+from flask_jwt_extended import create_access_token, get_jwt_idenity, verify_jwt_in_request
 
 from schemas import user_schema
 from models import user
