@@ -15,7 +15,7 @@ UserSchema = user_schema.UserSchema
 def check_if_logged_in() :
   open_access = ['signup', 'login', 'check_session']
 
-  if (request.endpoint) not in open_access and (not session.get('user_id')) :
+  if (request.endpoint) not in open_access and (not verify_jwt_in_request()) :
     return {'error' : '401 Unauthorized'}, 401
 
 
@@ -66,13 +66,13 @@ class Verification(Resource) :
     return UserSchema().dump(user), 200
 
 
-class Logout(Resource) :
-  def post(self) :
-    session['user_id'] = None
-    return {}, 204
+# class Logout(Resource) :
+#   def post(self) :
+#     # session['user_id'] = None
+#     # return {}, 204
 
 
 api.add_resource(Signup, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
-api.add_resource(Verification, '/verification', endpoint='check_session')
-api.add_resource(Logout, '/logout', endpoint='logout')
+api.add_resource(Verification, '/verification', endpoint='verification')
+# api.add_resource(Logout, '/logout', endpoint='logout')
