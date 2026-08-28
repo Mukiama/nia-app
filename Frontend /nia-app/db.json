@@ -63,8 +63,17 @@
       "email": "demo@nia.app",
       "password": "demo123",
       "id": "demo001"
+<<<<<<< HEAD
 
 >>>>>>> 340fc75 (Configure deployable mock API)
+=======
+    },
+    {
+      "name": "Alex Smith",
+      "email": "alex02@smith.com",
+      "password": "string",
+      "id": "er1OG-pA-qI"
+>>>>>>> c0677f1 (make mock-api live)
     }
   ],
   "places": [
@@ -187,8 +196,12 @@
 <<<<<<< HEAD
 =======
   ]
+<<<<<<< HEAD
 >>>>>>> 340fc75 (Configure deployable mock API)
 }
 =======
 }
 >>>>>>> 4873e06 (Minor changes)
+=======
+}
+>>>>>>> c0677f1 (make mock-api live)

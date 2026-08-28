@@ -18,7 +18,7 @@ export default function Login() {
 
   try {
     const response = await fetch(
-      `http://localhost:3001/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+      `https://nia-app-ik4c.onrender.com/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
     );
 
     const users = await response.json();
