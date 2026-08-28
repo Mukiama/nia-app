@@ -93,19 +93,19 @@ function Hero() {
 
       <div className="hero-actions">
 
-        {/* <Link
+      {/* <Link
           to="/nearby-finds"
           className="hero-primary"
         >
          Nearby Finds
-        </Link>
+        </Link> */}
 
         <Link
           to="/nia-picks"
           className="hero-secondary"
         >
          Find Your Next Thing
-        </Link> */}
+        </Link> 
         </div>
 
       </div>
