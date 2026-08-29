@@ -6,6 +6,8 @@ metadata = MetaData()
 db = SQLAlchemy(metadata=metadata)
 
 
-# from models.user import db, User
-# from models.profile import Profile
-# from models.place import Place
+from .user import User
+from .profile import Profile
+from .place import Place
+from .items import Item
+from .category import Category
