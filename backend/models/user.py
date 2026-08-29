@@ -1,12 +1,9 @@
-from sqlalchemy import MetaData
-from flask_sqlalchemy import SQLAlchemy
+from . import db
+
 from sqlalchemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy.ext.hybrid import hybrid_property
 
-metadata = MetaData()
-
-db = SQLAlchemy(metadata=metadata)
 
 from app import bcrypt
 
