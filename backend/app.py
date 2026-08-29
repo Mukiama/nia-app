@@ -8,6 +8,8 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 import os
 from dotenv import load_dotenv
+from flask_jwt_extended import jwt_required
+
 
 from routes.place_routes import place_bp
 from routes.profile_routes import profile_bp
