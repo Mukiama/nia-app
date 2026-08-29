@@ -1,6 +1,6 @@
 from marshmallow import fields, validate, validates_schema, ValidationError
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from backend.models.profile import Profile
+from models.profile import Profile
 
 
 class ProfileSchema(SQLAlchemyAutoSchema):

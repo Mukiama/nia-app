@@ -23,6 +23,8 @@ typing-extensions = "==4.16.0"
 werkzeug = "==3.1.8"
 flask-jwt-extended = "*"
 python-dotenv = "*"
+flask-bcrypt = "*"
+flask-restful = "*"
 
 [dev-packages]
 
