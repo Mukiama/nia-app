@@ -16,6 +16,8 @@ from routes.items_routes import item_bp
 from routes.user_routes import Signup, Login, Logout, Verification
 
 
+
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -27,6 +29,9 @@ db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
 app.register_blueprint(place_bp)
+app.register_blueprint(profile_bp)
+app.register_blueprint(category_bp)
+app.register_blueprint(item_bp)
 bcrypt = Bcrypt(app)
 api = Api(app)
 jwt = JWTManager(app)
@@ -36,6 +41,11 @@ jwt = JWTManager(app)
 @app.route("/")
 def index():
     return {"message":"backend running"}
+
+api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(Verification, '/verification', endpoint='verification')
+api.add_resource(Logout, '/logout', endpoint='logout')
 
 
 if __name__ == "__main__":
