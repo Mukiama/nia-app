@@ -15,6 +15,11 @@ class Item(db.Model):
 
     category_id = db.Column(
         db.Integer,
-        db.ForeignKey("category.id"),
+        db.ForeignKey("categories.id"),  
         nullable=False,
+    )
+
+    category = db.relationship(
+        "Category",
+        back_populates="items"
     )
