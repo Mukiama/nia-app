@@ -1,15 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Topbar from "../components/topbar";
 import Hero from "./hero";
 import Footer from "../components/footer";
-import SearchBar from "../components/searchBar";
-import FilterBar from "../components/filterBar";
 import PlaceCard from "../components/placeCard";
-
+import CommunitySection from "../components/communitySection";
 
 function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
   const categories = [
     "All",
     "Nature",
@@ -76,6 +76,30 @@ function Home() {
     return matchesSearch && matchesCategory;
   });
 
+  // NEXT
+  const handleNext = () => {
+    const carousel = document.querySelector(".places-grid");
+
+    if (carousel) {
+      carousel.scrollBy({
+        left: 350,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // BACK
+  const handleBack = () => {
+    const carousel = document.querySelector(".places-grid");
+
+    if (carousel) {
+      carousel.scrollBy({
+        left: -350,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
       <Topbar />
@@ -83,56 +107,15 @@ function Home() {
       <main>
         <Hero />
 
-        {/* INTERESTS
-        <section className="interests-section">
-          <div className="section-container">
-            <p className="section-eyebrow">
-              START EXPLORING
-            </p>
-
-            <h2>What are you into?</h2>
-
-            <div className="interest-list">
-              <button>📸 Photography</button>
-              <button>🌿 Nature</button>
-              <button>☕ Food</button>
-              <button>🎨 Art</button>
-              <button>🏛️ Culture</button>
-              <button>👨‍👩‍👧 Family</button>
-              <button>🥾 Adventure</button>
-              <button>🌙 Nightlife</button>
-            </div>
-          </div>
-        </section>  */}
-
-        {/* WHO ARE YOU WITH */}
-        {/* <section className="companions-section">
-          <div className="section-container">
-            <p className="section-eyebrow">
-              MAKE IT PERSONAL
-            </p>
-
-            <h2>Who are you with?</h2>
-
-            <p>
-              Tell us who you're exploring with and we'll help
-              you find places that fit.
-            </p>
-
-            <div className="companion-list">
-              <button>🧍 Solo</button>
-              <button>❤️ Partner</button>
-              <button>👨‍👩‍👧 Family</button>
-              <button>👯 Friends</button>
-              <button>💼 Colleagues</button>
-              <button>🎒 Kids</button>
-            </div>
-          </div>
-        </section>  */}
-
-        {/* NIA PICKS */}
+        {/* =========================
+            NIA PICKS
+        ========================= */}
         <section className="picks-section">
           <div className="section-container">
+
+            {/* HEADER */}
+            <div className="picks-header">
+              <div>
                 <p className="section-eyebrow">
                   DISCOVER
                 </p>
@@ -140,31 +123,68 @@ function Home() {
                 <h2>Nia Picks</h2>
 
                 <p>
-                  Interesting places we think you'll love.
+                  Our curated selection of places from hidden corners to unforgettable experiences, these are places worth your time.
                 </p>
+              </div>
 
+              <Link
+                to="/nia-picks"
+                className="view-all-link"
+              >
+                View All <span>→</span>
+              </Link>
+            </div>
 
-          
+            {/* FILTERS */}
             <div className="filter-bar">
               {categories.map((category) => (
                 <button
                   key={category}
-                   className={selectedCategory === category ? "active" : ""}
-                   onClick={() => setSelectedCategory(category)}
+                  className={
+                    selectedCategory === category
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setSelectedCategory(category)
+                  }
                 >
                   {category}
                 </button>
               ))}
             </div>
 
-          
-            <div className="places-grid">
-              {filteredPlaces.map((place) => (
-                <PlaceCard
-                  key={place.id}
-                  place={place}
-                />
-              ))}
+            {/* CAROUSEL */}
+            <div className="picks-carousel-wrapper">
+
+              {/* BACK ARROW */}
+              <button
+                className="carousel-arrow carousel-arrow-left"
+                onClick={handleBack}
+                aria-label="Previous Nia Picks"
+              >
+                ←
+              </button>
+
+              {/* PLACE CARDS */}
+              <div className="places-grid">
+                {filteredPlaces.map((place) => (
+                  <PlaceCard
+                    key={place.id}
+                    place={place}
+                  />
+                ))}
+              </div>
+
+              {/* NEXT ARROW */}
+              <button
+                className="carousel-arrow carousel-arrow-right"
+                onClick={handleNext}
+                aria-label="Next Nia Picks"
+              >
+                →
+              </button>
+
             </div>
           </div>
         </section> 
@@ -185,13 +205,20 @@ function Home() {
               you wouldn't normally think to visit.
             </p>
 
-            <button>
-              Explore OffMap
-            </button>
+            <Link
+              to="/offmap"
+              className="offmap-button"
+            >
+              Explore OffMap →
+            </Link>
           </div>
         </section>
 
-        
+        <CommunitySection />
+
+        {/* =========================
+            BUSINESS
+        ========================= */}
         <section className="business-section">
           <div className="section-container">
             <h2>
@@ -202,14 +229,18 @@ function Home() {
               Help people discover your business on Nia.
             </p>
 
-            <button>
+            <Link
+              to="/list-business"
+              className="business-button"
+            >
               List Your Business
-            </button>
+            </Link>
           </div>
+        </section>
+      </main>
         </section> 
       </main> 
 
-      {/* FOOTER */}
       <Footer />
     </>
   );

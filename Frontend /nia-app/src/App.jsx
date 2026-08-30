@@ -18,6 +18,7 @@ import Favorites from "./pages/favorites";
 import OffMap from "./pages/offmap";
 import AddPlace from "./pages/addPlace";
 import NiaPicks from "./pages/niaPicks";
+import HiddenGems from "./pages/hiddenGems";
 
 import "./App.css";
 
@@ -33,20 +34,18 @@ export default function App() {
       <Route path="/nia-picks" element={<NiaPicks />} />
       <Route path="/about" element={<About />} />
 
-    <Route element={<AppLayout />}>
-      
-      <Route path="/logout" element={<Logout />} />
-      <Route path="/add-place" element={<AddPlace />} />
-      <Route path="/places/:id" element={<PlaceDetails />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/history" element={<History />} />
-      <Route path="/filter" element={<Filter />} />
-      <Route path="/favorites" element={<Favorites />} />
-      <Route path="/offmap" element={<OffMap />} />
-      
-    </Route>
-      
+      <Route element={<AppLayout />}>
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/add-place" element={<AddPlace />} />
+        <Route path="/places/:id" element={<PlaceDetails />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/filter" element={<Filter />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/offmap" element={<OffMap />} />
+        <Route path="/hidden-gems" element={<HiddenGems />} />
+      </Route>
     </Routes>
   );
 }
