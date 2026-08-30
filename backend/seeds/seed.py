@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from app import app
-from models import db, Profile, Item
+from models import db, Profile, Item, Place, Category
 
 
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
@@ -13,7 +13,7 @@ with app.app_context():
 
     with open(PROFILE_FILE, "r", encoding="utf-8") as f:
         profiles = json.load(f)
-        
+
     with open(ITEM_FILE, "r", encoding="utf-8") as f:
         items = json.load(f)
 
