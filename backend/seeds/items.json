@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Giraffe Feeding Experience",
+    "description": "Get close to Rothschild's giraffes and participate in a guided feeding experience.",
+    "cost": 1500.0,
+    "place": "Giraffe Centre",
+    "category": "Wildlife & Nature"
+  },
+  {
+    "name": "Elephant Conservation Visit",
+    "description": "Learn about elephant rescue, rehabilitation and conservation efforts.",
+    "cost": 2000.0,
+    "place": "Sheldrick Wildlife Trust",
+    "category": "Wildlife & Nature"
+  },
+  {
+    "name": "Nairobi National Park Game Drive",
+    "description": "Enjoy a guided game drive to see lions, giraffes, zebras, rhinos and other wildlife.",
+    "cost": 3500.0,
+    "place": "Nairobi National Park",
+    "category": "National Park"
+  }
+]
