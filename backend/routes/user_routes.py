@@ -12,14 +12,6 @@ User = user.User
 UserSchema = user_schema.UserSchema
 
 
-@app.before_request
-def check_if_logged_in() :
-  open_access = ['signup', 'login', 'check_session']
-
-  if (request.endpoint) not in open_access and (not verify_jwt_in_request()) :
-    return {'error' : '401 Unauthorized'}, 401
-
-
 class Signup(Resource) :
   def post(self) :
 
