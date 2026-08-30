@@ -31,6 +31,16 @@ with app.app_context():
             place = Place.query.filter_by(name=item_data["place"]).first()
             category = Category.query.filter_by(name=item_data["category"]).first()
 
-    db.session.commit()
+            item = Item(
+                name=item_data["name"],
+                description=item_data["description"],
+                cost=item_data["cost"],
+                place_id=place.id,
+                category_id=category.id
+)
 
-    print(f"Successfully seeded {len(profiles)} profiles.")
+db.session.add(item)
+
+db.session.commit()
+
+print(f"Successfully seeded {len(profiles)} profiles.")
