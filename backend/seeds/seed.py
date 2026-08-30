@@ -7,6 +7,7 @@ from models import db, Profile, Item, Place, Category
 
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
 ITEM_FILE = Path(__file__).resolve().parent / "items.json"
+CATEGORY_FILE = Path(__file__).resolve().parent / "categories.json"
 
 
 with app.app_context():
