@@ -27,6 +27,10 @@ with app.app_context():
 
         db.session.add(profile)
 
+        for item_data in items:
+            place = Place.query.filter_by(name=item_data["place"]).first()
+            category = Category.query.filter_by(name=item_data["category"]).first()
+
     db.session.commit()
 
     print(f"Successfully seeded {len(profiles)} profiles.")
