@@ -6,6 +6,7 @@ from models import db, Profile, Item
 
 
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
+ITEM_FILE = Path(__file__).resolve().parent / "items.json"
 
 
 with app.app_context():
