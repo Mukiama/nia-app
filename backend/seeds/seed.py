@@ -18,6 +18,9 @@ with app.app_context():
     with open(ITEM_FILE, "r", encoding="utf-8") as f:
         items = json.load(f)
 
+    with open(CATEGORY_FILE, "r", encoding="utf-8") as f:
+        categories = json.load(f)
+
     for profile_data in profiles:
 
         profile = Profile(
