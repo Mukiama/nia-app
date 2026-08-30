@@ -57,4 +57,19 @@
     "place": "Nairobi Railway Museum",
     "category": "Museum & History"
   }
+  ,
+  {
+    "name": "Bomas Cultural Experience",
+    "description": "Experience traditional Kenyan cultures through music, dance and cultural performances.",
+    "cost": 1800.0,
+    "place": "Bomas of Kenya",
+    "category": "Culture"
+  },
+  {
+    "name": "Maasai Market Shopping",
+    "description": "Shop for Kenyan crafts, artwork, jewellery, fabrics and souvenirs.",
+    "cost": 500.0,
+    "place": "The Maasai Market",
+    "category": "Markets & Shopping"
+  }
 ]
