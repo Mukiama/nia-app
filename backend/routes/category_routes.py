@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from models import db
 from models.category import Category
 from schemas.category_schema import CategorySchema
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 # Blueprint for category routes
@@ -19,7 +20,9 @@ categories_schema = CategorySchema(many=True)
 
 # GET ALL CATEGORIES
 @category_bp.route("/", methods=["GET"])
+@jwt_required()
 def get_categories():
+    user_id = get_jwt_identity()
     categories = Category.query.all()
 
     return jsonify(
@@ -29,7 +32,9 @@ def get_categories():
 
 # GET ONE CATEGORY
 @category_bp.route("/<int:category_id>", methods=["GET"])
+@jwt_required()
 def get_category(category_id):
+    user_id = get_jwt_identity()
     category = Category.query.get(category_id)
 
     if not category:
@@ -44,7 +49,9 @@ def get_category(category_id):
 
 # CREATE CATEGORY
 @category_bp.route("/", methods=["POST"])
+@jwt_required()
 def create_category():
+    user_id = get_jwt_identity()
     data = request.get_json()
 
     try:
@@ -77,7 +84,9 @@ def create_category():
 
 # UPDATE CATEGORY
 @category_bp.route("/<int:category_id>", methods=["PATCH"])
+@jwt_required()
 def update_category(category_id):
+    user_id = get_jwt_identity()
     category = Category.query.get(category_id)
 
     if not category:
@@ -119,7 +128,9 @@ def update_category(category_id):
 
 # DELETE CATEGORY
 @category_bp.route("/<int:category_id>", methods=["DELETE"])
+@jwt_required()
 def delete_category(category_id):
+    user_id = get_jwt_identity()
     category = Category.query.get(category_id)
 
     if not category:

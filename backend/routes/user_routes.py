@@ -1,7 +1,8 @@
 from flask import request, session, make_response, jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from app import app, db, api, jwt
+from models import db
+from extensions import api, jwt
 from flask_jwt_extended import create_access_token, get_jwt_identity, verify_jwt_in_request
 
 from schemas import user_schema
@@ -9,14 +10,6 @@ from models import user
 
 User = user.User
 UserSchema = user_schema.UserSchema
-
-
-@app.before_request
-def check_if_logged_in() :
-  open_access = ['signup', 'login', 'check_session']
-
-  if (request.endpoint) not in open_access and (not verify_jwt_in_request()) :
-    return {'error' : '401 Unauthorized'}, 401
 
 
 class Signup(Resource) :
@@ -46,7 +39,7 @@ class Login(Resource) :
     name = request.get_json()['name'] 
     email = request.get_json()['email']
 
-    user = User.query.filter(User.name == name and User.email == email).first()
+    user = User.query.filter(User.name == name, User.email == email).first()
 
     password = request.get_json()['password']
 
@@ -59,7 +52,7 @@ class Login(Resource) :
 
 
 class Verification(Resource) :
-  def check_session(self) :
+  def get(self) :
     user_id = get_jwt_identity()
 
     user = User.query.filter(User.id == user_id).first()
@@ -72,7 +65,3 @@ class Logout(Resource) :
     return {}, 204
 
 
-api.add_resource(Signup, '/signup', endpoint='signup')
-api.add_resource(Login, '/login', endpoint='login')
-api.add_resource(Verification, '/verification', endpoint='verification')
-api.add_resource(Logout, '/logout', endpoint='logout')

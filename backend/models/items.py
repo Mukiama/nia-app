@@ -6,7 +6,7 @@ class Item(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     cost = db.Column(db.Float, nullable=False)
-
+    
     place_id = db.Column(
         db.Integer,
         db.ForeignKey("places.id"),
@@ -14,7 +14,8 @@ class Item(db.Model):
     )
 
     category_id = db.Column(
-        db.Integer,
-        db.ForeignKey("category.id"),
-        nullable=False,
-    )
+    db.Integer,
+    db.ForeignKey("categories.id"),
+    nullable=False,
+)
+    category = db.relationship("Category", back_populates="items")

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from models import db
 from models.items import Item
 from schemas.items_schema import ItemSchema
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 item_bp = Blueprint("items", __name__, url_prefix="/items")
@@ -10,12 +11,16 @@ item_schema = ItemSchema()
 items_schema = ItemSchema(many=True)
 
 @item_bp.route("/", methods=["GET"])
+@jwt_required()
 def get_items():
+    user_id = get_jwt_identity()
     items = Item.query.all()
     return jsonify(items_schema.dump(items)), 200
 
 @item_bp.route("/", methods=["POST"])
+@jwt_required()
 def create_item():
+    user_id = get_jwt_identity()
     data = request.get_json()
 
     try:
@@ -29,7 +34,9 @@ def create_item():
     return jsonify(item_schema.dump(new_item)), 201
 
 @item_bp.route("/<int:item_id>", methods=["DELETE"])
+@jwt_required()
 def delete_item(item_id):
+    user_id = get_jwt_identity()
     item = Item.query.get(item_id)
 
     if not item:
