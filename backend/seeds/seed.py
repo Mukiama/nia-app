@@ -6,7 +6,8 @@ from models import db, Profile, Item, Place, Category
 
 
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
-ITEM_FILE = Path(__file__).resolve().parent / "items.json"
+ITEM_FILE = Path(__file__).resolve().parent / "items.json"\
+USER_FILE = Path(__file__).resolve().parent / "users.json"
 
 
 with app.app_context():
