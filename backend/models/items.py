@@ -14,7 +14,7 @@ class Item(db.Model):
     )
 
     category_id = db.Column(
-        db.Integer,
-        db.ForeignKey("category.id"),
-        nullable=False,
-    )
+    db.Integer,
+    db.ForeignKey("categories.id"),
+    nullable=False,
+)
