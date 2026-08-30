@@ -31,6 +31,12 @@ with app.app_context():
             place = Place.query.filter_by(name=item_data["place"]).first()
             category = Category.query.filter_by(name=item_data["category"]).first()
 
+        if not place:
+            raise ValueError(f"Place not found: {item_data['place']}")
+
+        if not category:
+            raise ValueError(f"Category not found: {item_data['category']}")
+
             item = Item(
                 name=item_data["name"],
                 description=item_data["description"],
