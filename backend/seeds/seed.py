@@ -51,6 +51,14 @@ with app.app_context():
 
 db.session.add(item)
 
+for category_data in categories:
+    category = Category(
+        name=category_data["name"],
+        description=category_data["description"]
+    )
+
+    db.session.add(category)
+
 db.session.commit()
 
 print(f"Successfully seeded {len(profiles)} profiles.")
