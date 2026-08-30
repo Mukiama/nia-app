@@ -72,4 +72,19 @@
     "place": "The Maasai Market",
     "category": "Markets & Shopping"
   }
+  ,
+  {
+    "name": "Village Market Shopping Experience",
+    "description": "Enjoy shopping, dining and entertainment at one of Nairobi's major lifestyle destinations.",
+    "cost": 1000.0,
+    "place": "Village Market",
+    "category": "Shopping & Entertainment"
+  },
+  {
+    "name": "Museum of Illusions Experience",
+    "description": "Enjoy interactive optical illusions, visual puzzles and immersive experiences.",
+    "cost": 1800.0,
+    "place": "Museum of Illusions Nairobi",
+    "category": "Entertainment"
+  }
 ]
