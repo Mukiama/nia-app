@@ -13,6 +13,9 @@ with app.app_context():
 
     with open(PROFILE_FILE, "r", encoding="utf-8") as f:
         profiles = json.load(f)
+        
+    with open(ITEM_FILE, "r", encoding="utf-8") as f:
+        items = json.load(f)
 
     for profile_data in profiles:
 
