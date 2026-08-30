@@ -52,7 +52,7 @@ class Login(Resource) :
 
 
 class Verification(Resource) :
-  def check_session(self) :
+  def get(self) :
     user_id = get_jwt_identity()
 
     user = User.query.filter(User.id == user_id).first()
