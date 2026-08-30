@@ -4,8 +4,7 @@ from sqlalchemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
-from app import bcrypt
+from extensions import bcrypt
 
 class User(db.Model) :
     __tablename__ = 'users'
@@ -20,8 +19,8 @@ class User(db.Model) :
     # user_places = db.relationship('UserPlace', back_populates='user')
 
     __table_args__ = (
-        db.CheckConstraint('length(password) >= 6'),
-    )
+    db.CheckConstraint('length(_password_hash) >= 6'),
+)
 
     @validates('email')
     def email_validation(self, key, value) :

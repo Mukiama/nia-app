@@ -3,9 +3,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from config import Config
 from models import db
-from flask_bcrypt import Bcrypt
-from flask_restful import Api
-from flask_jwt_extended import JWTManager
+from extensions import bcrypt, api, jwt
 import os
 from dotenv import load_dotenv
 from flask_jwt_extended import jwt_required
@@ -34,9 +32,9 @@ app.register_blueprint(place_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(category_bp)
 app.register_blueprint(item_bp)
-bcrypt = Bcrypt(app)
-api = Api(app)
-jwt = JWTManager(app)
+bcrypt.init_app(app)
+api.init_app(app)
+jwt.init_app(app)
 
 
 
@@ -48,7 +46,14 @@ api.add_resource(Signup, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Verification, '/verification', endpoint='verification')
 api.add_resource(Logout, '/logout', endpoint='logout')
+from flask import request
+from flask_jwt_extended import verify_jwt_in_request
 
+@app.before_request
+def check_if_logged_in():
+    open_access = ['signup', 'login', 'verification', 'index', 'places.get_places', 'places.get_place']
+    if request.endpoint not in open_access and not verify_jwt_in_request():
+        return {'error': '401 Unauthorized'}, 401
 
 if __name__ == "__main__":
   app.run(debug=True)
