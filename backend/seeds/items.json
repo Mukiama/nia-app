@@ -35,4 +35,26 @@
     "place": "Oloolua Nature Trail",
     "category": "Nature & Hiking"
   }
+  ,
+  {
+    "name": "Karen Blixen Museum Tour",
+    "description": "Explore the historic home and learn about Karen Blixen's life in Kenya.",
+    "cost": 1200.0,
+    "place": "Karen Blixen Museum",
+    "category": "Museum & History"
+  },
+  {
+    "name": "Nairobi National Museum Tour",
+    "description": "Discover Kenya's history, culture, art, archaeology and natural heritage.",
+    "cost": 1500.0,
+    "place": "Nairobi National Museum",
+    "category": "Museum & History"
+  },
+  {
+    "name": "Nairobi Railway Museum Tour",
+    "description": "Explore historical locomotives, railway artefacts and the history of Kenya's railway.",
+    "cost": 1000.0,
+    "place": "Nairobi Railway Museum",
+    "category": "Museum & History"
+  }
 ]
