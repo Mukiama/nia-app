@@ -4,8 +4,7 @@ from sqlalchemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
-from app import bcrypt
+from extensions import bcrypt
 
 class User(db.Model) :
     __tablename__ = 'users'

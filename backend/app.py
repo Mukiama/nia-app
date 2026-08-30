@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from config import Config
 from models import db
-from flask_bcrypt import Bcrypt
+from extensions import bcrypt
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 import os
@@ -34,7 +34,7 @@ app.register_blueprint(place_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(category_bp)
 app.register_blueprint(item_bp)
-bcrypt = Bcrypt(app)
+bcrypt.init_app(app)
 api = Api(app)
 jwt = JWTManager(app)
 
