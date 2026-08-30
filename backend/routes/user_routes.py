@@ -31,7 +31,7 @@ class Signup(Resource):
         try:
             db.session.add(new_user)
             db.session.commit()
-            access_token = create_access_token(identity=int(new_user.id))
+            access_token = create_access_token(identity=str(new_user.id))
             return make_response(
                 jsonify(token=access_token, user=UserSchema().dump(new_user)),
                 200,
@@ -53,7 +53,7 @@ class Login(Resource):
         ).first()
 
         if found_user and found_user.authenticate(password):
-            access_token = create_access_token(identity=int(found_user.id))
+            access_token = create_access_token(identity=str(found_user.id))
             return make_response(
                 jsonify(token=access_token, user=UserSchema().dump(found_user)),
                 200,
