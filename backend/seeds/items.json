@@ -20,4 +20,19 @@
     "place": "Nairobi National Park",
     "category": "National Park"
   }
+  ,
+  {
+    "name": "Karura Forest Hiking",
+    "description": "Explore forest trails, waterfalls and caves on a guided hiking experience.",
+    "cost": 2000.0,
+    "place": "Karura Forest",
+    "category": "Forest & Nature"
+  },
+  {
+    "name": "Oloolua Nature Trail",
+    "description": "Explore indigenous forest trails, caves, waterfalls and wildlife.",
+    "cost": 1800.0,
+    "place": "Oloolua Nature Trail",
+    "category": "Nature & Hiking"
+  }
 ]
