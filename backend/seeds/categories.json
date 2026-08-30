@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Wildlife & Nature",
+    "description": "Places and experiences focused on wildlife, nature and conservation."
+  },
+  {
+    "name": "National Park",
+    "description": "Protected natural areas offering wildlife viewing and outdoor experiences."
+  },
+  {
+    "name": "Forest & Nature",
+    "description": "Forests, natural landscapes and outdoor nature experiences."
+  },
+  {
+    "name": "Museum & History",
+    "description": "Museums and attractions focused on history, heritage and historical experiences."
+  },
+  {
+    "name": "Culture",
+    "description": "Places and experiences showcasing Kenyan culture, traditions and heritage."
+  },
+  {
+    "name": "Shopping & Entertainment",
+    "description": "Shopping centres and destinations offering entertainment and leisure activities."
+  },
+  {
+    "name": "Markets & Shopping",
+    "description": "Markets and shopping destinations featuring local goods, crafts and products."
+  },
+  {
+    "name": "Art & Culture",
+    "description": "Art galleries, creative spaces and cultural experiences."
+  },
+  {
+    "name": "Parks & Recreation",
+    "description": "Public parks and recreational spaces for leisure and outdoor activities."
+  },
+  {
+    "name": "Entertainment",
+    "description": "Entertainment venues and interactive recreational experiences."
+  },
+  {
+    "name": "Culture & Heritage",
+    "description": "Attractions focused on African culture, heritage and architecture."
+  },
+  {
+    "name": "Monument & History",
+    "description": "Historic monuments and places connected to Kenya's history."
+  },
+  {
+    "name": "Parks & Nature",
+    "description": "Parks, botanical gardens and natural outdoor spaces."
+  },
+  {
+    "name": "Nature & Hiking",
+    "description": "Nature trails, hiking routes and outdoor adventures."
+  },
+  {
+    "name": "Nature & Recreation",
+    "description": "Natural attractions combined with recreational activities."
+  },
+  {
+    "name": "Wildlife & Recreation",
+    "description": "Wildlife attractions combined with recreational and family activities."
+  },
+  {
+    "name": "Wildlife & Conservation",
+    "description": "Wildlife facilities focused on conservation, rescue and rehabilitation."
+  },
+  {
+    "name": "Culture & Shopping",
+    "description": "Destinations combining cultural experiences with shopping."
+  },
+  {
+    "name": "Culture & Community",
+    "description": "Community-based cultural experiences and local neighbourhood attractions."
+  },
+  {
+    "name": "Shopping",
+    "description": "Shopping centres and retail destinations."
+  },
+  {
+    "name": "Shopping & Food",
+    "description": "Destinations combining shopping with food and dining experiences."
+  },
+  {
+    "name": "History & Recreation",
+    "description": "Historic attractions that also provide recreational experiences."
+  },
+  {
+    "name": "History & Culture",
+    "description": "Places preserving and showcasing Kenya's history and culture."
+  },
+  {
+    "name": "History & Landmark",
+    "description": "Historic landmarks connected to Nairobi and Kenya's development."
+  },
+  {
+    "name": "Landmark",
+    "description": "Major landmarks and recognisable places of interest."
+  },
+  {
+    "name": "History & Memorial",
+    "description": "Memorial sites and places commemorating important historical events."
+  }
+]
