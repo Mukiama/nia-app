@@ -51,6 +51,16 @@ with app.app_context():
 
 db.session.add(item)
 
+for user_data in users:
+    user = User(
+        name=user_data["name"],
+        email=user_data["email"]
+    )
+
+    user.password_hash = user_data["password"]
+
+    db.session.add(user)
+
 db.session.commit()
 
 print(f"Successfully seeded {len(profiles)} profiles.")
