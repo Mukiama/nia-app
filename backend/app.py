@@ -3,9 +3,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from config import Config
 from models import db
-from extensions import bcrypt
-from flask_restful import Api
-from flask_jwt_extended import JWTManager
+from extensions import bcrypt, api, jwt
 import os
 from dotenv import load_dotenv
 from flask_jwt_extended import jwt_required
@@ -35,8 +33,8 @@ app.register_blueprint(profile_bp)
 app.register_blueprint(category_bp)
 app.register_blueprint(item_bp)
 bcrypt.init_app(app)
-api = Api(app)
-jwt = JWTManager(app)
+api.init_app(app)
+jwt.init_app(app)
 
 
 
