@@ -3,7 +3,6 @@ from . import db
 from sqlalchemy.orm import validates
 
 
-
 class Profile(db.Model):
     __tablename__ = "profiles"
 
@@ -17,12 +16,12 @@ class Profile(db.Model):
         nullable=False,
         unique=True,
     )
+
     @validates("interests", "budget", "company")
     def validate_text_fields(self, key, value):
-       
-       if not isinstance(value, str) or not value.strip():
+        if not isinstance(value, str) or not value.strip():
             raise ValueError(f"{key} must be a non-empty string.")
-       return value.strip()
+        return value.strip()
 
     @validates("user_id")
     def validate_user_id(self, key, value):
