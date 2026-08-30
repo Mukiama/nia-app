@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from app import app
-from models import db, Profile, Item, Place, Category
+from models import db, Profile, Item, Place, Category, User
 
 
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
