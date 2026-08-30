@@ -91,21 +91,22 @@ function Hero() {
           around Nairobi.
         </p>
 
-      <div className="hero-actions">
+        <div className="hero-actions">
 
-      {/* <Link
-          to="/nearby-finds"
-          className="hero-primary"
-        >
-         Nearby Finds
-        </Link> */}
+          {/* <Link
+              to="/nearby-finds"
+              className="hero-primary"
+            >
+             Nearby Finds
+            </Link> */}
 
-        <Link
-          to="/nia-picks"
-          className="hero-secondary"
-        >
-         Find Your Next Thing
-        </Link> 
+          <Link
+            to="/nia-picks"
+            className="hero-secondary"
+          >
+            Find Your Next Thing
+          </Link>
+
         </div>
 
       </div>

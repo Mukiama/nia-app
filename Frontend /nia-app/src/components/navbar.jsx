@@ -18,6 +18,7 @@ export default function Navbar({
         </div>
 
         <nav className="desktop-nav">
+          <Link to="/">Explore</Link>
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/offmap">Off Map</Link>
           <Link to="/history">History</Link>
