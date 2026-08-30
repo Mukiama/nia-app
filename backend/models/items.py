@@ -1,16 +1,12 @@
-from sqlalchemy import MetaData
-from flask_sqlalchemy import SQLAlchemy
-
-metadata = MetaData()
-db = SQLAlchemy(metadata=metadata)
+from . import db
 
 class Item(db.Model):
     __tablename__ = "items"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String, nullable=False)
-    description = db.Column(db.Strings, nullable=False)
+    description = db.Column(db.String, nullable=False)
     cost = db.Column(db.Float, nullable=False)
-
+    
     place_id = db.Column(
         db.Integer,
         db.ForeignKey("places.id"),
@@ -18,7 +14,8 @@ class Item(db.Model):
     )
 
     category_id = db.Column(
-        db.Integer,
-        db.ForeignKey("category.id"),
-        nullable=False,
-    )
+    db.Integer,
+    db.ForeignKey("categories.id"),
+    nullable=False,
+)
+    category = db.relationship("Category", back_populates="items")

@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Giraffe Feeding Experience",
+    "description": "Get close to Rothschild's giraffes and participate in a guided feeding experience.",
+    "cost": 1500.0,
+    "place": "Giraffe Centre",
+    "category": "Wildlife & Nature"
+  },
+  {
+    "name": "Elephant Conservation Visit",
+    "description": "Learn about elephant rescue, rehabilitation and conservation efforts.",
+    "cost": 2000.0,
+    "place": "Sheldrick Wildlife Trust",
+    "category": "Wildlife & Nature"
+  },
+  {
+    "name": "Nairobi National Park Game Drive",
+    "description": "Enjoy a guided game drive to see lions, giraffes, zebras, rhinos and other wildlife.",
+    "cost": 3500.0,
+    "place": "Nairobi National Park",
+    "category": "National Park"
+  }
+  ,
+  {
+    "name": "Karura Forest Hiking",
+    "description": "Explore forest trails, waterfalls and caves on a guided hiking experience.",
+    "cost": 2000.0,
+    "place": "Karura Forest",
+    "category": "Forest & Nature"
+  },
+  {
+    "name": "Oloolua Nature Trail",
+    "description": "Explore indigenous forest trails, caves, waterfalls and wildlife.",
+    "cost": 1800.0,
+    "place": "Oloolua Nature Trail",
+    "category": "Nature & Hiking"
+  }
+  ,
+  {
+    "name": "Karen Blixen Museum Tour",
+    "description": "Explore the historic home and learn about Karen Blixen's life in Kenya.",
+    "cost": 1200.0,
+    "place": "Karen Blixen Museum",
+    "category": "Museum & History"
+  },
+  {
+    "name": "Nairobi National Museum Tour",
+    "description": "Discover Kenya's history, culture, art, archaeology and natural heritage.",
+    "cost": 1500.0,
+    "place": "Nairobi National Museum",
+    "category": "Museum & History"
+  },
+  {
+    "name": "Nairobi Railway Museum Tour",
+    "description": "Explore historical locomotives, railway artefacts and the history of Kenya's railway.",
+    "cost": 1000.0,
+    "place": "Nairobi Railway Museum",
+    "category": "Museum & History"
+  }
+  ,
+  {
+    "name": "Bomas Cultural Experience",
+    "description": "Experience traditional Kenyan cultures through music, dance and cultural performances.",
+    "cost": 1800.0,
+    "place": "Bomas of Kenya",
+    "category": "Culture"
+  },
+  {
+    "name": "Maasai Market Shopping",
+    "description": "Shop for Kenyan crafts, artwork, jewellery, fabrics and souvenirs.",
+    "cost": 500.0,
+    "place": "The Maasai Market",
+    "category": "Markets & Shopping"
+  }
+  ,
+  {
+    "name": "Village Market Shopping Experience",
+    "description": "Enjoy shopping, dining and entertainment at one of Nairobi's major lifestyle destinations.",
+    "cost": 1000.0,
+    "place": "Village Market",
+    "category": "Shopping & Entertainment"
+  },
+  {
+    "name": "Museum of Illusions Experience",
+    "description": "Enjoy interactive optical illusions, visual puzzles and immersive experiences.",
+    "cost": 1800.0,
+    "place": "Museum of Illusions Nairobi",
+    "category": "Entertainment"
+  }
+]

@@ -1,4 +1,4 @@
-from models.user import db
+from . import db
 
 class Place(db.Model):
     __tablename__ = "places"
