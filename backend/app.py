@@ -56,6 +56,9 @@ def index():
 
 @app.before_request
 def check_if_logged_in():
+    if request.method == "OPTIONS":
+        return None
+
     open_access = ["signup", "login", "index", "static"]
 
     if request.endpoint not in open_access and not verify_jwt_in_request():
