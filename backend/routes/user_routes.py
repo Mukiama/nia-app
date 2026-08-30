@@ -39,7 +39,7 @@ class Login(Resource) :
     name = request.get_json()['name'] 
     email = request.get_json()['email']
 
-    user = User.query.filter(User.name == name and User.email == email).first()
+    user = User.query.filter(User.name == name, User.email == email).first()
 
     password = request.get_json()['password']
 
