@@ -39,13 +39,13 @@ jwt.init_app(app)
 
 @app.route("/")
 def index():
-    return {"message": "backend running"}
+    return {"message":"backend running"}
 
+api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(Verification, '/verification', endpoint='verification')
+api.add_resource(Logout, '/logout', endpoint='logout')
 
-api.add_resource(Signup, "/signup", endpoint="signup")
-api.add_resource(Login, "/login", endpoint="login")
-api.add_resource(Verification, "/verification", endpoint="verification")
-api.add_resource(Logout, "/logout", endpoint="logout")
 
 
 if __name__ == "__main__":
