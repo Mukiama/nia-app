@@ -1,13 +1,10 @@
 from marshmallow import Schema, fields, validates_schema, ValidationError
 
-# Import UserplaceSchema
-
 class UserSchema(Schema) :
     id = fields.Integer(dump_only=True)
     name = fields.String(required=True)
     email = fields.String(required=True)
-    password = fields.String(required=True)
-    user_places = fields.List(fields.Nested(lambda : UserplaceSchema(exclude=('user', ))))
+    # TODO: add user_places back once UserPlace model + schema exist
 
     @validates_schema
     def check_email(self, data, **kwargs) :

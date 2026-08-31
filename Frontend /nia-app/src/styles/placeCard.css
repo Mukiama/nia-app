@@ -115,7 +115,7 @@
   font-family: Georgia, serif;
 
   font-size: 0.90rem;
-  font-weight: 700;
+  font-weight: 500;
 
   line-height: 1.2;
 }
@@ -128,7 +128,9 @@
 .place-card-description {
   margin: 0;
 
-  color: #a8a29e;
+  color: #c4beb9;
+  font-weight: 500;
+
 
   font-family: system-ui, sans-serif;
 

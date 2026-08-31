@@ -1,0 +1,559 @@
+/* =========================================
+   HIDDEN GEMS
+========================================= */
+
+.hidden-gems-page {
+  background: #f8f7f3;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hidden-gems-hero {
+  position: relative;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hidden-gems-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.45) 45%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+.hidden-gems-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 100px 7%;
+  color: white;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hidden-gems-hero h1 {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -4px;
+  font-weight: 700;
+}
+
+.hidden-gems-hero p {
+  max-width: 580px;
+  margin: 28px 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hidden-gems-search {
+  width: min(560px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: white;
+  color: #171717;
+}
+
+.hidden-gems-search span {
+  font-size: 25px;
+}
+
+.hidden-gems-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: transparent;
+}
+
+/* =========================================
+   VIBES
+========================================= */
+
+.hidden-gems-vibes {
+  padding: 80px 7% 50px;
+}
+
+.section-heading h2,
+.section-heading-row h2 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.section-heading p,
+.section-heading-row p {
+  margin-top: 12px;
+  color: #666;
+}
+
+.vibe-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.vibe-button,
+.location-button {
+  border: 1px solid #d7d5ce;
+  background: transparent;
+  border-radius: 100px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 14px;
+}
+
+.vibe-button:hover,
+.location-button:hover,
+.vibe-button.active,
+.location-button.active {
+  background: #171717;
+  color: white;
+  border-color: #171717;
+}
+
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
+
+.hidden-section {
+  padding: 70px 7%;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.view-all-link {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.view-all-link span {
+  margin-left: 8px;
+}
+
+/* =========================================
+   FEATURED
+========================================= */
+
+.featured-gems {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.featured-gem-card {
+  min-width: 0;
+}
+
+.featured-image-wrapper,
+.gem-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.featured-image-wrapper {
+  height: 390px;
+}
+
+.featured-gem-image,
+.gem-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.featured-gem-card:hover img,
+.gem-card:hover img {
+  transform: scale(1.04);
+}
+
+.hidden-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 7px 11px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.save-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.featured-card-content {
+  padding-top: 16px;
+}
+
+.card-meta {
+  display: flex;
+  gap: 7px;
+  color: #777;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.featured-card-content h3,
+.gem-card-content h3 {
+  margin: 9px 0 7px;
+  font-size: 21px;
+}
+
+.featured-card-content p,
+.gem-card-content p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.rating {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.rating span {
+  margin-right: 4px;
+}
+
+/* =========================================
+   HIDDEN SCALE
+========================================= */
+
+.hidden-level-section {
+  margin: 40px 7%;
+  padding: 80px 7%;
+  background: #1b1b1b;
+  color: white;
+}
+
+.hidden-level-content {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.hidden-level-content > p {
+  max-width: 600px;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.hidden-scale {
+  margin-top: 50px;
+}
+
+.scale-item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 25px;
+  padding: 25px 0;
+  border-top: 1px solid #3a3a3a;
+}
+
+.scale-number {
+  font-size: 12px;
+  color: #888;
+}
+
+.scale-item h3 {
+  margin: 0 0 7px;
+  font-size: 22px;
+}
+
+.scale-item p {
+  margin: 0;
+  color: #999;
+}
+
+/* =========================================
+   LOCATIONS
+========================================= */
+
+.locations-section {
+  background: #f8f7f3;
+}
+
+.location-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 25px 0 35px;
+}
+
+.location-list::-webkit-scrollbar {
+  display: none;
+}
+
+.gem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.gem-image-wrapper {
+  height: 340px;
+}
+
+.gem-card-content {
+  padding-top: 16px;
+}
+
+.gem-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hidden-level {
+  margin-top: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 0.7px;
+}
+
+/* =========================================
+   DISCOVERY CHALLENGE
+========================================= */
+
+.discovery-section {
+  padding: 100px 7%;
+  background: #ebe9e2;
+}
+
+.discovery-content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.mystery-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.mystery-card {
+  min-height: 300px;
+  padding: 28px;
+  background: #f8f7f3;
+  border: 1px solid #ddd9d0;
+  position: relative;
+  overflow: hidden;
+}
+
+.mystery-card > span {
+  font-size: 11px;
+  color: #999;
+}
+
+.mystery-icon {
+  position: absolute;
+  top: 35px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+}
+
+.mystery-card h3 {
+  margin-top: 130px;
+  max-width: 220px;
+  font-size: 24px;
+}
+
+.mystery-card p {
+  color: #777;
+}
+
+/* =========================================
+   FEELING LUCKY
+========================================= */
+
+.hidden-lucky-section {
+  padding: 120px 7%;
+  text-align: center;
+  background: #171717;
+  color: white;
+}
+
+.lucky-content {
+  max-width: 650px;
+  margin: auto;
+}
+
+.lucky-star {
+  font-size: 32px;
+}
+
+.lucky-content h2 {
+  margin: 20px 0 12px;
+  font-size: clamp(35px, 5vw, 58px);
+  letter-spacing: -2px;
+}
+
+.lucky-content p {
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.lucky-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  padding: 16px 22px;
+  background: white;
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 3px;
+  transition: 0.2s ease;
+}
+
+.lucky-button:hover {
+  transform: translateY(-2px);
+}
+
+.lucky-button span {
+  font-size: 20px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+  .featured-gems {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gem-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mystery-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hidden-gems-hero {
+    min-height: 600px;
+  }
+
+  .hidden-gems-hero-content {
+    padding: 70px 6%;
+  }
+
+  .hidden-gems-hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .hidden-gems-vibes,
+  .hidden-section {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .section-heading-row {
+    display: block;
+  }
+
+  .view-all-link {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .featured-gems {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+  }
+
+  .featured-gem-card {
+    flex: 0 0 78%;
+  }
+
+  .featured-image-wrapper {
+    height: 330px;
+  }
+
+  .hidden-level-section {
+    margin: 20px 0;
+    padding: 70px 6%;
+  }
+
+  .gem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gem-image-wrapper {
+    height: 360px;
+  }
+
+  .discovery-section {
+    padding: 80px 6%;
+  }
+
+  .hidden-lucky-section {
+    padding: 90px 6%;
+  }
+}

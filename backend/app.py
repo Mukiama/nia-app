@@ -7,14 +7,17 @@ import os
 
 from config import Config
 from models import db
-from extensions import bcrypt, jwt
-from flask_jwt_extended import verify_jwt_in_request
+from extensions import bcrypt, api, jwt
+import os
+from dotenv import load_dotenv
 
 from routes.place_routes import place_bp
 from routes.profile_routes import profile_bp
 from routes.category_routes import category_bp
 from routes.items_routes import item_bp
 from routes.user_routes import Signup, Login, Logout, Verification
+from routes.user_place import user_place_bp
+
 
 load_dotenv()
 
@@ -39,6 +42,7 @@ CORS(
 
 api = Api(app)
 
+
 app.register_blueprint(place_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(category_bp)
@@ -48,6 +52,7 @@ api.add_resource(Signup, "/signup", endpoint="signup")
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Verification, "/verification", endpoint="verification")
 api.add_resource(Logout, "/logout", endpoint="logout")
+
 
 
 @app.route("/")
@@ -64,6 +69,15 @@ def check_if_logged_in():
     if request.endpoint not in open_access and not verify_jwt_in_request():
         return {"error": "401 Unauthorized"}, 401
 
+
+from flask import request
+from flask_jwt_extended import verify_jwt_in_request
+
+@app.before_request
+def check_if_logged_in():
+    open_access = ['signup', 'login', 'verification', 'index', 'places.get_places', 'places.get_place']
+    if request.endpoint not in open_access and not verify_jwt_in_request():
+        return {'error': '401 Unauthorized'}, 401
 
 if __name__ == "__main__":
     app.run(debug=True)

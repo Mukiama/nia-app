@@ -19,3 +19,4 @@ from .profile import Profile
 from .place import Place
 from .items import Item
 from .category import Category
+from models.user_place import UserPlace

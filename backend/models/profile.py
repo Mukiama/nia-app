@@ -1,4 +1,4 @@
-from . import db
+from models.user import db
 
 from sqlalchemy.orm import validates
 

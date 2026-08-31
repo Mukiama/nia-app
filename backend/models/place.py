@@ -13,6 +13,7 @@ class Place(db.Model):
     category = db.Column(db.String)
     operating_hours = db.Column(db.String)
     gps = db.Column(db.String)
+    user_places = db.relationship( "UserPlace", back_populates="place", cascade="all, delete-orphan" )
 
     def __repr__(self):
         return f"<Place {self.id}: {self.name}>"
