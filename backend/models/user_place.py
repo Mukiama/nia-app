@@ -70,4 +70,4 @@ class UserPlace(db.Model):
             f"place_id={self.place_id}>"
         )
 
-    
+
