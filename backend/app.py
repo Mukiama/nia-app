@@ -1,4 +1,4 @@
-from flask import Flask, request, session
+from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
 from config import Config
@@ -6,36 +6,35 @@ from models import db
 from extensions import bcrypt, api, jwt
 import os
 from dotenv import load_dotenv
-from flask_jwt_extended import jwt_required
-
 
 from routes.place_routes import place_bp
 from routes.profile_routes import profile_bp
 from routes.category_routes import category_bp
 from routes.items_routes import item_bp
 from routes.user_routes import Signup, Login, Logout, Verification
-
-
+from routes.user_place import user_place_bp
 
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 
 
 db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
+
 app.register_blueprint(place_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(category_bp)
 app.register_blueprint(item_bp)
+app.register_blueprint(user_place_bp)
+
 bcrypt.init_app(app)
 api.init_app(app)
 jwt.init_app(app)
-
 
 
 @app.route("/")
@@ -58,4 +57,4 @@ def check_if_logged_in():
         return {'error': '401 Unauthorized'}, 401
 
 if __name__ == "__main__":
-  app.run(debug=True)
+    app.run(debug=True)

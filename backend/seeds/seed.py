@@ -7,6 +7,7 @@ from models import db, Profile, Item, Place, Category
 
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
 ITEM_FILE = Path(__file__).resolve().parent / "items.json"
+CATEGORY_FILE = Path(__file__).resolve().parent / "categories.json"
 
 
 with app.app_context():
@@ -16,6 +17,9 @@ with app.app_context():
 
     with open(ITEM_FILE, "r", encoding="utf-8") as f:
         items = json.load(f)
+
+    with open(CATEGORY_FILE, "r", encoding="utf-8") as f:
+        categories = json.load(f)
 
     for profile_data in profiles:
 
@@ -46,6 +50,14 @@ with app.app_context():
 )
 
 db.session.add(item)
+
+for category_data in categories:
+    category = Category(
+        name=category_data["name"],
+        description=category_data["description"]
+    )
+
+    db.session.add(category)
 
 db.session.commit()
 
