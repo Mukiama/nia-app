@@ -101,7 +101,7 @@ function Topbar() {
 
           {/* CATEGORIES */}
 
-          <div className="nav-dropdown">
+          {/* <div className="nav-dropdown"> */}
 
           {/* 
             <button className="nav-link" type="button">
@@ -164,7 +164,7 @@ function Topbar() {
 
         </div>
         */}
-
+          </nav>
 
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
