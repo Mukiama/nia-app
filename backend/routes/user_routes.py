@@ -1,5 +1,6 @@
 from flask import request, make_response, jsonify
 from flask_restful import Resource
+from sqlalchemy import and_
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token, get_jwt_identity
 
@@ -104,16 +105,12 @@ class Verification(Resource):
     def get(self):
         user_id = get_jwt_identity()
 
-        user = User.query.filter(
-            User.id == user_id
-        ).first()
+        found_user = User.query.filter(User.id == user_id).first()
 
-        if not user:
-            return {
-                "error": "Unauthorized"
-            }, 401
+        if not found_user:
+            return {'error': 'User not found'}, 404
 
-        return UserSchema().dump(user), 200
+        return UserSchema().dump(found_user), 200
 
 
 class Logout(Resource):

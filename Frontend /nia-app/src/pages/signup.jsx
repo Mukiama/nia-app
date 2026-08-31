@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import { API_URL, setAuth } from "../api/client";
 
 export default function Signup() {
   const [signupForm, setSignUpForm] = useState({
@@ -31,56 +32,43 @@ export default function Signup() {
   }
 
   async function handleSubmit(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const validationError = validateForm();
+    const validationError = validateForm();
 
-  if (validationError) {
-    setError(validationError);
-    return;
-  }
-
-  try {
-    const existingUsers = await fetch(
-      `https://nia-app-ik4c.onrender.com/users?email=${encodeURIComponent(
-        signupForm.email
-      )}`
-    );
-
-    const users = await existingUsers.json();
-
-    if (users.length > 0) {
-      setError("An account with this email already exists.");
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
-    const response = await fetch("https://nia-app-ik4c.onrender.com/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signupForm),
-    });
+    try {
+      const response = await fetch(`${API_URL}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupForm),
+      });
 
-    if (!response.ok) {
-      throw new Error("Signup failed.");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Signup failed.");
+      }
+
+      setAuth({ token: data.token, user: data.user });
+
+      setSignUpForm({
+        name: "",
+        email: "",
+        password: "",
+      });
+
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
     }
-
-    const data = await response.json();
-
-    console.log("Created user:", data);
-
-    setSignUpForm({
-      name: "",
-      email: "",
-      password: "",
-    });
-
-    navigate("/dashboard");
-  } catch (error) {
-    setError(error.message);
   }
-}
 
   function handleOnChange(e) {
     setSignUpForm({
