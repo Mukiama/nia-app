@@ -187,7 +187,7 @@ function Home() {
 
             </div>
           </div>
-        </section> 
+        </section>
 
         {/* OFFMAP */}
         <section className="offmap-section">
@@ -238,8 +238,6 @@ function Home() {
           </div>
         </section>
       </main>
-        </section> 
-      </main> 
 
       <Footer />
     </>

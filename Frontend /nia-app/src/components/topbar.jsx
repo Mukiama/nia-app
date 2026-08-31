@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 function Topbar() {
@@ -101,14 +100,13 @@ function Topbar() {
 
 
           {/* CATEGORIES */}
-
-          {/* 
+          {/*
           <div className="nav-dropdown">
 
             <button className="nav-link" type="button">
               Categories
               <span className="nav-arrow">⌄</span>
-            </button> */}
+            </button>
 
             <div className="dropdown-menu categories-menu">
 
@@ -246,4 +244,3 @@ function Topbar() {
 }
 
 export default Topbar;
-

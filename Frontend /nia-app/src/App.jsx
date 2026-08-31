@@ -11,7 +11,6 @@ import Hero from "./pages/hero";
 import Profile from "./pages/profile";
 import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
-// import Profile from "./pages/profile";
 import History from "./pages/history";
 import Filter from "./pages/filter";
 import Favorites from "./pages/favorites";
@@ -45,6 +44,7 @@ export default function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/offmap" element={<OffMap />} />
         <Route path="/hidden-gems" element={<HiddenGems />} />
+        <Route path="/profile/:id" element={<Profile />} />
       </Route>
     </Routes>
   );
