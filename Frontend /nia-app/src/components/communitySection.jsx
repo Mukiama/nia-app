@@ -62,9 +62,10 @@ function CommunitySection() {
   return (
     <section className="community-section">
 
-      {/* HEADER */}
+      {/* =========================
+          HEADER
+      ========================= */}
       <div className="community-header">
-
         <div>
           <span className="community-eyebrow">
             NIA COMMUNITY
@@ -82,16 +83,21 @@ function CommunitySection() {
           </p>
         </div>
 
-        <Link to="/community" className="community-view-all">
+        <Link
+          to="/community"
+          className="community-view-all"
+        >
           View community
           <span>→</span>
         </Link>
-
       </div>
 
-      {/* MEMBER CARDS */}
+      {/* =========================
+          MEMBER CARDS
+      ========================= */}
       <div className="community-carousel-wrapper">
 
+        {/* BACK ARROW */}
         <button
           className="community-arrow community-arrow-left"
           onClick={() => scroll("left")}
@@ -114,7 +120,7 @@ function CommunitySection() {
               <div className="member-image-wrapper">
                 <img
                   src={member.image}
-                  alt={member.name}
+                  alt={`${member.name}'s profile`}
                   className="member-image"
                 />
 
@@ -129,14 +135,20 @@ function CommunitySection() {
                 <div className="member-name-row">
                   <div>
                     <h3>{member.name}</h3>
+
                     <span className="member-username">
                       {member.username}
                     </span>
                   </div>
 
-                  <span className="member-arrow">
+                  {/* PROFILE ARROW */}
+                  <Link
+                    to={`/profile/${member.id}`}
+                    className="member-arrow"
+                    aria-label={`View ${member.name}'s profile`}
+                  >
                     ↗
-                  </span>
+                  </Link>
                 </div>
 
                 <span className="member-role">
@@ -147,8 +159,9 @@ function CommunitySection() {
                   “{member.quote}”
                 </p>
 
+                {/* VIEW PROFILE */}
                 <Link
-                  to={`/community/${member.id}`}
+                  to={`/profile/${member.id}`}
                   className="member-profile-link"
                 >
                   View profile
@@ -156,11 +169,11 @@ function CommunitySection() {
                 </Link>
 
               </div>
-
             </article>
           ))}
         </div>
 
+        {/* NEXT ARROW */}
         <button
           className="community-arrow community-arrow-right"
           onClick={() => scroll("right")}
@@ -171,7 +184,9 @@ function CommunitySection() {
 
       </div>
 
-      {/* BECOME A MEMBER */}
+      {/* =========================
+          BECOME A MEMBER
+      ========================= */}
       <div className="become-member">
 
         <div className="become-member-content">
@@ -208,4 +223,3 @@ function CommunitySection() {
 }
 
 export default CommunitySection;
-

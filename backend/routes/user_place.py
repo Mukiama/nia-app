@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from marshmallow import ValidationError
 
 from models import db, UserPlace
 from schemas.user_place import UserPlaceSchema
@@ -59,6 +60,13 @@ def create_user_place():
             user_place_schema.dump(user_place)
         ), 201
 
+    except ValidationError as error:
+        db.session.rollback()
+
+        return jsonify({
+            "error": error.messages
+        }), 400
+
     except Exception as error:
         db.session.rollback()
 
@@ -85,23 +93,24 @@ def update_user_place(user_place_id):
         }), 400
 
     try:
-        if "visited_at" in data:
-            user_place.visited_at = data["visited_at"]
-
-        if "review" in data:
-            user_place.review = data["review"]
-
-        if "user_id" in data:
-            user_place.user_id = data["user_id"]
-
-        if "place_id" in data:
-            user_place.place_id = data["place_id"]
+        user_place = user_place_schema.load(
+            data,
+            instance=user_place,
+            partial=True
+        )
 
         db.session.commit()
 
         return jsonify(
             user_place_schema.dump(user_place)
         ), 200
+
+    except ValidationError as error:
+        db.session.rollback()
+
+        return jsonify({
+            "error": error.messages
+        }), 400
 
     except Exception as error:
         db.session.rollback()
