@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { API_URL, authFetch } from "../api/client";
 
 import "../styles/placeDetail.css";
 
-const API_URL = "https://nia-app-ik4c.onrender.com";
+// NOTE: the favourites/history calls below (API_URL + "/favourites" and
+// "/history") don't have matching routes in the Flask backend yet — those
+// are still mock-API-shaped and will keep failing silently (caught by the
+// existing try/catch) until that backend work is done. Only the place
+// lookup itself has been switched over, since /places/:id is a real route.
 
 export default function PlaceDetails() {
   const { id } = useParams();
@@ -29,9 +34,7 @@ export default function PlaceDetails() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `${API_URL}/places/${id}`
-        );
+        const response = await authFetch(`/places/${id}`);
 
         if (!response.ok) {
           throw new Error("Place not found.");

@@ -1,107 +1,67 @@
-from flask import Flask, request, session
-from flask_cors import CORS
+from flask import Flask, request, make_response
+from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
+from flask_restful import Api
+from dotenv import load_dotenv
+import os
+
 from config import Config
 from models import db
-from extensions import bcrypt, api, jwt
-import os
-from dotenv import load_dotenv
-from flask_jwt_extended import jwt_required
-
+from extensions import bcrypt, jwt
 
 from routes.place_routes import place_bp
 from routes.profile_routes import profile_bp
 from routes.category_routes import category_bp
 from routes.items_routes import item_bp
 from routes.user_routes import Signup, Login, Logout, Verification
-
-
-
+from routes.user_place import user_place_bp
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 
-
+# Initialize Databases & Migrations
 db.init_app(app)
 migrate = Migrate(app, db)
-CORS(app)
+
+# Initialize Security extensions
+bcrypt.init_app(app)
+jwt.init_app(app)
+
+# Global CORS Configuration 
+CORS(
+    app,
+    resources={r"/*": {"origins": [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]}},
+    supports_credentials=True,
+)
+
+# Initialize Flask-RESTful with native CORS decorators to handle OPTIONS preflight globally
+api = Api(app, decorators=[cross_origin(supports_credentials=True)])
+
+# Register Blueprints
 app.register_blueprint(place_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(category_bp)
 app.register_blueprint(item_bp)
-bcrypt.init_app(app)
-api.init_app(app)
-jwt.init_app(app)
+app.register_blueprint(user_place_bp)
 
+# Register RESTful API Resources
+api.add_resource(Signup, "/signup", endpoint="signup")
+api.add_resource(Login, "/login", endpoint="login")
+api.add_resource(Verification, "/verification", endpoint="verification")
+api.add_resource(Logout, "/logout", endpoint="logout")
 
 
 @app.route("/")
 def index():
-    return {"message":"backend running"}
-
-api.add_resource(Signup, '/signup', endpoint='signup')
-api.add_resource(Login, '/login', endpoint='login')
-api.add_resource(Verification, '/verification', endpoint='verification')
-api.add_resource(Logout, '/logout', endpoint='logout')
-from flask import request
-from flask_jwt_extended import verify_jwt_in_request
-
-@app.before_request
-def check_if_logged_in():
-    open_access = ['signup', 'login', 'verification', 'index', 'places.get_places', 'places.get_place']
-    if request.endpoint not in open_access and not verify_jwt_in_request():
-        return {'error': '401 Unauthorized'}, 401
-
-    name = request.get_json()['name']
-    email = request.get_json()['email']
-    password = request.get_json()['password']
-
-    user = User(
-      name = name,
-      email = email
-    )
-    user.password_hash = password
-
-    try :
-      db.session.add(user)
-      db.session.commit()
-      session['user_id'] = user.id
-      return UserSchema().dump(user), 200
-    except IntegrityError :
-      return {'error' : '422 Unprocessed Entity'}, 422
-
-
-class Login(Resource) :
-  def post(self) :
-    name = request.get_json()['name'] 
-    email = request.get_json()['email']
-
-    user = User.query.filter(User.name == name and User.email == email).first()
-
-    password = request.get_json()['password']
-
-    if user and user.authenticate(password) :
-      session['user_id'] = user.id
-      return UserSchema().dump(user)
-
-    else :
-      return {'error' : '401 Unauthorized'}, 401
-
-
-class CheckSeesion(Resource) :
-  def check_session(self) :
-    user = User.query.filter(User.id == session['user_id']).first()
-    return UserSchema().dump(user), 200
-
-
-class Logout(Resource) :
-  def post(self) :
-    session['user_id'] = None
-    return {}, 204
+    return {"message": "backend running"}
 
 
 if __name__ == "__main__":
-  app.run(debug=True)
+    # Bound to 0.0.0.0 so your Windows browser can cleanly communicate with WSL Linux
+    app.run(host="0.0.0.0", port=5000, debug=True)
