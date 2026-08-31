@@ -4,6 +4,7 @@ import SearchBar from "../components/searchBar.jsx";
 import FilterBar from "../components/filterBar.jsx";
 
 import PlaceCard from "../components/placeCard.jsx";
+import { authFetch } from "../api/client";
 
 import "../styles/filter.css";
 
@@ -30,9 +31,9 @@ function Filter() {
       try {
         setLoading(true);
 
-        const response = await fetch(
-          "https://nia-app-ik4c.onrender.com/places"
-        );
+        // Was: hardcoded Render URL, no auth header — /places/ requires a
+        // JWT on the real backend, so this always came back 401.
+        const response = await authFetch("/places/");
 
         if (!response.ok) {
           throw new Error("Failed to fetch places");

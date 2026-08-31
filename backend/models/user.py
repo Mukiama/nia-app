@@ -1,9 +1,10 @@
+from . import db
+
 from sqlalchemy.orm import validates
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from extensions import bcrypt, db
-
+from extensions import bcrypt   
 
 class User(db.Model):
     __tablename__ = "users"
@@ -37,7 +38,8 @@ class User(db.Model):
 
     __table_args__ = (
         db.CheckConstraint(
-            "length(_password_hash) >= 6"
+            "length(_password_hash) >= 6",
+            name="ck_users_password_length"  # <-- Add this line
         ),
     )
 

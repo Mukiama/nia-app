@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import places from "../data/places.js";
+import { getUser, clearAuth } from "../api/client";
 
 import "./profile.css";
 
 export default function Profile() {
   const navigate = useNavigate();
 
-  
-  const storedUser = localStorage.getItem("niaUser");
-  const user = storedUser
-    ? JSON.parse(storedUser)
-    : { name: "Guest User", email: "guest@nia.app" };
+  const user = getUser() || { name: "Guest User", email: "guest@nia.app" };
 
   // Turns a full name into initials, e.g. "Ted Karani" -> "TK"
 function getInitials(name) {
@@ -89,7 +86,7 @@ const initials = getInitials(user.name);
 }
 
   function handleLogout() {
-    localStorage.removeItem("niaUser");
+    clearAuth();
     window.location.href = "/";
   }
 
