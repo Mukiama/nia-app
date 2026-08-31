@@ -43,7 +43,7 @@ class Signup(Resource):
             db.session.commit()
 
             access_token = create_access_token(
-                identity=int(user.id)
+                identity=str(user.id)
             )
 
             return make_response(
@@ -90,7 +90,7 @@ class Login(Resource):
 
         if user and user.authenticate(password):
             access_token = create_access_token(
-                identity=int(user.id)
+                identity=str(user.id)
             )
 
             return make_response(
@@ -113,7 +113,7 @@ class Verification(Resource):
     def get(self):
         user_id = get_jwt_identity()
 
-        found_user = User.query.filter(User.id == user_id).first()
+        found_user = User.query.filter(User.id == int(user_id)).first()
 
         if not found_user:
             return {'error': 'User not found'}, 404
