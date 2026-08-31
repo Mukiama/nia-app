@@ -7,10 +7,8 @@ from models import db, Profile, Item, Place, Category, User
 PROFILE_FILE = Path(__file__).resolve().parent / "profiles.json"
 ITEM_FILE = Path(__file__).resolve().parent / "items.json"
 CATEGORY_FILE = Path(__file__).resolve().parent / "categories.json"
-<<<<<<< HEAD
-=======
 PLACE_FILE = Path(__file__).resolve().parent / "places.json"
->>>>>>> 6451acf (Added places to seed data to read places.json)
+
 
 with app.app_context():
     print("Clearing old data...")
@@ -31,12 +29,10 @@ with app.app_context():
     with open(CATEGORY_FILE, "r", encoding="utf-8") as f:
         categories_data = json.load(f)
 
-<<<<<<< HEAD
-=======
+
     with open(PLACE_FILE, "r", encoding="utf-8") as f:
         places_data = json.load(f)
 
->>>>>>> 6451acf (Added places to seed data to read places.json)
     # 2. Seed Categories First (Items and Profiles need these to exist)
     print("Seeding categories...")
     for cat_data in categories_data:
