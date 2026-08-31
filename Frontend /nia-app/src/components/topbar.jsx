@@ -102,9 +102,9 @@ function Topbar() {
 
           {/* CATEGORIES */}
 
-          {/* 
           <div className="nav-dropdown">
 
+          {/* 
             <button className="nav-link" type="button">
               Categories
               <span className="nav-arrow">⌄</span>
@@ -146,8 +146,7 @@ function Topbar() {
 
             </div>
           </div>
-          */}
-
+  
         </nav>
 
 

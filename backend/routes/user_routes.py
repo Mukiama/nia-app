@@ -12,6 +12,9 @@ User = user.User
 UserSchema = user_schema.UserSchema
 
 
+
+
+
 class Signup(Resource) :
   def post(self) :
 
