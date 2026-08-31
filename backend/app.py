@@ -47,6 +47,14 @@ api.add_resource(Verification, '/verification', endpoint='verification')
 api.add_resource(Logout, '/logout', endpoint='logout')
 
 
+from flask import request
+from flask_jwt_extended import verify_jwt_in_request
+
+@app.before_request
+def check_if_logged_in():
+    open_access = ['signup', 'login', 'verification', 'index', 'places.get_places', 'places.get_place']
+    if request.endpoint not in open_access and not verify_jwt_in_request():
+        return {'error': '401 Unauthorized'}, 401
 
 if __name__ == "__main__":
     app.run(debug=True)
