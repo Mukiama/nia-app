@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from backend.extensions import db
+from models.user import db
 
 
 class UserPlace(db.Model):
@@ -69,3 +69,5 @@ class UserPlace(db.Model):
             f"<UserPlace user_id={self.user_id} "
             f"place_id={self.place_id}>"
         )
+
+    
