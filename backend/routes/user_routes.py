@@ -7,11 +7,13 @@ from flask_jwt_extended import create_access_token, get_jwt_identity
 from models import db, User
 from schemas import user_schema
 
-
 UserSchema = user_schema.UserSchema
 
 
 class Signup(Resource):
+    def options(self):
+        return "", 200
+
     def post(self):
         data = request.get_json()
 
@@ -61,6 +63,9 @@ class Signup(Resource):
 
 
 class Login(Resource):
+    def options(self):
+        return "", 200
+
     def post(self):
         data = request.get_json()
 
@@ -102,6 +107,9 @@ class Login(Resource):
 
 
 class Verification(Resource):
+    def options(self):
+        return "", 200
+
     def get(self):
         user_id = get_jwt_identity()
 
@@ -114,5 +122,8 @@ class Verification(Resource):
 
 
 class Logout(Resource):
+    def options(self):
+        return "", 200
+
     def post(self):
         return {}, 204

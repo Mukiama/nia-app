@@ -38,7 +38,8 @@ class User(db.Model):
 
     __table_args__ = (
         db.CheckConstraint(
-            "length(_password_hash) >= 6"
+            "length(_password_hash) >= 6",
+            name="ck_users_password_length"  # <-- Add this line
         ),
     )
 
