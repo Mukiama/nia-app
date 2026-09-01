@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a8a4959445f01a08635696c24c423500256e2c88ebd808151a4e94b517644efd"
+            "sha256": "ff5b9c8c1157273c788e9b703a71c95ac4d1cfc99ac9d0ba482f61b8456ca1e0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -119,6 +119,23 @@
             "index": "pypi",
             "markers": "python_version >= '3.10'",
             "version": "==8.4.2"
+        },
+        "dnspython": {
+            "hashes": [
+                "sha256:01d9bbc4a2d76bf0db7c1f729812ded6d912bd318d3b1cf81d30c0f845dbf3af",
+                "sha256:181d3c6996452cb1189c4046c61599b84a5a86e099562ffde77d26984ff26d0f"
+            ],
+            "markers": "python_version >= '3.10'",
+            "version": "==2.8.0"
+        },
+        "email-validator": {
+            "hashes": [
+                "sha256:80f13f623413e6b197ae73bb10bf4eb0908faf509ad8362c5edeb0be7fd450b4",
+                "sha256:9fc05c37f2f6cf439ff414f8fc46d917929974a82244c20eb10231ba60c54426"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==2.3.0"
         },
         "flask": {
             "hashes": [
@@ -275,6 +292,14 @@
             "index": "pypi",
             "markers": "python_version >= '3.10'",
             "version": "==26.2.0"
+        },
+        "idna": {
+            "hashes": [
+                "sha256:5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15",
+                "sha256:815e7be7a7806d54abb586dc943addc79e8b2ee16915059658cbeff4b1b43bf4"
+            ],
+            "markers": "python_version >= '3.9'",
+            "version": "==3.19"
         },
         "itsdangerous": {
             "hashes": [
