@@ -79,7 +79,6 @@ class Verification(Resource):
     def options(self):
         return "", 200
 
-    @jwt_required()
     def get(self):
         user_id = int(get_jwt_identity())
         found_user = User.query.filter(User.id == user_id).first()
@@ -95,7 +94,9 @@ class Logout(Resource):
         return "", 200
 
     def post(self):
-        return {}, 204
+        response = make_response('Logged out', 204)
+        unset_jwt_cookies(response)
+        return response
 
 
 class HistoryListResource(Resource):
