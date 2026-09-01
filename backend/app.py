@@ -18,7 +18,6 @@ from routes.user_routes import (
     Signup, Login, Logout, Verification,
     HistoryListResource, HistoryItemResource,
     FavouritesListResource, FavouritesItemResource,
-    check_if_logged_in
 )
 from routes.user_place import user_place_bp
 
