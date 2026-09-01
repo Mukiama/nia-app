@@ -68,7 +68,9 @@ class Login(Resource):
 
         if user and user.authenticate(password):
             access_token = create_access_token(identity=str(user.id))
-            return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
+            response = make_response(jsonify(user=UserSchema().dump(user)), 200)
+            set_access_cookies(response, access_token)
+            return response
 
         return {"error": "Invalid credentials"}, 401
 
