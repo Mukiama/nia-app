@@ -1,7 +1,13 @@
 from flask import request, make_response, jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import (
+    create_access_token, 
+    get_jwt_identity, 
+    jwt_required,
+    set_access_cookies,
+    unset_jwt_cookies
+    )
 
 from models import db, User, History, Favourite
 from schemas import user_schema
@@ -34,7 +40,10 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
             access_token = create_access_token(identity=str(user.id))
-            return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 201)
+            response = make_response(jsonify(user=UserSchema().dump(user)), 201)
+            set_access_cookies(response, access_token)
+            return response
+        
         except IntegrityError:
             db.session.rollback()
             return {"error": "Email already exists"}, 422
@@ -59,7 +68,9 @@ class Login(Resource):
 
         if user and user.authenticate(password):
             access_token = create_access_token(identity=str(user.id))
-            return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
+            response = make_response(jsonify(user=UserSchema().dump(user)), 200)
+            set_access_cookies(response, access_token)
+            return response
 
         return {"error": "Invalid credentials"}, 401
 
@@ -68,7 +79,6 @@ class Verification(Resource):
     def options(self):
         return "", 200
 
-    @jwt_required()
     def get(self):
         user_id = int(get_jwt_identity())
         found_user = User.query.filter(User.id == user_id).first()
@@ -84,7 +94,9 @@ class Logout(Resource):
         return "", 200
 
     def post(self):
-        return {}, 204
+        response = make_response('Logged out', 204)
+        unset_jwt_cookies(response)
+        return response
 
 
 class HistoryListResource(Resource):
