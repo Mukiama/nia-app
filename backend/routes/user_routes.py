@@ -10,7 +10,7 @@ from flask_jwt_extended import (
     verify_jwt_in_request
     )
 
-from app import app
+
 
 from models import db, User, History, Favourite
 from schemas import user_schema
@@ -18,13 +18,6 @@ from schemas import user_schema
 UserSchema = user_schema.UserSchema
 HistorySchema = user_schema.HistorySchema
 FavouriteSchema = user_schema.FavouriteSchema
-
-@app.before_request
-def check_if_logged_in() :
-    open_access = ['signup', 'login', 'verification']
-
-    if (request.endpoint) not in open_access and (not verify_jwt_in_request()):
-        return {'error': '401 Unauthorized'}, 401
 
 
 class Signup(Resource):
