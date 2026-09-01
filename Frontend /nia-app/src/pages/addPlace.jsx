@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "../styles/offMap.css"
+import "../styles/offMap.css";
+
 function AddPlace() {
   const [formData, setFormData] = useState({
     name: "",
@@ -87,6 +88,7 @@ function AddPlace() {
           >
             Add Another Place
           </button>
+
         </section>
       </main>
     );
@@ -94,26 +96,50 @@ function AddPlace() {
 
   return (
     <main className="add-place-page">
+
       <section className="add-place-container">
 
         <div className="add-place-header">
-          <p className="add-place-eyebrow">SHARE A DISCOVERY</p>
 
-          <h1>Found somewhere worth sharing?</h1>
+          <p className="add-place-eyebrow">
+            SHARE A DISCOVERY
+          </p>
+
+          <h1>
+            Found somewhere worth sharing?
+          </h1>
 
           <p>
-            Help others discover places that deserve to be on Nia.
+            Help others discover places that
+            deserve to be on Nia.
           </p>
+
         </div>
 
-        <form className="add-place-form" onSubmit={handleSubmit}>
+        {error && (
+          <div className="form-error">
+            {error}
+          </div>
+        )}
+
+        <form
+          className="add-place-form"
+          onSubmit={handleSubmit}
+        >
 
           {/* PLACE DETAILS */}
+
           <div className="form-section">
-            <h2>Place details</h2>
+
+            <h2>
+              Place details
+            </h2>
 
             <div className="form-group">
-              <label htmlFor="name">Place name</label>
+
+              <label htmlFor="name">
+                Place name
+              </label>
 
               <input
                 id="name"
@@ -124,10 +150,14 @@ function AddPlace() {
                 onChange={handleChange}
                 required
               />
+
             </div>
 
             <div className="form-group">
-              <label htmlFor="category">Category</label>
+
+              <label htmlFor="category">
+                Category
+              </label>
 
               <select
                 id="category"
@@ -136,18 +166,29 @@ function AddPlace() {
                 onChange={handleChange}
                 required
               >
-                <option value="">Choose a category</option>
+
+                <option value="">
+                  Choose a category
+                </option>
 
                 {categories.map((category) => (
-                  <option key={category} value={category}>
+                  <option
+                    key={category}
+                    value={category}
+                  >
                     {category}
                   </option>
                 ))}
+
               </select>
+
             </div>
 
             <div className="form-group">
-              <label htmlFor="location">Location</label>
+
+              <label htmlFor="location">
+                Location
+              </label>
 
               <input
                 id="location"
@@ -158,10 +199,14 @@ function AddPlace() {
                 onChange={handleChange}
                 required
               />
+
             </div>
 
             <div className="form-group">
-              <label htmlFor="description">About this place</label>
+
+              <label htmlFor="description">
+                About this place
+              </label>
 
               <textarea
                 id="description"
@@ -172,52 +217,81 @@ function AddPlace() {
                 rows="4"
                 required
               />
+
             </div>
+
           </div>
 
           {/* PHOTOS */}
+
           <div className="form-section">
-            <h2>Photos</h2>
+
+            <h2>
+              Photos
+            </h2>
 
             <p className="form-help">
-              Add photos that show people what the place is like.
+              Add up to 5 photos that show people
+              what the place is like.
             </p>
 
             <label className="photo-upload">
-              <span>＋ Add photos</span>
+
+              <span>
+                ＋ Add photos
+              </span>
 
               <input
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png,image/webp"
                 multiple
                 onChange={handlePhotos}
               />
+
             </label>
 
             {photos.length > 0 && (
               <div className="selected-photos">
-                <p>{photos.length} photo(s) selected</p>
+
+                <p>
+                  {photos.length} photo(s) selected
+                </p>
 
                 <div className="photo-names">
+
                   {photos.map((photo) => (
-                    <span key={`${photo.name}-${photo.lastModified}`}>
+                    <span
+                      key={`${photo.name}-${photo.lastModified}`}
+                    >
                       {photo.name}
                     </span>
                   ))}
+
                 </div>
+
               </div>
             )}
+
           </div>
 
           {/* REVIEW */}
+
           <div className="form-section">
-            <h2>Your experience</h2>
+
+            <h2>
+              Your experience
+            </h2>
 
             <div className="form-group">
-              <label>Rating</label>
+
+              <label>
+                Rating
+              </label>
 
               <div className="rating-selector">
+
                 {[1, 2, 3, 4, 5].map((star) => (
+
                   <button
                     key={star}
                     type="button"
@@ -226,17 +300,25 @@ function AddPlace() {
                         ? "rating-star active"
                         : "rating-star"
                     }
-                    onClick={() => handleRating(star)}
+                    onClick={() =>
+                      handleRating(star)
+                    }
                     aria-label={`Rate ${star} out of 5`}
                   >
                     ★
                   </button>
+
                 ))}
+
               </div>
+
             </div>
 
             <div className="form-group">
-              <label htmlFor="review">Your review</label>
+
+              <label htmlFor="review">
+                Your review
+              </label>
 
               <textarea
                 id="review"
@@ -247,19 +329,29 @@ function AddPlace() {
                 rows="5"
                 required
               />
+
             </div>
+
           </div>
 
           <button
             type="submit"
             className="add-place-submit"
-            disabled={formData.rating === 0}
+            disabled={
+              formData.rating === 0 ||
+              photos.length === 0 ||
+              loading
+            }
           >
-            Submit Place
+            {loading
+              ? "Submitting..."
+              : "Submit Place"}
           </button>
 
         </form>
+
       </section>
+
     </main>
   );
 }
