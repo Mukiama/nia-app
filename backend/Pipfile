@@ -26,6 +26,7 @@ python-dotenv = "*"
 flask-bcrypt = "*"
 flask-restful = "*"
 gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
