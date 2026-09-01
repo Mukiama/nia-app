@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from marshmallow import ValidationError
 
 from models import db, UserPlace
@@ -15,20 +16,31 @@ user_place_schema = UserPlaceSchema()
 user_places_schema = UserPlaceSchema(many=True)
 
 
-# GET all UserPlace records
+# GET all UserPlaces belonging to logged-in user
 @user_place_bp.route("", methods=["GET"])
+@jwt_required()
 def get_user_places():
-    user_places = UserPlace.query.all()
+    user_id = int(get_jwt_identity())
+
+    user_places = UserPlace.query.filter_by(
+        user_id=user_id
+    ).all()
 
     return jsonify(
         user_places_schema.dump(user_places)
     ), 200
 
 
-# GET one UserPlace
+# GET one UserPlace belonging to logged-in user
 @user_place_bp.route("/<int:user_place_id>", methods=["GET"])
+@jwt_required()
 def get_user_place(user_place_id):
-    user_place = UserPlace.query.get(user_place_id)
+    user_id = int(get_jwt_identity())
+
+    user_place = UserPlace.query.filter_by(
+        id=user_place_id,
+        user_id=user_id
+    ).first()
 
     if not user_place:
         return jsonify({
@@ -42,13 +54,22 @@ def get_user_place(user_place_id):
 
 # CREATE UserPlace
 @user_place_bp.route("", methods=["POST"])
+@jwt_required()
 def create_user_place():
+    user_id = int(get_jwt_identity())
+
     data = request.get_json()
 
     if not data:
         return jsonify({
             "error": "Request body is required"
         }), 400
+
+    # Never allow the client to choose the user_id
+    data.pop("user_id", None)
+
+    # Automatically assign logged-in user
+    data["user_id"] = user_id
 
     try:
         user_place = user_place_schema.load(data)
@@ -77,8 +98,14 @@ def create_user_place():
 
 # UPDATE UserPlace
 @user_place_bp.route("/<int:user_place_id>", methods=["PATCH"])
+@jwt_required()
 def update_user_place(user_place_id):
-    user_place = UserPlace.query.get(user_place_id)
+    user_id = int(get_jwt_identity())
+
+    user_place = UserPlace.query.filter_by(
+        id=user_place_id,
+        user_id=user_id
+    ).first()
 
     if not user_place:
         return jsonify({
@@ -92,8 +119,11 @@ def update_user_place(user_place_id):
             "error": "Request body is required"
         }), 400
 
+    # Prevent changing ownership
+    data.pop("user_id", None)
+
     try:
-        user_place = user_place_schema.load(
+        user_place_schema.load(
             data,
             instance=user_place,
             partial=True
@@ -122,8 +152,14 @@ def update_user_place(user_place_id):
 
 # DELETE UserPlace
 @user_place_bp.route("/<int:user_place_id>", methods=["DELETE"])
+@jwt_required()
 def delete_user_place(user_place_id):
-    user_place = UserPlace.query.get(user_place_id)
+    user_id = int(get_jwt_identity())
+
+    user_place = UserPlace.query.filter_by(
+        id=user_place_id,
+        user_id=user_id
+    ).first()
 
     if not user_place:
         return jsonify({
