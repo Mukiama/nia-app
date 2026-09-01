@@ -1,5 +1,8 @@
 import { useState } from "react";
-import "../styles/offMap.css"
+import { useNavigate } from "react-router-dom";
+import { authFetch } from "../api/client";
+import "../styles/offMap.css";
+
 function AddPlace() {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,49 +15,57 @@ function AddPlace() {
 
   const [photos, setPhotos] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const categories = [
-    "Photography",
-    "Nature",
-    "Food",
-    "Art",
-    "Culture",
-    "Family",
-    "Adventure",
-    "Nightlife",
+    "Photography", "Nature", "Food", "Art",
+    "Culture", "Family", "Adventure", "Nightlife",
   ];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
+    setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
   const handleRating = (rating) => {
-    setFormData((previous) => ({
-      ...previous,
-      rating,
-    }));
+    setFormData((previous) => ({ ...previous, rating }));
   };
 
   const handlePhotos = (event) => {
     const files = Array.from(event.target.files);
-
     setPhotos(files);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
+    setSubmitting(true);
 
-    console.log("Place submission:", {
-      ...formData,
-      photos,
-    });
+    try {
+      // Only name/category/location/description are stored — the backend
+      // Place model has no columns for rating, review, or photos yet.
+      const response = await authFetch("/places/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          category: formData.category,
+          physical_address: formData.location,
+          description: formData.description,
+        }),
+      });
 
-    setSubmitted(true);
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Could not add this place.");
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -62,9 +73,7 @@ function AddPlace() {
       <main className="add-place-page">
         <section className="add-place-success">
           <div className="success-icon">✓</div>
-
           <h1>Thanks for sharing!</h1>
-
           <p>
             Your place has been submitted to Nia and will be reviewed before
             appearing publicly.
@@ -75,12 +84,8 @@ function AddPlace() {
             onClick={() => {
               setSubmitted(false);
               setFormData({
-                name: "",
-                category: "",
-                location: "",
-                description: "",
-                review: "",
-                rating: 0,
+                name: "", category: "", location: "",
+                description: "", review: "", rating: 0,
               });
               setPhotos([]);
             }}
@@ -95,137 +100,90 @@ function AddPlace() {
   return (
     <main className="add-place-page">
       <section className="add-place-container">
-
         <div className="add-place-header">
           <p className="add-place-eyebrow">SHARE A DISCOVERY</p>
-
           <h1>Found somewhere worth sharing?</h1>
-
-          <p>
-            Help others discover places that deserve to be on Nia.
-          </p>
+          <p>Help others discover places that deserve to be on Nia.</p>
         </div>
 
-        <form className="add-place-form" onSubmit={handleSubmit}>
+        {error && <p className="auth-error">{error}</p>}
 
-          {/* PLACE DETAILS */}
+        <form className="add-place-form" onSubmit={handleSubmit}>
           <div className="form-section">
             <h2>Place details</h2>
 
             <div className="form-group">
               <label htmlFor="name">Place name</label>
-
               <input
-                id="name"
-                name="name"
-                type="text"
+                id="name" name="name" type="text"
                 placeholder="e.g. Karura Forest"
-                value={formData.name}
-                onChange={handleChange}
-                required
+                value={formData.name} onChange={handleChange} required
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="category">Category</label>
-
               <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                required
+                id="category" name="category"
+                value={formData.category} onChange={handleChange} required
               >
                 <option value="">Choose a category</option>
-
                 {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
+                  <option key={category} value={category}>{category}</option>
                 ))}
               </select>
             </div>
 
             <div className="form-group">
               <label htmlFor="location">Location</label>
-
               <input
-                id="location"
-                name="location"
-                type="text"
+                id="location" name="location" type="text"
                 placeholder="e.g. Karura, Nairobi"
-                value={formData.location}
-                onChange={handleChange}
-                required
+                value={formData.location} onChange={handleChange} required
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="description">About this place</label>
-
               <textarea
-                id="description"
-                name="description"
+                id="description" name="description"
                 placeholder="Tell people what makes this place worth discovering..."
-                value={formData.description}
-                onChange={handleChange}
-                rows="4"
-                required
+                value={formData.description} onChange={handleChange} rows="4" required
               />
             </div>
           </div>
 
-          {/* PHOTOS */}
           <div className="form-section">
             <h2>Photos</h2>
-
-            <p className="form-help">
-              Add photos that show people what the place is like.
-            </p>
+            <p className="form-help">Add photos that show people what the place is like.</p>
 
             <label className="photo-upload">
               <span>＋ Add photos</span>
-
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handlePhotos}
-              />
+              <input type="file" accept="image/*" multiple onChange={handlePhotos} />
             </label>
 
             {photos.length > 0 && (
               <div className="selected-photos">
                 <p>{photos.length} photo(s) selected</p>
-
                 <div className="photo-names">
                   {photos.map((photo) => (
-                    <span key={`${photo.name}-${photo.lastModified}`}>
-                      {photo.name}
-                    </span>
+                    <span key={`${photo.name}-${photo.lastModified}`}>{photo.name}</span>
                   ))}
                 </div>
               </div>
             )}
           </div>
 
-          {/* REVIEW */}
           <div className="form-section">
             <h2>Your experience</h2>
 
             <div className="form-group">
               <label>Rating</label>
-
               <div className="rating-selector">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
-                    key={star}
-                    type="button"
-                    className={
-                      star <= formData.rating
-                        ? "rating-star active"
-                        : "rating-star"
-                    }
+                    key={star} type="button"
+                    className={star <= formData.rating ? "rating-star active" : "rating-star"}
                     onClick={() => handleRating(star)}
                     aria-label={`Rate ${star} out of 5`}
                   >
@@ -237,15 +195,10 @@ function AddPlace() {
 
             <div className="form-group">
               <label htmlFor="review">Your review</label>
-
               <textarea
-                id="review"
-                name="review"
+                id="review" name="review"
                 placeholder="What was your experience like?"
-                value={formData.review}
-                onChange={handleChange}
-                rows="5"
-                required
+                value={formData.review} onChange={handleChange} rows="5" required
               />
             </div>
           </div>
@@ -253,11 +206,10 @@ function AddPlace() {
           <button
             type="submit"
             className="add-place-submit"
-            disabled={formData.rating === 0}
+            disabled={formData.rating === 0 || submitting}
           >
-            Submit Place
+            {submitting ? "Submitting..." : "Submit Place"}
           </button>
-
         </form>
       </section>
     </main>

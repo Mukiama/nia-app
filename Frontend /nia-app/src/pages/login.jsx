@@ -4,42 +4,33 @@ import { useNavigate } from "react-router-dom";
 import { API_URL, setAuth } from "../api/client";
 
 export default function Login() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    if (!name || !email || !password) {
-      setError("Please enter your name, email, and password.");
+    if (!email || !password) {
+      setError("Please enter your email and password.");
       return;
     }
 
     try {
       const response = await fetch(`${API_URL}/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Invalid credentials.");
-      }
+      if (!response.ok) throw new Error(data.error || "Invalid credentials.");
 
       setAuth({ token: data.token, user: data.user });
-
       setError("");
-
       navigate("/dashboard");
     } catch (err) {
       setError(err.message);
@@ -50,24 +41,11 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-container">
         <h1>Login to Nia</h1>
-
         {error && <p className="auth-error">{error}</p>}
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label>Name</label>
-
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name"
-            />
-          </div>
-
-          <div className="auth-field">
             <label>Email</label>
-
             <input
               type="email"
               value={email}
@@ -78,7 +56,6 @@ export default function Login() {
 
           <div className="auth-field">
             <label>Password</label>
-
             <div className="password-row">
               <input
                 type={showPassword ? "text" : "password"}
@@ -86,7 +63,6 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
               />
-
               <button
                 type="button"
                 className="show-password"
@@ -106,22 +82,12 @@ export default function Login() {
             Remember me
           </label>
 
-          <button type="submit" className="auth-button">
-            Login
-          </button>
+          <button type="submit" className="auth-button">Login</button>
         </form>
 
-        <p>
-          <a href="/forgot-password" className="auth-link">
-            Forgot password?
-          </a>
-        </p>
-
+        <p><a href="/forgot-password" className="auth-link">Forgot password?</a></p>
         <p className="auth-footer">
-          Don't have an account?{" "}
-          <a href="/signup" className="auth-link">
-            Sign up
-          </a>
+          Don't have an account? <a href="/signup" className="auth-link">Sign up</a>
         </p>
       </div>
     </div>
