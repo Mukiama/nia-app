@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { authFetch } from "../api/client";
 
 import "../styles/history.css";
-
-const API_URL = "https://nia-app-ik4c.onrender.com";
 
 export default function History() {
   const [history, setHistory] = useState([]);
@@ -15,18 +14,13 @@ export default function History() {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        `${API_URL}/history`
-      );
+      const response = await authFetch("/history");
 
       if (!response.ok) {
-        throw new Error(
-          "Failed to load history."
-        );
+        throw new Error("Failed to load history.");
       }
 
       const data = await response.json();
-
       setHistory(data);
     } catch (err) {
       setError(err.message);
@@ -43,20 +37,13 @@ export default function History() {
     try {
       await Promise.all(
         history.map((item) =>
-          fetch(
-            `${API_URL}/history/${item.id}`,
-            {
-              method: "DELETE",
-            }
-          )
+          authFetch(`/history/${item.id}`, { method: "DELETE" })
         )
       );
 
       setHistory([]);
     } catch {
-      setError(
-        "Failed to clear history."
-      );
+      setError("Failed to clear history.");
     }
   }
 
@@ -74,61 +61,35 @@ export default function History() {
   return (
     <div className="history-page">
       <div className="history-container">
-
         <div className="history-header">
-
           <div>
-            <p className="history-label">
-              NIA
-            </p>
-
+            <p className="history-label">NIA</p>
             <h1>Your History</h1>
-
-            <p>
-              Places you've marked as visited.
-            </p>
+            <p>Places you've marked as visited.</p>
           </div>
 
           {history.length > 0 && (
-            <button
-              className="clear-history"
-              onClick={clearHistory}
-            >
+            <button className="clear-history" onClick={clearHistory}>
               Clear history
             </button>
           )}
-
         </div>
 
-
-        {error && (
-          <div className="history-error">
-            {error}
-          </div>
-        )}
-
+        {error && <div className="history-error">{error}</div>}
 
         {history.length === 0 && !error ? (
           <div className="empty-history">
-
             <h2>No history yet</h2>
-
-            <p>
-              Places you mark as visited
-              will appear here.
-            </p>
-
+            <p>Places you mark as visited will appear here.</p>
           </div>
         ) : (
           <div className="history-list">
-
             {history.map((item) => (
               <Link
                 to={`/places/${item.placeId}`}
                 className="history-card"
                 key={item.id}
               >
-
                 {item.image && (
                   <img
                     src={item.image}
@@ -138,39 +99,24 @@ export default function History() {
                 )}
 
                 <div className="history-card-content">
-
-                  <p className="history-category">
-                    {item.category}
-                  </p>
-
+                  <p className="history-category">{item.category}</p>
                   <h2>{item.name}</h2>
-
                   <p className="history-location">
-                    {item.location},{" "}
-                    {item.county}
+                    {item.location}
+                    {item.county ? `, ${item.county}` : ""}
                   </p>
-
-                  <p className="history-description">
-                    {item.description}
-                  </p>
-
+                  <p className="history-description">{item.description}</p>
                   <small>
                     Visited{" "}
                     {item.viewedAt
-                      ? new Date(
-                          item.viewedAt
-                        ).toLocaleString()
+                      ? new Date(item.viewedAt).toLocaleString()
                       : "Recently"}
                   </small>
-
                 </div>
-
               </Link>
             ))}
-
           </div>
         )}
-
       </div>
     </div>
   );

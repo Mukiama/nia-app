@@ -169,14 +169,14 @@ return ( <header className="navbar">
     {/* RIGHT SIDE */}
     <div className="navbar-actions">
 
-      {/*
+      
       <Link
         to="/signup"
         className="navbar-action business-link"
       >
         GET STARTED
       </Link>
-      */}
+     
 
       <Link
         to="/list-business"
@@ -187,9 +187,9 @@ return ( <header className="navbar">
 
 
       {/* ACCOUNT */}
-      <div className="profile-menu">
+      {/* <div className="profile-menu">
 
-        {/* <Link to="/profile">My Profile</Link> */}
+        <Link to="/profile">My Profile</Link>
 
         <button
           type="button"
@@ -221,7 +221,7 @@ return ( <header className="navbar">
 
         <div className="profile-dropdown">
 
-          {/* <Link to="/profile">My Profile</Link> */}
+          <Link to="/profile">My Profile</Link>
 
           <Link to="/login">
             Log in
@@ -233,7 +233,8 @@ return ( <header className="navbar">
 
         </div>
 
-      </div>
+      </div> */}
+
 
     </div>
 
