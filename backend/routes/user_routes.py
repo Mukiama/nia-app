@@ -40,7 +40,10 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
             access_token = create_access_token(identity=str(user.id))
-            return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 201)
+            response = make_response(jsonify(user=UserSchema().dump(user)), 201)
+            set_access_cookies(response, access_token)
+            return response
+        
         except IntegrityError:
             db.session.rollback()
             return {"error": "Email already exists"}, 422
