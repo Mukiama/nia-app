@@ -1,7 +1,13 @@
 from flask import request, make_response, jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import (
+    create_access_token, 
+    get_jwt_identity, 
+    jwt_required,
+    set_access_cookies,
+    unset_jwt_cookies
+    )
 
 from models import db, User, History, Favourite
 from schemas import user_schema
