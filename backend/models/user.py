@@ -20,7 +20,10 @@ class User(db.Model):
     favourite_items = db.relationship("Favourite", back_populates="user", cascade="all, delete-orphan")
 
     __table_args__ = (
-        db.CheckConstraint("length(_password_hash) >= 6", name="ck_users_password_length"),
+        db.CheckConstraint(
+            "length(_password_hash) >= 6",
+           name="ck_users_password_hash_length" 
+        ),
     )
 
     @validates("email")
