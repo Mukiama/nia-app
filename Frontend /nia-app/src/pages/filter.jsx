@@ -151,6 +151,12 @@ function Filter() {
             {filteredPlaces.map((place) => <PlaceCard key={place.id} place={place} />)}
           </div>
         )}
+
+        <div ref={sentinelRef} style={{ height: "1px" }} />
+
+        {loadingMore && (
+          <div className="status-message">Loading more places...</div>
+        )}
       </section>
     </main>
   );
