@@ -1,559 +1,1767 @@
 /* =========================================
-   HIDDEN GEMS
+   HIDDEN GEMS PAGE
 ========================================= */
 
 .hidden-gems-page {
-  background: #f8f7f3;
+  background: #f5f3ed;
   color: #171717;
   min-height: 100vh;
+  overflow: hidden;
+}
+
+.hidden-gems-page * {
+  box-sizing: border-box;
+}
+
+.hidden-gems-page button,
+.hidden-gems-page input,
+.hidden-gems-page select {
+  font: inherit;
 }
 
 /* =========================================
    HERO
 ========================================= */
 
-.hidden-gems-hero {
-  position: relative;
+.hidden-hero {
   min-height: 650px;
+  background: #17251e;
+  color: #f5f3ed;
+  position: relative;
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  background-image:
-    url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85");
-
-  background-size: cover;
-  background-position: center;
 }
 
-.hidden-gems-hero-overlay {
+.hidden-hero::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.45) 45%,
-    rgba(0, 0, 0, 0.08) 100%
-  );
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgba(245, 243, 237, 0.12);
+  border-radius: 50%;
+  right: -170px;
+  bottom: -220px;
+  pointer-events: none;
 }
 
-.hidden-gems-hero-content {
+.hidden-hero-content {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+  padding: 100px 0 80px;
   position: relative;
-  z-index: 2;
-  max-width: 720px;
-  padding: 100px 7%;
-  color: white;
+  z-index: 15;
 }
 
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 18px;
-  font-size: 11px;
+.hidden-eyebrow,
+.section-number {
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 0 0 24px;
 }
 
-.hidden-gems-hero h1 {
+.hidden-eyebrow {
+  color: #b9c9bc;
+}
+
+.hidden-hero h1 {
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.065em;
+  font-weight: 500;
   margin: 0;
-  font-size: clamp(48px, 7vw, 88px);
-  line-height: 0.98;
-  letter-spacing: -4px;
-  font-weight: 700;
+  max-width: 850px;
 }
 
-.hidden-gems-hero p {
-  max-width: 580px;
-  margin: 28px 0;
-  font-size: 18px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.88);
+.hidden-hero h1 span {
+  font-style: italic;
+  color: #b9c9bc;
 }
 
-.hidden-gems-search {
-  width: min(560px, 100%);
+.hidden-hero-description {
+  max-width: 510px;
+  color: rgba(245, 243, 237, 0.72);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 40px 0 30px;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.hidden-search {
+  width: min(650px, 100%);
+  height: 62px;
+  background: #f5f3ed;
+  color: #171717;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  border-radius: 8px;
-  background: white;
-  color: #171717;
+  padding: 0 10px 0 20px;
+  border-radius: 4px;
+  position: relative;
+  z-index: 30;
 }
 
-.hidden-gems-search span {
-  font-size: 25px;
+.search-icon {
+  font-size: 1.5rem;
+  margin-right: 12px;
 }
 
-.hidden-gems-search input {
-  width: 100%;
+.hidden-search input {
+  flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
-  font-size: 15px;
   background: transparent;
-}
-
-/* =========================================
-   VIBES
-========================================= */
-
-.hidden-gems-vibes {
-  padding: 80px 7% 50px;
-}
-
-.section-heading h2,
-.section-heading-row h2 {
-  margin: 0;
-  font-size: clamp(32px, 4vw, 50px);
-  line-height: 1.05;
-  letter-spacing: -2px;
-}
-
-.section-heading p,
-.section-heading-row p {
-  margin-top: 12px;
-  color: #666;
-}
-
-.vibe-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 32px;
-}
-
-.vibe-button,
-.location-button {
-  border: 1px solid #d7d5ce;
-  background: transparent;
-  border-radius: 100px;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: 0.2s ease;
-  font-size: 14px;
-}
-
-.vibe-button:hover,
-.location-button:hover,
-.vibe-button.active,
-.location-button.active {
-  background: #171717;
-  color: white;
-  border-color: #171717;
-}
-
-/* =========================================
-   GENERAL SECTIONS
-========================================= */
-
-.hidden-section {
-  padding: 70px 7%;
-}
-
-.section-heading-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 30px;
-  margin-bottom: 35px;
-}
-
-.view-all-link {
   color: #171717;
-  text-decoration: none;
-  font-weight: 600;
-  white-space: nowrap;
+  font-size: 0.95rem;
 }
 
-.view-all-link span {
-  margin-left: 8px;
+.hidden-search input::placeholder {
+  color: #777;
+}
+
+.clear-search {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #555;
+  font-size: 1.4rem;
+}
+
+.search-submit {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #17251e;
+  color: #f5f3ed;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+
+.search-submit:hover {
+  background: #304638;
+  transform: translateX(2px);
 }
 
 /* =========================================
-   FEATURED
+   THREE FLOATING CARDS
+   CENTER CARD IS ALWAYS IN FRONT
 ========================================= */
 
-.featured-gems {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+.floating-hero {
+  position: absolute;
+
+  width: 520px;
+  height: 500px;
+
+  right: 5%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 20;
+
+  pointer-events: none;
 }
 
-.featured-gem-card {
-  min-width: 0;
-}
+/* Every card is a separate clickable Link */
 
-.featured-image-wrapper,
-.gem-image-wrapper {
-  position: relative;
+.floating-card {
+  position: absolute;
+
+  display: block;
+
   overflow: hidden;
-  border-radius: 6px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+
+  border: none;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.3);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
-.featured-image-wrapper {
-  height: 390px;
-}
+.floating-card img {
+  display: block;
 
-.featured-gem-image,
-.gem-image-wrapper img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
-  transition: transform 0.5s ease;
+
+  pointer-events: none;
+
+  user-select: none;
 }
 
-.featured-gem-card:hover img,
-.gem-card:hover img {
-  transform: scale(1.04);
+/* =========================================
+   LEFT BACK CARD — GEDI RUINS
+========================================= */
+
+.floating-card-left {
+  width: 205px;
+  height: 290px;
+
+  left: 0;
+  top: 65px;
+
+  transform: rotate(-8deg);
+
+  /*
+    BACK
+  */
+  z-index: 5;
+
+  animation: floatLeft 5s ease-in-out infinite;
 }
 
-.hidden-badge {
+/* =========================================
+   CENTER FRONT CARD — KIT-MIKAYI
+========================================= */
+
+.floating-card-main {
+  width: 290px;
+  height: 405px;
+
+  left: 115px;
+  top: 35px;
+
+  transform: rotate(2deg);
+
+  /*
+    ALWAYS IN FRONT
+  */
+  z-index: 20;
+
+  background: #f5f3ed;
+
+  animation: floatMain 5.5s ease-in-out infinite;
+}
+
+/* =========================================
+   RIGHT BACK CARD — KAKAMEGA FOREST
+========================================= */
+
+.floating-card-right {
+  width: 205px;
+  height: 285px;
+
+  right: 0;
+  top: 105px;
+
+  transform: rotate(8deg);
+
+  /*
+    BACK
+  */
+  z-index: 5;
+
+  animation: floatRight 5.2s ease-in-out infinite;
+}
+
+/* =========================================
+   SIDE CARD HOVER
+   Side card comes above center ONLY
+   when user reaches its exposed area.
+========================================= */
+
+.floating-card-left:hover,
+.floating-card-left:focus-visible {
+  z-index: 50;
+
+  transform:
+    rotate(-4deg)
+    translateY(-15px);
+
+  box-shadow:
+    0 35px 75px rgba(0, 0, 0, 0.45);
+}
+
+.floating-card-right:hover,
+.floating-card-right:focus-visible {
+  z-index: 50;
+
+  transform:
+    rotate(4deg)
+    translateY(-15px);
+
+  box-shadow:
+    0 35px 75px rgba(0, 0, 0, 0.45);
+}
+
+/* Center stays the visual front card */
+
+.floating-card-main:hover,
+.floating-card-main:focus-visible {
+  z-index: 100;
+
+  transform:
+    rotate(0deg)
+    translateY(-15px);
+
+  box-shadow:
+    0 35px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================
+   SIDE CARD HOVER LABEL
+========================================= */
+
+.floating-card-hover-label {
   position: absolute;
-  top: 15px;
+
   left: 15px;
-  padding: 7px 11px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.92);
-  font-size: 11px;
+  bottom: 15px;
+
+  padding: 8px 10px;
+
+  background: rgba(23, 37, 30, 0.92);
+
+  color: #f5f3ed;
+
+  font-size: 0.62rem;
+
   font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0;
+
+  transform: translateY(5px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  pointer-events: none;
 }
 
-.save-button {
+.floating-card-left:hover
+.floating-card-hover-label,
+.floating-card-right:hover
+.floating-card-hover-label,
+.floating-card-left:focus-visible
+.floating-card-hover-label,
+.floating-card-right:focus-visible
+.floating-card-hover-label {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =========================================
+   CENTER CARD INFORMATION
+========================================= */
+
+.floating-card-info {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  font-size: 21px;
-  cursor: pointer;
-}
 
-.featured-card-content {
-  padding-top: 16px;
-}
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-.card-meta {
+  padding: 70px 20px 20px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0)
+    );
+
+  color: #fff;
+
   display: flex;
-  gap: 7px;
-  color: #777;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.7px;
+
+  flex-direction: column;
+
+  pointer-events: none;
 }
 
-.featured-card-content h3,
-.gem-card-content h3 {
-  margin: 9px 0 7px;
-  font-size: 21px;
-}
+.floating-card-info span {
+  font-size: 0.58rem;
 
-.featured-card-content p,
-.gem-card-content p {
-  margin: 0;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
-}
+  letter-spacing: 0.16em;
 
-.rating {
-  margin-top: 12px;
-  font-size: 13px;
   font-weight: 700;
+
+  color: #d4dfd5;
+
+  margin-bottom: 7px;
 }
 
-.rating span {
-  margin-right: 4px;
+.floating-card-info strong {
+  font-size: 1.3rem;
+
+  font-weight: 500;
+
+  line-height: 1.1;
 }
 
-/* =========================================
-   HIDDEN SCALE
-========================================= */
+.floating-card-info small {
+  margin-top: 5px;
 
-.hidden-level-section {
-  margin: 40px 7%;
-  padding: 80px 7%;
-  background: #1b1b1b;
-  color: white;
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 0.68rem;
 }
 
-.hidden-level-content {
-  max-width: 1000px;
-  margin: auto;
-}
+.floating-card-info em {
+  margin-top: 13px;
 
-.hidden-level-content > p {
-  max-width: 600px;
-  color: #aaa;
-  line-height: 1.6;
-}
+  font-size: 0.7rem;
 
-.hidden-scale {
-  margin-top: 50px;
-}
+  font-style: normal;
 
-.scale-item {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 25px;
-  padding: 25px 0;
-  border-top: 1px solid #3a3a3a;
-}
+  font-weight: 700;
 
-.scale-number {
-  font-size: 12px;
-  color: #888;
-}
-
-.scale-item h3 {
-  margin: 0 0 7px;
-  font-size: 22px;
-}
-
-.scale-item p {
-  margin: 0;
-  color: #999;
+  letter-spacing: 0.03em;
 }
 
 /* =========================================
-   LOCATIONS
+   FLOATING ANIMATIONS
 ========================================= */
 
-.locations-section {
-  background: #f8f7f3;
+@keyframes floatLeft {
+  0%,
+  100% {
+    transform: rotate(-8deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-8deg) translateY(-13px);
+  }
 }
 
-.location-list {
+@keyframes floatMain {
+  0%,
+  100% {
+    transform: rotate(2deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(2deg) translateY(-17px);
+  }
+}
+
+@keyframes floatRight {
+  0%,
+  100% {
+    transform: rotate(8deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(8deg) translateY(-11px);
+  }
+}
+
+/* =========================================
+   HERO DECORATIONS
+========================================= */
+
+.hero-decoration {
+  position: absolute;
+  z-index: 1;
+  color: rgba(245, 243, 237, 0.12);
+  pointer-events: none;
+}
+
+.hero-decoration-one {
+  font-size: 15rem;
+  right: 10%;
+  top: 8%;
+}
+
+.hero-decoration-two {
+  font-size: 12rem;
+  right: 23%;
+  bottom: 0;
+}
+
+.hero-bottom-note {
+  position: absolute;
+
+  bottom: 30px;
+  left: 5%;
+
   display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 25px 0 35px;
+
+  align-items: center;
+
+  gap: 15px;
+
+  color: rgba(245, 243, 237, 0.5);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.15em;
+
+  z-index: 15;
 }
 
-.location-list::-webkit-scrollbar {
+.scroll-line {
+  display: block;
+
+  width: 60px;
+
+  height: 1px;
+
+  background: rgba(245, 243, 237, 0.35);
+}
+
+/* =========================================
+   DISCOVER SECTION
+========================================= */
+
+.discover-section {
+  padding: 110px 0 120px;
+}
+
+.discover-header {
+  width: min(1200px, 90%);
+
+  margin: 0 auto 55px;
+}
+
+.section-number {
+  color: #718277;
+}
+
+.discover-header h2,
+.around-heading h2,
+.challenge-intro h2 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+
+  line-height: 0.9;
+
+  letter-spacing: -0.055em;
+
+  font-weight: 500;
+
+  margin: 0;
+}
+
+/* =========================================
+   CAROUSEL
+========================================= */
+
+.carousel-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+}
+
+.gem-carousel {
+  display: flex;
+
+  gap: 24px;
+
+  overflow-x: auto;
+
+  padding: 0 75px 25px;
+
+  scroll-snap-type: x mandatory;
+
+  width: 100%;
+
+  scrollbar-width: none;
+}
+
+.gem-carousel::-webkit-scrollbar {
   display: none;
 }
 
-.gem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+.carousel-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 20;
+
+  width: 52px;
+
+  height: 52px;
+
+  border: 1px solid #c9c7bf;
+
+  background: #f5f3ed;
+
+  color: #17251e;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 1.25rem;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-.gem-image-wrapper {
-  height: 340px;
+.carousel-arrow:hover {
+  background: #17251e;
+
+  color: #f5f3ed;
 }
 
-.gem-card-content {
+.carousel-arrow-left {
+  left: 12px;
+}
+
+.carousel-arrow-right {
+  right: 12px;
+}
+
+/* =========================================
+   CAROUSEL CARDS
+========================================= */
+
+.carousel-card {
+  flex: 0 0 350px;
+
+  background: #fff;
+
+  scroll-snap-align: start;
+
+  border: 1px solid #dedbd2;
+}
+
+.carousel-image {
+  display: block;
+
+  height: 300px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.carousel-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.carousel-card:hover .carousel-image img {
+  transform: scale(1.04);
+}
+
+.image-number {
+  position: absolute;
+
+  top: 16px;
+  left: 16px;
+
+  background: #f5f3ed;
+
+  padding: 7px 10px;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+}
+
+.carousel-content {
+  padding: 25px;
+}
+
+.card-topline,
+.place-meta {
+  display: flex;
+
+  gap: 9px;
+
+  align-items: center;
+
+  color: #788078;
+
+  font-size: 0.68rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+}
+
+.carousel-content h3 {
+  font-size: 1.6rem;
+
+  margin: 15px 0 10px;
+
+  font-weight: 500;
+
+  letter-spacing: -0.03em;
+}
+
+.carousel-content p {
+  color: #666;
+
+  line-height: 1.6;
+
+  font-size: 0.9rem;
+
+  margin-bottom: 25px;
+}
+
+.explore-link,
+.small-explore {
+  color: #17251e;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  font-size: 0.78rem;
+}
+
+.explore-link {
+  display: flex;
+
+  justify-content: space-between;
+
+  border-top: 1px solid #dedbd2;
+
   padding-top: 16px;
 }
 
-.gem-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.explore-link span {
+  font-size: 1rem;
 }
 
-.hidden-level {
-  margin-top: 12px;
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #888;
-  letter-spacing: 0.7px;
+/* =========================================
+   AROUND SECTION
+========================================= */
+
+.around-section {
+  background: #e7ebe5;
+
+  padding: 110px 5% 120px;
+}
+
+.around-heading {
+  width: min(1200px, 100%);
+
+  margin: 0 auto 60px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 80px;
+
+  align-items: flex-end;
+}
+
+.around-heading h2 span {
+  font-style: italic;
+
+  color: #65766a;
+}
+
+.around-description {
+  max-width: 350px;
+
+  line-height: 1.7;
+
+  color: #606960;
+}
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.filter-controls {
+  width: min(1200px, 100%);
+
+  margin: 0 auto 45px;
+
+  border-top: 1px solid #c5ccc4;
+
+  border-bottom: 1px solid #c5ccc4;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 40px;
+
+  padding: 18px 0;
+}
+
+.filter-group {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.filter-group > span {
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  color: #68726a;
+}
+
+.filter-group select {
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  outline: none;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.results-count {
+  margin-left: auto;
+
+  font-size: 0.75rem;
+
+  color: #697169;
+}
+
+/* =========================================
+   PLACE GRID
+========================================= */
+
+.hidden-grid {
+  width: min(1200px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 55px 30px;
+}
+
+.hidden-place {
+  min-width: 0;
+}
+
+.hidden-place-image {
+  display: block;
+
+  height: 320px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  text-decoration: none;
+}
+
+.hidden-place-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.hidden-place:hover .hidden-place-image img {
+  transform: scale(1.035);
+}
+
+.place-index {
+  position: absolute;
+
+  left: 15px;
+  top: 15px;
+
+  background: #f5f3ed;
+
+  padding: 7px 9px;
+
+  color: #17251e;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+}
+
+.hidden-place-info {
+  padding-top: 20px;
+}
+
+.place-meta {
+  margin-bottom: 10px;
+}
+
+.place-name {
+  color: #171717;
+
+  text-decoration: none;
+
+  font-size: 1.8rem;
+
+  font-weight: 500;
+
+  letter-spacing: -0.035em;
+}
+
+.hidden-place-info p {
+  color: #626862;
+
+  max-width: 600px;
+
+  line-height: 1.6;
+
+  font-size: 0.9rem;
+
+  margin: 10px 0 15px;
+}
+
+.small-explore {
+  display: inline-block;
+
+  border-bottom: 1px solid #17251e;
+
+  padding-bottom: 3px;
+}
+
+/* =========================================
+   NO RESULTS
+========================================= */
+
+.no-results {
+  width: min(1200px, 100%);
+
+  margin: 0 auto;
+
+  padding: 80px 20px;
+
+  text-align: center;
+
+  border: 1px dashed #b9c2b9;
+}
+
+.no-results span {
+  font-size: 2rem;
+}
+
+.no-results h3 {
+  font-size: 1.7rem;
+
+  margin: 15px 0 5px;
+}
+
+.no-results p {
+  color: #687068;
+}
+
+.no-results button {
+  margin-top: 15px;
+
+  border: none;
+
+  background: #17251e;
+
+  color: #fff;
+
+  padding: 12px 20px;
+
+  cursor: pointer;
 }
 
 /* =========================================
    DISCOVERY CHALLENGE
 ========================================= */
 
-.discovery-section {
-  padding: 100px 7%;
-  background: #ebe9e2;
-}
+.challenge-section {
+  background: #17251e;
 
-.discovery-content {
-  max-width: 1200px;
-  margin: auto;
-}
+  color: #f5f3ed;
 
-.mystery-cards {
+  padding: 120px 5%;
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 40px;
+
+  grid-template-columns: 0.8fr 1.2fr;
+
+  gap: 100px;
+
+  align-items: center;
 }
 
-.mystery-card {
-  min-height: 300px;
-  padding: 28px;
-  background: #f8f7f3;
-  border: 1px solid #ddd9d0;
-  position: relative;
+.challenge-intro {
+  max-width: 480px;
+}
+
+.challenge-intro .section-number {
+  color: #aebcaf;
+}
+
+.challenge-intro h2 {
+  margin-bottom: 30px;
+}
+
+.challenge-intro > p:last-child {
+  color: rgba(245, 243, 237, 0.65);
+
+  line-height: 1.7;
+
+  max-width: 380px;
+}
+
+.challenge-box {
+  background: #f5f3ed;
+
+  color: #171717;
+
+  min-height: 460px;
+
+  padding: 45px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.challenge-progress {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 50px;
+
+  color: #758076;
+
+  font-size: 0.7rem;
+}
+
+.challenge-progress > div {
+  flex: 1;
+
+  display: flex;
+
+  gap: 5px;
+}
+
+.challenge-progress > div span {
+  height: 2px;
+
+  flex: 1;
+
+  background: #d4d2ca;
+}
+
+.challenge-progress > div span.progress-active {
+  background: #17251e;
+}
+
+.challenge-box h3 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+
+  max-width: 600px;
+
+  margin: 0 0 30px;
+}
+
+.challenge-options {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 10px;
+}
+
+.challenge-options button {
+  min-height: 65px;
+
+  padding: 15px 18px;
+
+  background: transparent;
+
+  border: 1px solid #d4d2ca;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  transition: 0.2s ease;
+}
+
+.challenge-options button:hover {
+  background: #17251e;
+
+  color: #f5f3ed;
+
+  border-color: #17251e;
+}
+
+.option-arrow {
+  font-size: 1.1rem;
+}
+
+/* =========================================
+   CHALLENGE RESULT
+========================================= */
+
+.challenge-result {
+  text-align: center;
+}
+
+.result-label {
+  font-size: 0.65rem;
+
+  letter-spacing: 0.15em;
+
+  font-weight: 700;
+
+  color: #6b786e;
+}
+
+.result-image {
+  width: 100%;
+
+  max-width: 430px;
+
+  height: 190px;
+
+  margin: 20px auto;
+
   overflow: hidden;
 }
 
-.mystery-card > span {
-  font-size: 11px;
-  color: #999;
+.result-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
 }
 
-.mystery-icon {
-  position: absolute;
-  top: 35px;
-  right: 30px;
-  width: 55px;
-  height: 55px;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 25px;
+.result-category {
+  color: #6c786f;
+
+  font-size: 0.7rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
 }
 
-.mystery-card h3 {
-  margin-top: 130px;
-  max-width: 220px;
-  font-size: 24px;
+.challenge-result h3 {
+  margin: 8px 0;
+
+  font-size: 2.2rem;
 }
 
-.mystery-card p {
-  color: #777;
+.challenge-result > p:not(.result-label):not(.result-category) {
+  color: #646a65;
+
+  max-width: 500px;
+
+  margin: 0 auto;
+
+  line-height: 1.5;
+}
+
+.result-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.result-primary,
+.result-secondary {
+  padding: 13px 20px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+}
+
+.result-primary {
+  background: #17251e;
+
+  color: #f5f3ed;
+}
+
+.result-secondary {
+  background: transparent;
+
+  color: #17251e;
+
+  border: 1px solid #bbb9b2;
 }
 
 /* =========================================
    FEELING LUCKY
 ========================================= */
 
-.hidden-lucky-section {
-  padding: 120px 7%;
+.lucky-section {
+  min-height: 570px;
+
+  background: #d8dfd6;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
   text-align: center;
-  background: #171717;
-  color: white;
+
+  padding: 80px 20px;
 }
 
-.lucky-content {
-  max-width: 650px;
-  margin: auto;
+.lucky-mark {
+  font-size: 2.5rem;
+
+  margin-bottom: 25px;
 }
 
-.lucky-star {
-  font-size: 32px;
+.lucky-section > p {
+  font-size: 0.68rem;
+
+  letter-spacing: 0.15em;
+
+  font-weight: 700;
+
+  color: #68736b;
 }
 
-.lucky-content h2 {
-  margin: 20px 0 12px;
-  font-size: clamp(35px, 5vw, 58px);
-  letter-spacing: -2px;
+.lucky-section h2 {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+
+  line-height: 0.9;
+
+  letter-spacing: -0.06em;
+
+  font-weight: 500;
+
+  margin: 20px 0 40px;
 }
 
-.lucky-content p {
-  color: #aaa;
-  margin-bottom: 30px;
+.lucky-section h2 span {
+  color: #68766c;
+
+  font-style: italic;
 }
 
 .lucky-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 30px;
-  padding: 16px 22px;
-  background: white;
-  color: #171717;
+  border: 1px solid #17251e;
+
+  background: #17251e;
+
+  color: #f5f3ed;
+
+  padding: 17px 25px;
+
+  cursor: pointer;
+
   text-decoration: none;
+
+  display: flex;
+
+  gap: 40px;
+
+  align-items: center;
+
   font-weight: 700;
-  border-radius: 3px;
+
   transition: 0.2s ease;
 }
 
 .lucky-button:hover {
-  transform: translateY(-2px);
+  background: transparent;
+
+  color: #17251e;
 }
 
-.lucky-button span {
-  font-size: 20px;
+/* =========================================
+   LOADING / ERROR
+========================================= */
+
+.hidden-loading,
+.hidden-error {
+  min-height: 70vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 30px;
+}
+
+.loading-symbol,
+.hidden-error > span {
+  font-size: 3rem;
+
+  margin-bottom: 20px;
+}
+
+.hidden-loading h2,
+.hidden-error h2 {
+  font-size: 2rem;
+
+  margin: 0 0 10px;
+}
+
+.hidden-loading p,
+.hidden-error p {
+  color: #687068;
+}
+
+.hidden-error button {
+  margin-top: 15px;
+
+  background: #17251e;
+
+  color: white;
+
+  border: none;
+
+  padding: 12px 22px;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .floating-hero {
+    width: 430px;
+    height: 450px;
+    right: 2%;
+  }
+
+  .floating-card-main {
+    width: 250px;
+    height: 360px;
+    left: 90px;
+  }
+
+  .floating-card-left,
+  .floating-card-right {
+    width: 175px;
+    height: 250px;
+  }
+
+  .hidden-hero-content {
+    width: 92%;
+  }
+}
+
+/* =========================================
+   TABLET / SMALL LAPTOP
+========================================= */
+
+@media (max-width: 900px) {
+
+  .hidden-hero {
+    min-height: 720px;
+  }
+
+  .hidden-hero h1 {
+    font-size: clamp(3.5rem, 12vw, 6rem);
+  }
+
+  .hidden-hero-content {
+    padding-top: 80px;
+  }
+
+  .floating-hero {
+    width: 390px;
+    height: 350px;
+
+    right: 50%;
+    top: auto;
+    bottom: 25px;
+
+    transform: translateX(50%);
+  }
+
+  .floating-card-left {
+    width: 145px;
+    height: 205px;
+
+    left: 0;
+    top: 70px;
+  }
+
+  .floating-card-main {
+    width: 210px;
+    height: 290px;
+
+    left: 90px;
+    top: 20px;
+  }
+
+  .floating-card-right {
+    width: 145px;
+    height: 200px;
+
+    right: 0;
+    top: 80px;
+  }
+
+  .around-heading {
+    display: block;
+  }
+
+  .around-description {
+    margin-top: 25px;
+  }
+
+  .challenge-section {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .challenge-box {
+    min-height: auto;
+  }
 }
 
 /* =========================================
    MOBILE
 ========================================= */
 
-@media (max-width: 900px) {
-  .featured-gems {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 700px) {
+
+  .hidden-hero {
+    min-height: 760px;
   }
 
-  .gem-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hidden-hero-content {
+    padding: 75px 0 0;
   }
 
-  .mystery-cards {
+  .hidden-hero h1 {
+    font-size: 3.7rem;
+  }
+
+  .hidden-hero-description {
+    margin-top: 30px;
+  }
+
+  .floating-hero {
+    width: 340px;
+    height: 330px;
+    bottom: 35px;
+  }
+
+  .floating-card-left {
+    width: 125px;
+    height: 180px;
+
+    left: 2px;
+    top: 80px;
+  }
+
+  .floating-card-main {
+    width: 190px;
+    height: 270px;
+
+    left: 75px;
+    top: 20px;
+  }
+
+  .floating-card-right {
+    width: 125px;
+    height: 175px;
+
+    right: 0;
+    top: 90px;
+  }
+
+  .floating-card-info {
+    padding: 50px 13px 13px;
+  }
+
+  .floating-card-info strong {
+    font-size: 1rem;
+  }
+
+  .floating-card-info small {
+    font-size: 0.6rem;
+  }
+
+  .floating-card-info em {
+    font-size: 0.62rem;
+    margin-top: 8px;
+  }
+
+  .hero-decoration-one {
+    font-size: 8rem;
+    right: -10px;
+  }
+
+  .hero-decoration-two {
+    display: none;
+  }
+
+  .discover-section,
+  .around-section,
+  .challenge-section {
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+
+  .discover-header h2,
+  .around-heading h2,
+  .challenge-intro h2 {
+    font-size: 3.2rem;
+  }
+
+  .gem-carousel {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  .carousel-card {
+    flex-basis: 82vw;
+  }
+
+  .carousel-image {
+    height: 260px;
+  }
+
+  .carousel-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .carousel-arrow-left {
+    left: 5px;
+  }
+
+  .carousel-arrow-right {
+    right: 5px;
+  }
+
+  .filter-controls {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .results-count {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .hidden-grid {
     grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .hidden-place-image {
+    height: 270px;
+  }
+
+  .challenge-box {
+    padding: 28px 22px;
+  }
+
+  .challenge-options {
+    grid-template-columns: 1fr;
+  }
+
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .result-primary,
+  .result-secondary {
+    width: 100%;
+  }
+
+  .lucky-section {
+    min-height: 480px;
+  }
+
+  .lucky-section h2 {
+    font-size: 3.4rem;
   }
 }
 
-@media (max-width: 600px) {
-  .hidden-gems-hero {
-    min-height: 600px;
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .hidden-hero {
+    min-height: 720px;
   }
 
-  .hidden-gems-hero-content {
-    padding: 70px 6%;
+  .hidden-hero h1 {
+    font-size: 3rem;
   }
 
-  .hidden-gems-hero h1 {
-    letter-spacing: -2px;
+  .hidden-search {
+    height: 56px;
   }
 
-  .hidden-gems-vibes,
-  .hidden-section {
-    padding-left: 6%;
-    padding-right: 6%;
+  .hero-bottom-note {
+    display: none;
   }
 
-  .section-heading-row {
-    display: block;
+  .discover-header {
+    margin-bottom: 35px;
   }
 
-  .view-all-link {
-    display: inline-block;
-    margin-top: 20px;
+  .carousel-card {
+    flex-basis: 88vw;
   }
 
-  .featured-gems {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding-bottom: 10px;
+  .carousel-image {
+    height: 230px;
   }
 
-  .featured-gem-card {
-    flex: 0 0 78%;
+  .hidden-place-image {
+    height: 230px;
   }
 
-  .featured-image-wrapper {
-    height: 330px;
+  .place-name {
+    font-size: 1.5rem;
   }
 
-  .hidden-level-section {
-    margin: 20px 0;
-    padding: 70px 6%;
+  .challenge-intro h2 {
+    font-size: 2.8rem;
   }
 
-  .gem-grid {
-    grid-template-columns: 1fr;
+  .lucky-section h2 {
+    font-size: 2.8rem;
   }
 
-  .gem-image-wrapper {
-    height: 360px;
+  .hidden-search input {
+    font-size: 0.82rem;
   }
 
-  .discovery-section {
-    padding: 80px 6%;
+  .search-submit {
+    width: 38px;
+    height: 38px;
   }
 
-  .hidden-lucky-section {
-    padding: 90px 6%;
+  .floating-hero {
+    width: 310px;
+    height: 300px;
+  }
+
+  .floating-card-left {
+    width: 110px;
+    height: 160px;
+
+    top: 75px;
+  }
+
+  .floating-card-main {
+    width: 175px;
+    height: 250px;
+
+    left: 67px;
+  }
+
+  .floating-card-right {
+    width: 110px;
+    height: 155px;
+
+    top: 82px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-card-left,
+  .floating-card-main,
+  .floating-card-right {
+    animation: none;
+  }
+
+  .floating-card {
+    transition: none;
+  }
+
+  .carousel-image img,
+  .hidden-place-image img {
+    transition: none;
   }
 }
