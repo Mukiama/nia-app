@@ -3,22 +3,22 @@ import {Link} from 'react-router-dom'
 // import FilterBar from '../components/filterBar'
 import { useState, useEffect } from 'react';
 import Filter from './filter';
+import { authFetch, getUser } from '../api/client';
 
 export default function Dashboard( ) {
-    const [ user, setUser] = useState(null);
+    const [ user, setUser] = useState(getUser());
      const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('niaUser')
-       
-
-        if (!storedUser) {
+        if (!user) {
             setIsLoading(false)
             return;
         }
-            
 
-        fetch(`https://nia-app-ik4c.onrender.com/users/${JSON.parse(storedUser).id}`)
+        // Was: fetch(`.../users/${id}`) — that route doesn't exist anywhere
+        // in the backend. /verification returns the current logged-in user
+        // based on the JWT, which is what this page actually needs.
+        authFetch('/verification')
             .then((response) => response.json())
             .then((data) => setUser(data))
             .catch((error) => console.error("Error fetching user data:", error))
