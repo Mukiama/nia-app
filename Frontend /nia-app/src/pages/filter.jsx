@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import SearchBar from "../components/searchBar.jsx";
 import FilterBar from "../components/filterBar.jsx";
@@ -60,6 +60,25 @@ function Filter() {
   }, [search, filters]);
 
   const [loadingMore, setLoadingMore] = useState(false);
+
+  const sentinelRef = useRef(null);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [page, hasMore, loadingMore, search, filters]);
 
   async function loadMore() {
     if (loadingMore || !hasMore) return;
