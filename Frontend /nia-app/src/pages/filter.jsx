@@ -42,7 +42,7 @@ function Filter() {
 
         const data = await response.json();
 
-        setPlaces(data);
+        setPlaces(data.items);
         setError("");
       } catch (error) {
         console.error(error);
