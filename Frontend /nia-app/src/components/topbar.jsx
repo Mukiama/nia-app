@@ -9,7 +9,7 @@ function Topbar() {
         {/* LOGO */}
         <Link to="/" className="navbar-logo">
           <span className="nia-mark">✦</span>
-          <span>Nia</span>
+          <span>NIA</span>
         </Link>
 
         {/* MAIN NAVIGATION */}
