@@ -45,6 +45,7 @@ function Filter() {
         const data = await response.json();
 
         setPlaces(data.items);
+        setHasMore(data.has_more);
         setError("");
       } catch (error) {
         console.error(error);
