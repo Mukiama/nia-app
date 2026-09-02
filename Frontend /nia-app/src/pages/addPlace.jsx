@@ -13,6 +13,8 @@ function AddPlace() {
 
   const [photos, setPhotos] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const categories = [
     "Photography",
@@ -32,6 +34,8 @@ function AddPlace() {
       ...previous,
       [name]: value,
     }));
+
+    setError("");
   };
 
   const handleRating = (rating) => {
@@ -39,23 +43,72 @@ function AddPlace() {
       ...previous,
       rating,
     }));
+
+    setError("");
   };
 
   const handlePhotos = (event) => {
     const files = Array.from(event.target.files);
 
+    if (files.length > 5) {
+      setError("You can add a maximum of 5 photos.");
+      setPhotos(files.slice(0, 5));
+      return;
+    }
+
     setPhotos(files);
+    setError("");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("Place submission:", {
-      ...formData,
-      photos,
+    setError("");
+
+    if (formData.rating === 0) {
+      setError("Please give this place a rating.");
+      return;
+    }
+
+    if (photos.length === 0) {
+      setError("Please add at least one photo.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      console.log("Place submission:", {
+        ...formData,
+        photos,
+      });
+
+      // Simulate successful submission for now.
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      setSubmitted(true);
+    } catch (submitError) {
+      console.error("Error submitting place:", submitError);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+
+    setFormData({
+      name: "",
+      category: "",
+      location: "",
+      description: "",
+      review: "",
+      rating: 0,
     });
 
-    setSubmitted(true);
+    setPhotos([]);
+    setError("");
   };
 
   if (submitted) {
@@ -63,6 +116,10 @@ function AddPlace() {
       <main className="add-place-page">
         <section className="add-place-success">
           <div className="success-icon">✓</div>
+
+          <p className="add-place-eyebrow">
+            PLACE SUBMITTED
+          </p>
 
           <h1>Thanks for sharing!</h1>
 
@@ -73,22 +130,10 @@ function AddPlace() {
 
           <button
             type="button"
-            onClick={() => {
-              setSubmitted(false);
-              setFormData({
-                name: "",
-                category: "",
-                location: "",
-                description: "",
-                review: "",
-                rating: 0,
-              });
-              setPhotos([]);
-            }}
+            onClick={resetForm}
           >
             Add Another Place
           </button>
-
         </section>
       </main>
     );
@@ -96,11 +141,9 @@ function AddPlace() {
 
   return (
     <main className="add-place-page">
-
       <section className="add-place-container">
 
         <div className="add-place-header">
-
           <p className="add-place-eyebrow">
             SHARE A DISCOVERY
           </p>
@@ -110,14 +153,12 @@ function AddPlace() {
           </h1>
 
           <p>
-            Help others discover places that
-            deserve to be on Nia.
+            Help others discover places that deserve to be on Nia.
           </p>
-
         </div>
 
         {error && (
-          <div className="form-error">
+          <div className="form-error" role="alert">
             {error}
           </div>
         )}
@@ -128,15 +169,12 @@ function AddPlace() {
         >
 
           {/* PLACE DETAILS */}
-
           <div className="form-section">
-
             <h2>
               Place details
             </h2>
 
             <div className="form-group">
-
               <label htmlFor="name">
                 Place name
               </label>
@@ -150,11 +188,9 @@ function AddPlace() {
                 onChange={handleChange}
                 required
               />
-
             </div>
 
             <div className="form-group">
-
               <label htmlFor="category">
                 Category
               </label>
@@ -166,7 +202,6 @@ function AddPlace() {
                 onChange={handleChange}
                 required
               >
-
                 <option value="">
                   Choose a category
                 </option>
@@ -179,13 +214,10 @@ function AddPlace() {
                     {category}
                   </option>
                 ))}
-
               </select>
-
             </div>
 
             <div className="form-group">
-
               <label htmlFor="location">
                 Location
               </label>
@@ -199,11 +231,9 @@ function AddPlace() {
                 onChange={handleChange}
                 required
               />
-
             </div>
 
             <div className="form-group">
-
               <label htmlFor="description">
                 About this place
               </label>
@@ -217,26 +247,20 @@ function AddPlace() {
                 rows="4"
                 required
               />
-
             </div>
-
           </div>
 
           {/* PHOTOS */}
-
           <div className="form-section">
-
             <h2>
               Photos
             </h2>
 
             <p className="form-help">
-              Add up to 5 photos that show people
-              what the place is like.
+              Add up to 5 photos that show people what the place is like.
             </p>
 
             <label className="photo-upload">
-
               <span>
                 ＋ Add photos
               </span>
@@ -247,18 +271,15 @@ function AddPlace() {
                 multiple
                 onChange={handlePhotos}
               />
-
             </label>
 
             {photos.length > 0 && (
               <div className="selected-photos">
-
                 <p>
                   {photos.length} photo(s) selected
                 </p>
 
                 <div className="photo-names">
-
                   {photos.map((photo) => (
                     <span
                       key={`${photo.name}-${photo.lastModified}`}
@@ -266,32 +287,24 @@ function AddPlace() {
                       {photo.name}
                     </span>
                   ))}
-
                 </div>
-
               </div>
             )}
-
           </div>
 
           {/* REVIEW */}
-
           <div className="form-section">
-
             <h2>
               Your experience
             </h2>
 
             <div className="form-group">
-
               <label>
                 Rating
               </label>
 
               <div className="rating-selector">
-
                 {[1, 2, 3, 4, 5].map((star) => (
-
                   <button
                     key={star}
                     type="button"
@@ -300,22 +313,16 @@ function AddPlace() {
                         ? "rating-star active"
                         : "rating-star"
                     }
-                    onClick={() =>
-                      handleRating(star)
-                    }
+                    onClick={() => handleRating(star)}
                     aria-label={`Rate ${star} out of 5`}
                   >
                     ★
                   </button>
-
                 ))}
-
               </div>
-
             </div>
 
             <div className="form-group">
-
               <label htmlFor="review">
                 Your review
               </label>
@@ -329,9 +336,7 @@ function AddPlace() {
                 rows="5"
                 required
               />
-
             </div>
-
           </div>
 
           <button
@@ -349,9 +354,7 @@ function AddPlace() {
           </button>
 
         </form>
-
       </section>
-
     </main>
   );
 }

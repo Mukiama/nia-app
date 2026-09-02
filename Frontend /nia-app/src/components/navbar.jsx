@@ -123,7 +123,7 @@ export default function Navbar({
           </Link>
 
           <Link
-            to="add-place"
+            to="/add-place"
             onClick={() => setSidebarOpen(false)}
           >
             Add a Place

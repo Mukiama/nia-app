@@ -6,9 +6,33 @@ function OffMapResult({
   onRollAgain,
   onWildcard,
 }) {
-  // Don't render the result screen until a place exists
   if (!place) {
-    return null;
+    return (
+      <section className="offmap-result">
+        <div className="offmap-result-heading">
+          <p className="offmap-label">
+            OFFMAP
+          </p>
+
+          <h1>
+            No place found.
+          </h1>
+
+          <p>
+            Try rolling again to discover somewhere else.
+          </p>
+        </div>
+
+        <div className="offmap-result-actions">
+          <button
+            type="button"
+            onClick={onRollAgain}
+          >
+            ↻ Give me another
+          </button>
+        </div>
+      </section>
+    );
   }
 
   const isWildcard = Boolean(place.wildcardRule);
@@ -16,7 +40,6 @@ function OffMapResult({
   return (
     <section className="offmap-result">
 
-      {/* WILDCARD BANNER */}
       {isWildcard && (
         <div className="offmap-wildcard-banner">
           <span>🃏 WILDCARD</span>
@@ -27,7 +50,6 @@ function OffMapResult({
         </div>
       )}
 
-      {/* HEADING */}
       <div className="offmap-result-heading">
         <p className="offmap-label">
           OFFMAP HAS SPOKEN
@@ -38,7 +60,6 @@ function OffMapResult({
         </h1>
       </div>
 
-      {/* RESULT CARD */}
       <article className="offmap-result-card">
 
         <div className="offmap-result-image">
@@ -54,7 +75,9 @@ function OffMapResult({
             {place.category}
           </p>
 
-          <h2>{place.name}</h2>
+          <h2>
+            {place.name}
+          </h2>
 
           <div className="offmap-result-details">
             <span>
@@ -91,7 +114,6 @@ function OffMapResult({
 
       </article>
 
-      {/* ACTIONS */}
       <div className="offmap-result-actions">
 
         <button
@@ -108,7 +130,10 @@ function OffMapResult({
           🃏 Wildcard
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onClick={onRollAgain}
+        >
           🎭 Mystery
         </button>
 

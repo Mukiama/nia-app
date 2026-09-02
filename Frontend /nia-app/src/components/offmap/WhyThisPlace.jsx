@@ -1,123 +1,72 @@
-import WhyThisPlace from "./WhyThisPlace";
-
-function OffMapResult({
-  place,
-  preferences,
-  onRollAgain,
-  onWildcard,
-}) {
+function WhyThisPlace({ place, preferences }) {
   if (!place) {
     return null;
   }
 
-  const isWildcard = Boolean(place.wildcardRule);
+  const reasons = [];
+
+  if (
+    preferences?.mood &&
+    preferences.mood !== "surprise" &&
+    place.moods?.includes(preferences.mood)
+  ) {
+    reasons.push(`matches your ${preferences.mood} mood`);
+  }
+
+  if (
+    preferences?.who &&
+    preferences.who !== "surprise" &&
+    place.suitableFor?.includes(preferences.who)
+  ) {
+    reasons.push(`works well for ${preferences.who}`);
+  }
+
+  if (
+    preferences?.time &&
+    preferences.time !== "surprise"
+  ) {
+    if (
+      preferences.time === "one-hour" &&
+      place.timeLevel <= 1
+    ) {
+      reasons.push("fits your available time");
+    }
+
+    if (
+      preferences.time === "three-hours" &&
+      place.timeLevel <= 2
+    ) {
+      reasons.push("fits your available time");
+    }
+
+    if (
+      preferences.time === "half-day" &&
+      place.timeLevel <= 3
+    ) {
+      reasons.push("fits your available time");
+    }
+
+    if (preferences.time === "whole-day") {
+      reasons.push("gives you plenty of time to explore");
+    }
+  }
+
+  if (reasons.length === 0) {
+    reasons.push("it matches your OffMap preferences");
+  }
 
   return (
-    <section className="offmap-result">
+    <div className="offmap-why">
+      <p className="offmap-why-label">
+        WHY THIS PLACE?
+      </p>
 
-      {/* WILDCARD BANNER */}
-      {isWildcard && (
-        <div className="offmap-wildcard-banner">
-          <span>🃏 WILDCARD</span>
-
-          <span>
-            We broke your {place.wildcardRule} rule.
-          </span>
-        </div>
-      )}
-
-      {/* HEADING */}
-      <div className="offmap-result-heading">
-        <p className="offmap-label">
-          OFFMAP HAS SPOKEN
-        </p>
-
-        <h1>
-          You should go here.
-        </h1>
-      </div>
-
-      {/* RESULT CARD */}
-      <article className="offmap-result-card">
-
-        {/* IMAGE */}
-        <div className="offmap-result-image">
-          <img
-            src={place.image}
-            alt={place.name}
-          />
-        </div>
-
-        {/* CONTENT */}
-        <div className="offmap-result-content">
-
-          <p className="offmap-result-category">
-            {place.category}
-          </p>
-
-          <h2>{place.name}</h2>
-
-          <div className="offmap-result-details">
-            <span>
-              📍 {place.location}
-            </span>
-
-            <span>
-              💰 {place.price}
-            </span>
-
-            <span>
-              ⏱️ {place.time || place.timeRequired}
-            </span>
-          </div>
-
-          {/* WHY THIS PLACE */}
-          <WhyThisPlace
-            place={place}
-            preferences={preferences}
-          />
-
-          <p className="offmap-result-message">
-            This isn't necessarily where everyone goes.
-            That's the point.
-          </p>
-
-          <button
-            type="button"
-            className="offmap-go-button"
-          >
-            Take me there →
-          </button>
-
-        </div>
-
-      </article>
-
-      {/* ACTIONS */}
-      <div className="offmap-result-actions">
-
-        <button
-          type="button"
-          onClick={onRollAgain}
-        >
-          ↻ Give me another
-        </button>
-
-        <button
-          type="button"
-          onClick={onWildcard}
-        >
-          🃏 Wildcard
-        </button>
-
-        <button type="button">
-          🎭 Mystery
-        </button>
-
-      </div>
-
-    </section>
+      <p className="offmap-why-text">
+        We picked <strong>{place.name}</strong> because it{" "}
+        {reasons.join(", ")}.
+      </p>
+    </div>
   );
 }
 
-export default OffMapResult;
+export default WhyThisPlace;
