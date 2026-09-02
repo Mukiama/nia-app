@@ -59,6 +59,37 @@ function Filter() {
     fetchPlaces();
   }, [search, filters]);
 
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  async function loadMore() {
+    if (loadingMore || !hasMore) return;
+
+    try {
+      setLoadingMore(true);
+      const nextPage = page + 1;
+
+      const params = new URLSearchParams();
+      params.set("page", nextPage);
+      if (search) params.set("q", search);
+      if (filters.category && filters.category !== "All") {
+        params.set("category", filters.category);
+      }
+
+      const response = await authFetch(`/places/?${params.toString()}`);
+      if (!response.ok) throw new Error("Failed to fetch more places");
+
+      const data = await response.json();
+
+      setPlaces((prev) => [...prev, ...data.items]);
+      setHasMore(data.has_more);
+      setPage(nextPage);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoadingMore(false);
+    }
+  }
+
   const categories = [
     ...new Set(places.map((place) => place.category).filter(Boolean)),
   ];
