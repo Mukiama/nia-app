@@ -8,6 +8,7 @@ import os
 from config import Config
 from models import db
 from extensions import bcrypt, jwt
+from flask_jwt_extended import verify_jwt_in_request
 
 from routes.place_routes import place_bp
 from routes.profile_routes import profile_bp
@@ -16,7 +17,7 @@ from routes.items_routes import item_bp
 from routes.user_routes import (
     Signup, Login, Logout, Verification,
     HistoryListResource, HistoryItemResource,
-    FavouritesListResource, FavouritesItemResource
+    FavouritesListResource, FavouritesItemResource,
 )
 from routes.user_place import user_place_bp
 
@@ -26,7 +27,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
 app.config['JWT_ACCESS_COOKIE_NAME'] = 'access_token_cookie'
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # or True with CSRF token
 
@@ -46,7 +47,9 @@ CORS(
     supports_credentials=True,
 )
 
+
 api = Api(app, decorators=[cross_origin(supports_credentials=True)])
+
 
 app.register_blueprint(place_bp)
 app.register_blueprint(profile_bp)
@@ -65,6 +68,12 @@ api.add_resource(HistoryItemResource, "/history/<int:id>")
 api.add_resource(FavouritesListResource, "/favourites")
 api.add_resource(FavouritesItemResource, "/favourites/<int:id>")
 
+@app.before_request
+def check_if_logged_in() :
+    open_access = ['signup', 'login', 'verification']
+
+    if (request.endpoint) not in open_access and (not verify_jwt_in_request()):
+        return {'error': '401 Unauthorized'}, 401
 
 @app.route("/")
 def index():

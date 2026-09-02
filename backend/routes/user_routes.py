@@ -6,8 +6,11 @@ from flask_jwt_extended import (
     get_jwt_identity, 
     jwt_required,
     set_access_cookies,
-    unset_jwt_cookies
+    unset_jwt_cookies,
+    verify_jwt_in_request
     )
+
+
 
 from models import db, User, History, Favourite
 from schemas import user_schema
