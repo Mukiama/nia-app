@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import AppLayout from "./components/AppLayout";
+import Topbar from "./components/topbar";
 
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -24,14 +25,20 @@ import "./App.css";
 
 export default function App() {
   return (
-    
     <Routes>
-      <Route path="" element={<Home />} />
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <>
+            <Topbar />
+            <Home />
+          </>
+        }
+      />
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/hero" element={<Hero />} />
-      <Route path="/nia-picks" element={<NiaPicks />} />
       <Route path="/about" element={<About />} />
 
       <Route element={<AppLayout />}>
@@ -40,13 +47,14 @@ export default function App() {
         <Route path="/places/:id" element={<PlaceDetails />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
         <Route path="/history" element={<History />} />
         <Route path="/filter" element={<Filter />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/offmap" element={<OffMap />} />
         <Route path="/hidden-gems" element={<HiddenGems />} />
-        <Route path="/profile/:id" element={<Profile />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/nia-picks" element={<NiaPicks />} />
       </Route>
     </Routes>
   );

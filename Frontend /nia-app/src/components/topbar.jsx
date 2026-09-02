@@ -9,7 +9,7 @@ function Topbar() {
         {/* LOGO */}
         <Link to="/" className="navbar-logo">
           <span className="nia-mark">✦</span>
-          <span>Nia</span>
+          <span>NIA</span>
         </Link>
 
         {/* MAIN NAVIGATION */}
@@ -36,14 +36,14 @@ function Topbar() {
                   Nia Picks
                 </Link>
 
-                <Link to="/popular-places">
-                  Popular Places
+                <Link to="/offmap">
+                  Offmap
                 </Link>
 
                 {/* <Link to="/new-places">New Places</Link> */}
               </div>
 
-              <div>
+              {/* <div>
                 <p className="dropdown-title">EXPLORE</p>
 
                 <Link to="/near-me">
@@ -62,10 +62,10 @@ function Topbar() {
                   Recently Added
                 </Link>
 
-                {/* <Link to="/popular-places">Popular Places</Link> */}
+                <Link to="/popular-places">Popular Places</Link> 
 
-                {/* <Link to="/surprise-me">Surprise Me</Link> */}
-              </div>
+                <Link to="/surprise-me">Surprise Me</Link> 
+              </div>*/}
 
             </div>
           </div>
@@ -84,6 +84,10 @@ function Topbar() {
               <Link to="/about">
                 About Nia
               </Link>
+
+              <Link to="/community">
+                  NIA Community
+                </Link>
 
               <Link to="/reviews">
                 Application Reviews
