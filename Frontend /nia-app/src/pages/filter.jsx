@@ -28,6 +28,7 @@ function Filter() {
     async function fetchPlaces() {
       try {
         setLoading(true);
+        setPage(1);
 
         const params = new URLSearchParams();
         params.set("page", 1);
