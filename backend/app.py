@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from dotenv import load_dotenv
 import os
+import cloudinary
 
 from config import Config
 from models import db
@@ -31,6 +32,12 @@ load_dotenv()
 app = Flask(__name__)
 app.config.from_object(Config)
 
+cloudinary.config(
+    cloud_name=app.config["CLOUDINARY_CLOUD_NAME"],
+    api_key=app.config["CLOUDINARY_API_KEY"],
+    api_secret=app.config["CLOUDINARY_API_SECRET"],
+)
+
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies"]
 app.config["JWT_ACCESS_COOKIE_NAME"] = "access_token_cookie"
@@ -48,7 +55,7 @@ CORS(
         r"/*": {
             "origins": [
                 "http://localhost:5173",
-                "http://127.0.0.1:5000",
+                "http://127.0.0.1:5173",
             ]
         }
     },
@@ -95,7 +102,7 @@ api.add_resource(
 
 @app.before_request
 def check_if_logged_in():
-    open_access = ["signup", "login", "verification"]
+    open_access = ["signup", "login", "verification", "index"]
 
     if request.endpoint not in open_access:
         try:
