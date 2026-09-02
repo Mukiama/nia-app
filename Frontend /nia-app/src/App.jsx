@@ -18,6 +18,7 @@ import OffMap from "./pages/offmap";
 import AddPlace from "./pages/addPlace";
 import NiaPicks from "./pages/niaPicks";
 import HiddenGems from "./pages/hiddenGems";
+import Community from "./pages/community";
 
 import "./App.css";
 
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/offmap" element={<OffMap />} />
         <Route path="/hidden-gems" element={<HiddenGems />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/community" element={<Community />} />
       </Route>
     </Routes>
   );
