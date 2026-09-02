@@ -173,14 +173,14 @@ function Topbar() {
         {/* RIGHT SIDE */}
         <div className="navbar-actions">
 
-          {/*
+          
           <Link
             to="/signup"
             className="navbar-action business-link"
           >
             GET STARTED
           </Link>
-          */}
+         
 
           <Link
             to="/list-business"
@@ -191,9 +191,9 @@ function Topbar() {
 
 
           {/* ACCOUNT */}
-          <div className="profile-menu">
+          {/* <div className="profile-menu">
 
-            {/* <Link to="/profile">My Profile</Link> */}
+            <Link to="/profile">My Profile</Link> 
 
             <button
               type="button"
@@ -225,7 +225,7 @@ function Topbar() {
 
             <div className="profile-dropdown">
 
-              {/* <Link to="/profile">My Profile</Link> */}
+              <Link to="/profile">My Profile</Link> 
 
               <Link to="/login">
                 Log in
@@ -237,7 +237,7 @@ function Topbar() {
 
             </div>
 
-          </div>
+          </div> */}
 
         </div>
 
