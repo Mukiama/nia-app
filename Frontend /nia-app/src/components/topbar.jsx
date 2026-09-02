@@ -37,7 +37,7 @@ function Topbar() {
                 </Link>
 
                 <Link to="/popular-places">
-                  Popular Places
+                  Recently Added Places
                 </Link>
 
                 {/* <Link to="/new-places">New Places</Link> */}
@@ -50,9 +50,9 @@ function Topbar() {
                   Near Me
                 </Link>
 
-                <Link to="/map">
+                {/*<Link to="/map">
                   Interactive Map
-                </Link>
+                </Link>*/}
 
                 <Link to="/offmap">
                   OffMap
@@ -84,6 +84,10 @@ function Topbar() {
               <Link to="/about">
                 About Nia
               </Link>
+
+              <Link to="/community">
+                  NIA Community
+                </Link>
 
               <Link to="/reviews">
                 Application Reviews
