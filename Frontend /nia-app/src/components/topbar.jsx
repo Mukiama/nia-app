@@ -36,23 +36,23 @@ function Topbar() {
                   Nia Picks
                 </Link>
 
-                <Link to="/popular-places">
-                  Recently Added Places
+                <Link to="/offmap">
+                  Offmap
                 </Link>
 
                 {/* <Link to="/new-places">New Places</Link> */}
               </div>
 
-              <div>
+              {/* <div>
                 <p className="dropdown-title">EXPLORE</p>
 
                 <Link to="/near-me">
                   Near Me
                 </Link>
 
-                {/*<Link to="/map">
+                <Link to="/map">
                   Interactive Map
-                </Link>*/}
+                </Link>
 
                 <Link to="/offmap">
                   OffMap
@@ -62,10 +62,10 @@ function Topbar() {
                   Recently Added
                 </Link>
 
-                {/* <Link to="/popular-places">Popular Places</Link> */}
+                <Link to="/popular-places">Popular Places</Link> 
 
-                {/* <Link to="/surprise-me">Surprise Me</Link> */}
-              </div>
+                <Link to="/surprise-me">Surprise Me</Link> 
+              </div>*/}
 
             </div>
           </div>
