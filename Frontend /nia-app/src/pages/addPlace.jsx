@@ -79,6 +79,7 @@ function AddPlace() {
     setSubmitting(true);
 
     try {
+      // STEP 1: Create the place
       const response = await authFetch("/places/", {
         method: "POST",
         headers: {
@@ -100,7 +101,32 @@ function AddPlace() {
         );
       }
 
+      // STEP 2: Upload photos to Cloudinary
+      const imageData = new FormData();
+
+      photos.forEach((photo) => {
+        imageData.append("pictures", photo);
+      });
+
+      const uploadResponse = await authFetch(
+        `/places/${data.id}/picture`,
+        {
+          method: "POST",
+          body: imageData,
+        }
+      );
+
+      const uploadData = await uploadResponse.json();
+
+      if (!uploadResponse.ok) {
+        throw new Error(
+          uploadData.error || "Could not upload the photos."
+        );
+      }
+
+      // Everything succeeded
       setSubmitted(true);
+
     } catch (err) {
       console.error("Error submitting place:", err);
       setError(err.message);
@@ -156,6 +182,7 @@ function AddPlace() {
   return (
     <main className="add-place-page">
       <section className="add-place-container">
+
         <div className="add-place-header">
           <p className="add-place-eyebrow">
             SHARE A DISCOVERY
@@ -180,6 +207,7 @@ function AddPlace() {
           className="add-place-form"
           onSubmit={handleSubmit}
         >
+
           <div className="form-section">
             <h2>Place details</h2>
 
@@ -355,6 +383,7 @@ function AddPlace() {
               ? "Submitting..."
               : "Submit Place"}
           </button>
+
         </form>
       </section>
     </main>
