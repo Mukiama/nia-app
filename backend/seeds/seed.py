@@ -2,159 +2,246 @@ import json
 from pathlib import Path
 
 from app import app
-from models import db, Profile, Item, Place, Category
+from models import (
+    db,
+    Profile,
+    Item,
+    Place,
+    Category,
+    User,
+    History,
+    Favourite,
+    UserPlace,
+)
 from seeds.user_places import seed_user_places
 
+SEEDS_DIR = Path(__file__).resolve().parent
 
-BASE_DIR = Path(__file__).resolve().parent
-
-PROFILE_FILE = BASE_DIR / "profiles.json"
-ITEM_FILE = BASE_DIR / "items.json"
-CATEGORY_FILE = BASE_DIR / "categories.json"
-PLACE_FILE = BASE_DIR / "places.json"
+CATEGORIES_FILE = SEEDS_DIR / "categories.json"
+PLACES_FILE = SEEDS_DIR / "places.json"
+USERS_FILE = SEEDS_DIR / "users.json"
+PROFILES_FILE = SEEDS_DIR / "profiles.json"
+ITEMS_FILE = SEEDS_DIR / "items.json"
 
 
 with app.app_context():
 
-    # -------------------------
-    # Load JSON files
-    # -------------------------
+    print("Performing complete relational database wipe...")
 
-    with open(PROFILE_FILE, "r", encoding="utf-8") as f:
-        profiles = json.load(f)
-
-    with open(ITEM_FILE, "r", encoding="utf-8") as f:
-        items = json.load(f)
-
-    with open(CATEGORY_FILE, "r", encoding="utf-8") as f:
-        categories = json.load(f)
-
-    with open(PLACE_FILE, "r", encoding="utf-8") as f:
-        places = json.load(f)
-
-    # -------------------------
-    # Seed Categories
-    # -------------------------
-
-    for category_data in categories:
-
-        existing_category = Category.query.filter_by(
-            name=category_data["name"]
-        ).first()
-
-        if existing_category:
-            continue
-
-        category = Category(
-            name=category_data["name"],
-            description=category_data["description"]
-        )
-
-        db.session.add(category)
+    UserPlace.query.delete()
+    History.query.delete()
+    Favourite.query.delete()
+    Item.query.delete()
+    Profile.query.delete()
+    User.query.delete()
+    Place.query.delete()
+    Category.query.delete()
 
     db.session.commit()
 
-    print(f"Successfully seeded {len(categories)} categories.")
 
-    # -------------------------
-    # Seed Places
-    # -------------------------
+    print("Parsing categories.json...")
 
-    for place_data in places:
+    with open(CATEGORIES_FILE, "r", encoding="utf-8") as f:
+        categories_data = json.load(f)
 
-        existing_place = Place.query.filter_by(
-            name=place_data["name"]
-        ).first()
-
-        if existing_place:
-            continue
-
-        place = Place(
-            name=place_data["name"],
-            description=place_data.get("description"),
-            physical_address=place_data.get("physical_address"),
-            website=place_data.get("website"),
-            picture=place_data.get("picture"),
-            likes=place_data.get("Likes", 0),
-            category=place_data.get("category"),
-            operating_hours=place_data.get("operating_hours"),
-            gps=place_data.get("gps")
+    for cat_data in categories_data:
+        db.session.add(
+            Category(
+                name=cat_data["name"],
+                description=cat_data.get("description", "")
+            )
         )
-
-        db.session.add(place)
 
     db.session.commit()
 
-    print(f"Successfully seeded {len(places)} places.")
+    print(
+        f"Successfully seeded {len(categories_data)} categories."
+    )
 
-    # -------------------------
-    # Seed Items
-    # -------------------------
 
-    for item_data in items:
+    print("Parsing places.json...")
+
+    with open(PLACES_FILE, "r", encoding="utf-8") as f:
+        places_data = json.load(f)
+
+    for p_data in places_data:
+
+        name = p_data.get("name") or p_data.get("place")
+
+        if not name:
+            continue
+
+        db.session.add(
+            Place(
+                name=name,
+                description=p_data.get("description"),
+                physical_address=p_data.get("physical_address"),
+                website=p_data.get("website"),
+                picture=p_data.get("picture"),
+                likes=p_data.get("Likes", 0),
+                category=p_data.get("category"),
+                operating_hours=p_data.get("operating_hours"),
+                gps=p_data.get("gps"),
+            )
+        )
+
+    db.session.commit()
+
+    print(
+        f"Successfully seeded {len(places_data)} places."
+    )
+
+
+    print("Parsing users.json...")
+
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
+        users_data = json.load(f)
+
+    for u_data in users_data:
+
+        user = User(
+            name=u_data["name"],
+            email=u_data["email"]
+        )
+
+        user.password_hash = u_data.get(
+            "password",
+            "password123"
+        )
+
+        db.session.add(user)
+
+    db.session.commit()
+
+    print(
+        f"Successfully seeded {len(users_data)} users."
+    )
+
+
+    print("Parsing profiles.json...")
+
+    with open(PROFILES_FILE, "r", encoding="utf-8") as f:
+        profiles_data = json.load(f)
+
+    for i, prof_data in enumerate(profiles_data):
+
+        target_user = User.query.offset(i).first()
+
+        if not target_user:
+
+            target_user = User(
+                name=f"Extra Seed User {i + 1}",
+                email=f"autouser{i + 1}@moringalabs.com"
+            )
+
+            target_user.password_hash = "password123"
+
+            db.session.add(target_user)
+            db.session.flush()
+
+        db.session.add(
+            Profile(
+                interests=prof_data["interests"],
+                budget=prof_data["budget"],
+                company=prof_data["company"],
+                user_id=target_user.id
+            )
+        )
+
+    db.session.commit()
+
+    print(
+        f"Successfully seeded {len(profiles_data)} profiles."
+    )
+
+
+    print("Parsing items.json...")
+
+    with open(ITEMS_FILE, "r", encoding="utf-8") as f:
+        items_data = json.load(f)
+
+    for item_entry in items_data:
 
         place = Place.query.filter_by(
-            name=item_data["place"]
+            name=item_entry["place"]
         ).first()
 
         category = Category.query.filter_by(
-            name=item_data["category"]
+            name=item_entry["category"]
         ).first()
 
         if not place:
-            raise ValueError(
-                f"Place not found: {item_data['place']}"
+            print(
+                f"Skipping item: place not found - "
+                f"{item_entry['place']}"
             )
-
-        if not category:
-            raise ValueError(
-                f"Category not found: {item_data['category']}"
-            )
-
-        existing_item = Item.query.filter_by(
-            name=item_data["name"],
-            place_id=place.id
-        ).first()
-
-        if existing_item:
             continue
 
-        item = Item(
-            name=item_data["name"],
-            description=item_data["description"],
-            cost=item_data["cost"],
-            place_id=place.id,
-            category_id=category.id
-        )
+        if not category:
+            print(
+                f"Skipping item: category not found - "
+                f"{item_entry['category']}"
+            )
+            continue
 
-        db.session.add(item)
+        db.session.add(
+            Item(
+                name=item_entry["name"],
+                description=item_entry.get("description", ""),
+                cost=item_entry["cost"],
+                place_id=place.id,
+                category_id=category.id
+            )
+        )
 
     db.session.commit()
 
-    print(f"Successfully seeded {len(items)} items.")
+    print(
+        f"Successfully seeded {len(items_data)} items."
+    )
 
-    # -------------------------
-    # Seed Profiles
-    # -------------------------
+    print(
+        "Generating seed tracking nodes for "
+        "History and Favourites pages..."
+    )
 
-    for profile_data in profiles:
+    active_places = Place.query.limit(4).all()
+    all_users = User.query.all()
 
-        profile = Profile(
-            interests=profile_data["interests"],
-            budget=profile_data["budget"],
-            company=profile_data["company"]
-        )
+    for user in all_users:
 
-        db.session.add(profile)
+        for place in active_places:
+
+            db.session.add(
+                History(
+                    user_id=user.id,
+                    place_id=place.id
+                )
+            )
+
+            db.session.add(
+                Favourite(
+                    user_id=user.id,
+                    place_id=place.id
+                )
+            )
 
     db.session.commit()
 
-    print(f"Successfully seeded {len(profiles)} profiles.")
+    print(
+        "Successfully seeded History and Favourite records."
+    )
 
-    # -------------------------
-    # Seed UserPlaces
-    # -------------------------
+
+    print("Seeding UserPlace records...")
 
     seed_user_places()
 
-    print("Successfully seeded UserPlace records.")
+    print(
+        "Successfully seeded UserPlace records."
+    )
+
+    print(
+        "Database seeding completed successfully!"
+    )

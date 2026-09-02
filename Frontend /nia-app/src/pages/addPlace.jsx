@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { authFetch } from "../api/client";
 import "../styles/offMap.css";
 
 function AddPlace() {
@@ -13,7 +14,7 @@ function AddPlace() {
 
   const [photos, setPhotos] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const categories = [
@@ -75,23 +76,36 @@ function AddPlace() {
       return;
     }
 
-    setLoading(true);
+    setSubmitting(true);
 
     try {
-      console.log("Place submission:", {
-        ...formData,
-        photos,
+      const response = await authFetch("/places/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          category: formData.category,
+          physical_address: formData.location,
+          description: formData.description,
+        }),
       });
 
-      // Simulate successful submission for now.
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "Could not add this place."
+        );
+      }
 
       setSubmitted(true);
-    } catch (submitError) {
-      console.error("Error submitting place:", submitError);
-      setError("Something went wrong. Please try again.");
+    } catch (err) {
+      console.error("Error submitting place:", err);
+      setError(err.message);
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
@@ -142,7 +156,6 @@ function AddPlace() {
   return (
     <main className="add-place-page">
       <section className="add-place-container">
-
         <div className="add-place-header">
           <p className="add-place-eyebrow">
             SHARE A DISCOVERY
@@ -167,12 +180,8 @@ function AddPlace() {
           className="add-place-form"
           onSubmit={handleSubmit}
         >
-
-          {/* PLACE DETAILS */}
           <div className="form-section">
-            <h2>
-              Place details
-            </h2>
+            <h2>Place details</h2>
 
             <div className="form-group">
               <label htmlFor="name">
@@ -250,11 +259,8 @@ function AddPlace() {
             </div>
           </div>
 
-          {/* PHOTOS */}
           <div className="form-section">
-            <h2>
-              Photos
-            </h2>
+            <h2>Photos</h2>
 
             <p className="form-help">
               Add up to 5 photos that show people what the place is like.
@@ -292,11 +298,8 @@ function AddPlace() {
             )}
           </div>
 
-          {/* REVIEW */}
           <div className="form-section">
-            <h2>
-              Your experience
-            </h2>
+            <h2>Your experience</h2>
 
             <div className="form-group">
               <label>
@@ -345,14 +348,13 @@ function AddPlace() {
             disabled={
               formData.rating === 0 ||
               photos.length === 0 ||
-              loading
+              submitting
             }
           >
-            {loading
+            {submitting
               ? "Submitting..."
               : "Submit Place"}
           </button>
-
         </form>
       </section>
     </main>

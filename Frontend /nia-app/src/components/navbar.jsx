@@ -6,7 +6,9 @@ export default function Navbar({
   sidebarOpen,
   setSidebarOpen,
   onLogout,
-}) {
+  
+} )
+ {
   return (
     <>
       {/* DESKTOP NAVBAR */}
@@ -18,13 +20,14 @@ export default function Navbar({
         </div>
 
         <nav className="desktop-nav">
-          <Link to="/">Explore</Link>
+          {/* <Link to="/">Explore</Link> */}
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/offmap">Off Map</Link>
           <Link to="/history">History</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/favorites">Favourites</Link>
           <Link to="/add-place">Add A Place</Link>
+          
         </nav>
 
         <div className="navbar-user">
@@ -32,9 +35,9 @@ export default function Navbar({
             Hi, {user?.name || "Guest"}
           </span>
 
-          {/* <button onClick={onLogout}>
+          <button onClick={onLogout}>
             Logout
-          </button> */}
+          </button> 
         </div>
 
         {/* MOBILE MENU BUTTON */}
@@ -87,12 +90,12 @@ export default function Navbar({
         {/* NAVIGATION */}
         <nav className="sidebar-nav">
 
-          <Link
+          {/* <Link
             to="/home"
             onClick={() => setSidebarOpen(false)}
           >
             Explore
-          </Link>
+          </Link> */}
 
           <Link
             to="/offmap"
