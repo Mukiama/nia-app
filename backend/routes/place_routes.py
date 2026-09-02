@@ -17,11 +17,15 @@ class PlacesResource(Resource):
         page = request.args.get("page", 1, type=int)
         per_page = request.args.get("per_page", 10, type=int)
         search = request.args.get("q", "", type=str).strip()
+        category = request.args.get("category", "", type=str).strip()
 
         query = Place.query
 
         if search:
             query = query.filter(Place.name.ilike(f"%{search}%"))
+
+        if category and category != "All":
+            query = query.filter(Place.category == category)
 
         pagination = query.paginate(page=page, per_page=per_page, error_out=False)
 
