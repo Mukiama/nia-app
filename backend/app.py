@@ -51,11 +51,12 @@ jwt.init_app(app)
 
 CORS(
     app,
-    resources={
+        resources={
         r"/*": {
             "origins": [
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
+                "https://nia-app-ma9q.vercel.app",
             ]
         }
     },
@@ -102,11 +103,14 @@ api.add_resource(
 
 @app.before_request
 def check_if_logged_in():
+    if request.method == "OPTIONS":
+        return
+
     open_access = ["signup", "login", "verification", "index"]
 
     if request.endpoint not in open_access:
         try:
-            verify_jwt_in_request()
+            verify_jwt_in_request(optional=True)
         except Exception:
             return {"error": "401 Unauthorized"}, 401
 

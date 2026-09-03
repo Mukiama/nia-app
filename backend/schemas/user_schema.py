@@ -1,3 +1,5 @@
+import json
+
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow import fields
 from models import User, History, Favourite
@@ -8,6 +10,33 @@ class UserSchema(SQLAlchemyAutoSchema):
         model = User
         load_instance = True
         exclude = ("_password_hash",)
+
+
+def _place_image(place):
+    if not place or not place.picture:
+        return ""
+
+    try:
+        parsed = json.loads(place.picture)
+        if isinstance(parsed, list) and parsed:
+            return parsed[0]
+        return place.picture
+    except (ValueError, TypeError):
+        return place.picture
+
+
+def _place_county(place):
+    if not place or not place.physical_address:
+        return "Nairobi"
+
+    # Addresses are formatted like "Duma Road, Lang'ata, Nairobi, Kenya"
+    # so we take the second-to-last comma-separated part as the county.
+    parts = [part.strip() for part in place.physical_address.split(",")]
+
+    if len(parts) >= 2:
+        return parts[-2]
+
+    return "Nairobi"
 
 
 class HistorySchema(SQLAlchemyAutoSchema):
@@ -32,19 +61,19 @@ class HistorySchema(SQLAlchemyAutoSchema):
         return getattr(obj.place, "name", "") if obj.place else ""
 
     def get_place_image(self, obj):
-        return "https://unsplash.com"
+        return _place_image(obj.place)
 
     def get_place_category(self, obj):
-        return "Adventure"
+        return getattr(obj.place, "category", "") if obj.place else ""
 
     def get_place_location(self, obj):
-        return getattr(obj.place, "name", "") if obj.place else ""
+        return getattr(obj.place, "physical_address", "") if obj.place else ""
 
     def get_place_county(self, obj):
-        return "Nairobi"
+        return _place_county(obj.place)
 
     def get_place_description(self, obj):
-        return "A wonderful place to visit."
+        return getattr(obj.place, "description", "") if obj.place else ""
 
 
 class FavouriteSchema(SQLAlchemyAutoSchema):
@@ -65,10 +94,10 @@ class FavouriteSchema(SQLAlchemyAutoSchema):
         return getattr(obj.place, "name", "") if obj.place else ""
 
     def get_place_image(self, obj):
-        return "https://unsplash.com"
+        return _place_image(obj.place)
 
     def get_place_category(self, obj):
-        return "Adventure"
+        return getattr(obj.place, "category", "") if obj.place else ""
 
     def get_place_county(self, obj):
-        return "Nairobi"
+        return _place_county(obj.place)
