@@ -28,6 +28,7 @@ flask-restful = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 email-validator = "*"
+cloudinary = "*"
 
 [dev-packages]
 
