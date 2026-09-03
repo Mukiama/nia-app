@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OffMapQuestion from "../components/offmap/OffMapQuestion";
 import OffMapProgress from "../components/offmap/OffMapProgress";
 import OffMapResult from "../components/offmap/OffMapResult";
 import offMapQuestions from "../data/offmapQuestions";
-import offMapPlaces from "../data/offMapPlaces";
+import { authFetch } from "../api/client";
 import {
   getOffMapRecommendation,
   getOffMapWildcard,
@@ -15,6 +15,10 @@ function OffMap() {
   const [result, setResult] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const [places, setPlaces] = useState([]);
+  const [loadingPlaces, setLoadingPlaces] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
   const [preferences, setPreferences] = useState({
     who: null,
     mood: null,
@@ -22,6 +26,50 @@ function OffMap() {
     time: null,
     distance: null,
   });
+
+  useEffect(() => {
+    async function loadPlaces() {
+      try {
+        setLoadingPlaces(true);
+        setLoadError("");
+
+        const response = await authFetch("/places/?per_page=100");
+
+        if (!response.ok) {
+          throw new Error("Failed to load places.");
+        }
+
+        const data = await response.json();
+
+        const normalized = (data.items || []).map((place) => {
+          let image = "";
+
+          try {
+            const parsed = JSON.parse(place.picture);
+            image = Array.isArray(parsed) ? parsed[0] : place.picture;
+          } catch {
+            image = place.picture || "";
+          }
+
+          return {
+            ...place,
+            image,
+            location: place.physical_address || place.gps || "Nairobi",
+            price: "Varies",
+            time: place.operating_hours || "Check on arrival",
+          };
+        });
+
+        setPlaces(normalized);
+      } catch (err) {
+        setLoadError("Could not load places right now.");
+      } finally {
+        setLoadingPlaces(false);
+      }
+    }
+
+    loadPlaces();
+  }, []);
 
   const question = offMapQuestions[currentQuestion];
   const selectedValue = preferences[question.id];
@@ -44,11 +92,8 @@ function OffMap() {
       } else {
         const recommendation = getOffMapRecommendation(
           updatedPreferences,
-          offMapPlaces
+          places
         );
-
-        console.log("Final preferences:", updatedPreferences);
-        console.log("Recommendation:", recommendation);
 
         setResult(recommendation);
         setIsTransitioning(false);
@@ -65,7 +110,7 @@ function OffMap() {
   const handleRollAgain = () => {
     const recommendation = getOffMapRecommendation(
       preferences,
-      offMapPlaces,
+      places,
       result?.id
     );
 
@@ -75,12 +120,35 @@ function OffMap() {
   const handleWildcard = () => {
     const wildcard = getOffMapWildcard(
       preferences,
-      offMapPlaces,
+      places,
       result?.id
     );
 
     setResult(wildcard);
   };
+
+  /*
+   * LOADING / ERROR STATES
+   */
+  if (loadingPlaces) {
+    return (
+      <main className="offmap-page">
+        <div className="offmap-container">
+          <p>Loading places...</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (loadError || places.length === 0) {
+    return (
+      <main className="offmap-page">
+        <div className="offmap-container">
+          <p>{loadError || "No places available right now."}</p>
+        </div>
+      </main>
+    );
+  }
 
   /*
    * RESULT SCREEN

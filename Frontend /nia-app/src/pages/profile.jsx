@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import places from "../data/places.js";
-import { getUser, clearAuth } from "../api/client";
+import { useNavigate } from "react-router-dom";
+import { authFetch, getUser, clearAuth } from "../api/client";
 
 import "./profile.css";
 
@@ -10,7 +9,6 @@ export default function Profile() {
 
   const user = getUser() || { name: "Guest User", email: "guest@nia.app" };
 
-  // Turns a full name into initials, e.g. "Ted Karani" -> "TK"
   function getInitials(name) {
     return name
       .split(" ")
@@ -19,50 +17,50 @@ export default function Profile() {
       .toUpperCase();
   }
 
-  // Local display copies of name/email — editing these does NOT touch
-  // getUser()/auth, so nothing else in the app that reads the real user
-  // object is affected. Not persisted anywhere yet (no backend for it).
-  const [displayName, setDisplayName] = useState(user.name);
-  const [displayEmail, setDisplayEmail] = useState(user.email);
-  const initials = getInitials(displayName);
+  const initials = getInitials(user.name);
 
-  // ---------- brief skeleton loading state (cosmetic, mount-only) ----------
   const [isLoading, setIsLoading] = useState(true);
+  const [toast, setToast] = useState(null);
+
+  const [savedPlaces, setSavedPlaces] = useState([]);
+  const [recentVisits, setRecentVisits] = useState([]);
+  const [loadError, setLoadError] = useState("");
+
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 550);
-    return () => clearTimeout(timer);
+    async function loadProfileData() {
+      try {
+        setIsLoading(true);
+        setLoadError("");
+
+        const [favouritesRes, historyRes] = await Promise.all([
+          authFetch("/favourites"),
+          authFetch("/history"),
+        ]);
+
+        if (!favouritesRes.ok || !historyRes.ok) {
+          throw new Error("Failed to load profile data.");
+        }
+
+        const favouritesData = await favouritesRes.json();
+        const historyData = await historyRes.json();
+
+        setSavedPlaces(favouritesData);
+        setRecentVisits(historyData);
+      } catch (err) {
+        setLoadError("Could not load your saved places right now.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadProfileData();
   }, []);
 
-  // ---------- toast ----------
-  const [toast, setToast] = useState(null);
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(null), 2800);
     return () => clearTimeout(timer);
   }, [toast]);
-
-  // ---------- edit profile modal ----------
-  const [isEditOpen, setIsEditOpen] = useState(false);
-  const [editName, setEditName] = useState(displayName);
-  const [editEmail, setEditEmail] = useState(displayEmail);
-
-  function openEdit() {
-    setEditName(displayName);
-    setEditEmail(displayEmail);
-    setIsEditOpen(true);
-  }
-
-  function handleEditSave(event) {
-    event.preventDefault();
-    if (!editName.trim() || !editEmail.trim()) {
-      setToast({ type: "error", message: "Name and email can't be empty." });
-      return;
-    }
-    setDisplayName(editName.trim());
-    setDisplayEmail(editEmail.trim());
-    setIsEditOpen(false);
-    setToast({ type: "success", message: "Profile updated." });
-  }
 
   const allInterests = ["Nature", "Culture", "Food", "Art", "Adventure", "Nightlife"];
   const [interests, setInterests] = useState(["Nature", "Culture"]);
@@ -81,18 +79,10 @@ export default function Profile() {
   const companyOptions = ["Alone", "Friends", "Family", "Partner"];
   const [company, setCompany] = useState("Friends");
 
-  const [savedPlaceIds, setSavedPlaceIds] = useState(
-    places.slice(0, 3).map((place) => place.id)
-  );
-
-  const savedPlaces = places.filter((place) => savedPlaceIds.includes(place.id));
-
-  // Live stat for the hero banner — real count of distinct counties saved
   const countiesExplored = useMemo(() => {
     return new Set(savedPlaces.map((place) => place.county)).size;
   }, [savedPlaces]);
 
-  // Most-saved category and county, purely computed from real saved places
   const favoriteStat = useMemo(() => {
     if (savedPlaces.length === 0) return null;
 
@@ -109,7 +99,6 @@ export default function Profile() {
     return `${topCategory} spots in ${topCounty}`;
   }, [savedPlaces]);
 
-  // Fun label derived from existing preference state — no fake data
   const travelStyle = useMemo(() => {
     const isAdventurous = interests.includes("Adventure");
     const isFoodie = interests.includes("Food");
@@ -126,38 +115,19 @@ export default function Profile() {
     return "Curious Explorer";
   }, [budget, company, interests]);
 
-  function removeSavedPlace(id, event) {
-    event.stopPropagation(); // don't trigger the card's own click (navigation)
-    setSavedPlaceIds(savedPlaceIds.filter((savedId) => savedId !== id));
+  async function removeSavedPlace(id, event) {
+    event.stopPropagation();
+
+    try {
+      await authFetch(`/favourites/${id}`, { method: "DELETE" });
+      setSavedPlaces((prev) => prev.filter((place) => place.id !== id));
+    } catch (err) {
+      setToast({ type: "error", message: "Could not remove that place." });
+    }
   }
 
   function goToPlace(place) {
-    navigate("/places", { state: { place } });
-  }
-
-  const recentVisitsDemo = places.slice(1, 4);
-
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordMessage, setPasswordMessage] = useState("");
-
-  function handlePasswordSave(event) {
-    event.preventDefault();
-    if (!currentPassword || !newPassword || !confirmPassword) {
-      setPasswordMessage("Please fill in all fields.");
-      return;
-    }
-    if (newPassword.length < 8) {
-      setPasswordMessage("New password must be at least 8 characters.");
-      return;
-    }
-    if (newPassword !== confirmPassword) {
-      setPasswordMessage("New password and confirmation don't match.");
-      return;
-    }
-    setPasswordMessage("Password changes will be enabled once the backend is ready.");
-    setToast({ type: "success", message: "Password form validated." });
+    navigate(`/places/${place.placeId}`);
   }
 
   function handleLogout() {
@@ -165,10 +135,9 @@ export default function Profile() {
     window.location.href = "/";
   }
 
-  // ---------- share stats ----------
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  const shareText = `My Nia travel stats 🌍\n${savedPlaces.length} places saved · ${countiesExplored} counties explored · ${travelStyle}`;
+  const shareText = `My Nia travel stats \n${savedPlaces.length} places saved · ${countiesExplored} counties explored · ${travelStyle}`;
 
   async function handleCopyShare() {
     try {
@@ -197,15 +166,11 @@ export default function Profile() {
         </div>
       ) : (
         <div className="profile-hero">
-          <button type="button" className="profile-edit-btn" onClick={openEdit} aria-label="Edit profile">
-            ✎
-          </button>
-
           <div className="profile-hero-top">
             <div className="profile-avatar">{initials}</div>
             <div className="profile-header-info">
-              <h1>{displayName}</h1>
-              <p>{displayEmail}</p>
+              <h1>{user.name}</h1>
+              <p>{user.email}</p>
               <span className="travel-style-badge">{travelStyle}</span>
             </div>
           </div>
@@ -240,7 +205,7 @@ export default function Profile() {
       <div className="profile-section">
         <h2>Travel Preferences</h2>
         <p className="profile-section-subtitle">
-          This is what Nia uses to recommend better matches — update it any time.
+          Tell us what you're into — helps shape your OffMap picks.
         </p>
 
         <div className="preference-group">
@@ -306,9 +271,6 @@ export default function Profile() {
               Tap a place to view it, or remove it from your saved list.
             </p>
           </div>
-          <Link to="/add-place" className="profile-add-link">
-            + Add a place
-          </Link>
         </div>
 
         {isLoading ? (
@@ -316,6 +278,10 @@ export default function Profile() {
             {[0, 1, 2].map((i) => (
               <div key={i} className="skeleton skeleton-card" />
             ))}
+          </div>
+        ) : loadError ? (
+          <div className="empty-state">
+            <p>{loadError}</p>
           </div>
         ) : savedPlaces.length === 0 ? (
           <div className="empty-state">
@@ -348,112 +314,49 @@ export default function Profile() {
         )}
       </div>
 
-      {/* RECENT VISITS — demo only for now */}
-      <div className="profile-section profile-section--preview">
+      {/* RECENT VISITS */}
+      <div className="profile-section">
         <h2>Recent Visits</h2>
         <p className="profile-section-subtitle">
-          Preview data — your real visit history will show here once tracking is connected.
+          Places you've recently viewed.
         </p>
-        <div className="profile-card-grid">
-          {recentVisitsDemo.map((place) => (
-            <div key={place.id} className="profile-place-card profile-place-card--preview">
-              <span className="preview-badge">Preview</span>
-              <img src={place.image} alt={place.name} />
-              <div className="profile-place-content">
-                <h3>{place.name}</h3>
-                <p>{place.category} · {place.county}</p>
+        {isLoading ? (
+          <div className="profile-card-grid">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="skeleton skeleton-card" />
+            ))}
+          </div>
+        ) : recentVisits.length === 0 ? (
+          <div className="empty-state">
+            <p>No visits yet — explore places on Nia to see them here.</p>
+          </div>
+        ) : (
+          <div className="profile-card-grid">
+            {recentVisits.map((place) => (
+              <div key={place.id} className="profile-place-card">
+                <img src={place.image} alt={place.name} />
+                <div className="profile-place-content">
+                  <h3>{place.name}</h3>
+                  <p>{place.category} · {place.county}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* ACCOUNT — password + logout, visually separated as a settings zone */}
+      {/* ACCOUNT — read-only info + logout */}
       <div className="profile-account-zone">
         <h2>Account</h2>
 
-        <div className="profile-account-grid">
-          <form onSubmit={handlePasswordSave} className="profile-password-form">
-            <h3>Change password</h3>
-            <div className="profile-form-field">
-              <label>Current password</label>
-              <input
-                type="password"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-              />
-            </div>
-            <div className="profile-form-field">
-              <label>New password</label>
-              <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-            </div>
-            <div className="profile-form-field">
-              <label>Confirm new password</label>
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            <button type="submit" className="profile-save-btn">
-              Save changes
-            </button>
-            {passwordMessage && <p className="profile-save-note">{passwordMessage}</p>}
-          </form>
-
-          <div className="profile-account-side">
-            <div className="profile-account-side-block">
-              <h3>Session</h3>
-              <p>Signed in as {displayEmail}</p>
-              <button type="button" className="profile-logout-btn" onClick={handleLogout}>
-                Log out
-              </button>
-            </div>
-          </div>
+        <div className="profile-account-side-block">
+          <h3>Session</h3>
+          <p>Signed in as {user.email}</p>
+          <button type="button" className="profile-logout-btn" onClick={handleLogout}>
+            Log out
+          </button>
         </div>
       </div>
-
-      {/* EDIT PROFILE MODAL */}
-      {isEditOpen && (
-        <div className="profile-modal-overlay" onClick={() => setIsEditOpen(false)}>
-          <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
-            <h3>Edit profile</h3>
-            <form onSubmit={handleEditSave}>
-              <div className="profile-form-field profile-form-field--light">
-                <label>Name</label>
-                <input
-                  type="text"
-                  value={editName}
-                  onChange={(e) => setEditName(e.target.value)}
-                />
-              </div>
-              <div className="profile-form-field profile-form-field--light">
-                <label>Email</label>
-                <input
-                  type="email"
-                  value={editEmail}
-                  onChange={(e) => setEditEmail(e.target.value)}
-                />
-              </div>
-              <p className="profile-modal-note">
-                Changes are shown here only — syncing to your account will be enabled once the backend is ready.
-              </p>
-              <div className="profile-modal-actions">
-                <button type="button" className="profile-modal-cancel" onClick={() => setIsEditOpen(false)}>
-                  Cancel
-                </button>
-                <button type="submit" className="profile-save-btn">
-                  Save changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* SHARE STATS MODAL */}
       {isShareOpen && (
@@ -461,7 +364,7 @@ export default function Profile() {
           <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
             <h3>Share your stats</h3>
             <div className="share-card">
-              <p className="share-card-title">{displayName}'s Nia stats</p>
+              <p className="share-card-title">{user.name}'s Nia stats</p>
               <div className="share-card-stats">
                 <div>
                   <span className="share-card-value">{savedPlaces.length}</span>
