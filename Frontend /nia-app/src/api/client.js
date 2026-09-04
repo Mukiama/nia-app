@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL || "https://nia-app-26eb.onrender.com";
 
 function setAuth({ token, user }) {
   localStorage.setItem("niaAuth", JSON.stringify({ token, user }));
