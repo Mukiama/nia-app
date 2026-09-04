@@ -89,9 +89,9 @@ function Topbar() {
                   NIA Community
                 </Link>
 
-              <Link to="/reviews">
+              {/* <Link to="/reviews">
                 Application Reviews
-              </Link>
+              </Link> */}
 
               {/* 
               <Link to="/map">Interactive Map</Link>
