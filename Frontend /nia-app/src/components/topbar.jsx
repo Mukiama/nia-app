@@ -182,12 +182,12 @@ function Topbar() {
           </Link>
          
 
-          <Link
+          {/* <Link
             to="/list-business"
             className="navbar-action business-link"
           >
             List Your Business
-          </Link>
+          </Link> */}
 
 
           {/* ACCOUNT */}
