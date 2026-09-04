@@ -103,12 +103,12 @@ function OffMapResult({
             That's the point.
           </p>
 
-          <button
+          {/* <button
             type="button"
             className="offmap-go-button"
           >
             Take me there →
-          </button>
+          </button> */}
 
         </div>
 
